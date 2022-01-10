@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "impactfulweather",
+  "version": "${version}",
+  "name": "Impactful Weather",
+  "description": "",
+  "authors": [],
+  "contact": {},
+  "license": "MIT",
+  "icon": "assets/BiomeWeatherEffects/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "shadowmaster435.impactfulweather.client.ImpactfulWeatherClient"
+    ],
+    "main": [
+      "shadowmaster435.impactfulweather.ImpactfulWeather"
+    ]
+  },
+  "mixins": [
+    "ImpactfulWeather.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.12.12",
+    "fabric": "*",
+    "minecraft": "1.18.1"
+  }
+}
