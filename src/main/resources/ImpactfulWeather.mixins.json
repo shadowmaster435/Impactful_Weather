@@ -4,6 +4,8 @@
   "package": "shadowmaster435.impactfulweather.mixin",
   "compatibilityLevel": "JAVA_16",
   "mixins": [
+    "BGRendererMixin",
+    "EntityMixin",
     "WorldRendererMixin"
   ],
   "client": [
