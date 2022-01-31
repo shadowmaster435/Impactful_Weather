@@ -7,14 +7,11 @@
   "authors": [],
   "contact": {},
   "license": "MIT",
-  "icon": "assets/BiomeWeatherEffects/icon.png",
-  "environment": "*",
+  "icon": "assets/impactfulweather/icon.png",
+  "environment": "client",
   "entrypoints": {
     "client": [
       "shadowmaster435.impactfulweather.client.ImpactfulWeatherClient"
-    ],
-    "main": [
-      "shadowmaster435.impactfulweather.ImpactfulWeather"
     ]
   },
   "mixins": [
