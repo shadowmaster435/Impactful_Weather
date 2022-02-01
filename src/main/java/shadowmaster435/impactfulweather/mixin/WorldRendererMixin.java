@@ -39,54 +39,54 @@ public class WorldRendererMixin {
     private int field_20793;
 
 
-    @Shadow @Final private MinecraftClient client;
+    @Shadow @Final private  MinecraftClient client;
 
     /**
      * @author shadowmaster435
      */
-    @Overwrite
-    private void renderWeather(LightmapTextureManager manager, float f, double d, double e, double g) {
-        MinecraftClient instance = MinecraftClient.getInstance();
-        PlayerEntity player = instance.player;
-        World world = instance.world;
-        assert world != null;
-        assert player != null;
-        BlockPos pos = player.getBlockPos();
-        Random random = instance.world.random;
+    @Inject(at = @At("TAIL"), method = "renderWeather")
+    private void render(LightmapTextureManager manager, float f, double d, double e, double g, CallbackInfo ci) {
+        MinecraftClient instance2 = MinecraftClient.getInstance();
+        PlayerEntity player2 = instance2.player;
+        World world2 = instance2.world;
+        assert world2 != null;
+        assert player2 != null;
+        BlockPos pos = player2.getBlockPos();
+        Random random = instance2.world.random;
         int i = pos.getX();
         int j = pos.getY();
         int k = pos.getZ();
         double x = (double)i + random.nextDouble();
         double y = (double)j + random.nextDouble();
         double z = (double)k + random.nextDouble();
-        if (world.isRaining() && !client.isPaused()) {
+        if (world2.isRaining() && !client.isPaused()) {
             for (int l = 0; l < 8; ++l) {
 
-                if (world.getBiome(new BlockPos(x + 32, MathHelper.lerp(world.random.nextDouble(), 63, 100), z + 32)).getCategory() == Biome.Category.DESERT || world.getBiome(new BlockPos(x + 32, MathHelper.lerp(world.random.nextDouble(), 63, 100), z + 32)).getCategory() == Biome.Category.MESA) {
-                    if (world.getBiome(new BlockPos(x + 32, MathHelper.lerp(world.random.nextDouble(), 63, 100), z + 32)).getCategory() == Biome.Category.MESA) {
-                        world.addParticle(IWParticles.REDSANDMOTE, MathHelper.lerp(world.random.nextDouble(), x - 64, x + 32), MathHelper.lerp(world.random.nextDouble(), 63, 100), z - 24, 0f, 0f, 0f);
+                if (world2.getBiome(new BlockPos(x + 32, MathHelper.lerp(world2.random.nextDouble(), 63, 100), z + 32)).getCategory() == Biome.Category.DESERT || world2.getBiome(new BlockPos(x + 32, MathHelper.lerp(world2.random.nextDouble(), 63, 100), z + 32)).getCategory() == Biome.Category.MESA) {
+                    if (world2.getBiome(new BlockPos(x + 32, MathHelper.lerp(world2.random.nextDouble(), 63, 100), z + 32)).getCategory() == Biome.Category.MESA) {
+                        world2.addParticle(IWParticles.REDSANDMOTE, MathHelper.lerp(world2.random.nextDouble(), x - 64, x + 32), MathHelper.lerp(world2.random.nextDouble(), 63, 100), z - 24, 0f, 0f, 0f);
                     } else {
-                        world.addParticle(IWParticles.SANDMOTE, MathHelper.lerp(world.random.nextDouble(), x - 64, x + 32), MathHelper.lerp(world.random.nextDouble(), 63, 100), z - 24, 0f, 0f, 0f);
+                        world2.addParticle(IWParticles.SANDMOTE, MathHelper.lerp(world2.random.nextDouble(), x - 64, x + 32), MathHelper.lerp(world2.random.nextDouble(), 63, 100), z - 24, 0f, 0f, 0f);
                     }
 
                     if (Math.random() < 0.0075) {
-                        world.addParticle(IWParticles.TUMBLEBUSH, MathHelper.lerp(world.random.nextDouble(), x - 64, x + 32), MathHelper.lerp(world.random.nextDouble(), 63, 100), z - 24, 0f, 0f, 0f);
+                        world2.addParticle(IWParticles.TUMBLEBUSH, MathHelper.lerp(world2.random.nextDouble(), x - 64, x + 32), MathHelper.lerp(world2.random.nextDouble(), 63, 100), z - 24, 0f, 0f, 0f);
                     }
                 }
-                if (world.getBiome(new BlockPos(MathHelper.lerp(world.random.nextDouble(), x - 32, x + 32), MathHelper.lerp(world.random.nextDouble(), 64, 256), MathHelper.lerp(world.random.nextDouble(), z - 32, z + 32))).getCategory() == Biome.Category.SAVANNA) {
-                    world.addParticle(IWParticles.GUST, MathHelper.lerp(world.random.nextDouble(), x - 32, x + 32), MathHelper.lerp(world.random.nextDouble(), y - 32, y + 32), MathHelper.lerp(world.random.nextDouble(), z - 32, z + 32), 0f, 0f, 0f);
+                if (world2.getBiome(new BlockPos(MathHelper.lerp(world2.random.nextDouble(), x - 32, x + 32), MathHelper.lerp(world2.random.nextDouble(), 64, 256), MathHelper.lerp(world2.random.nextDouble(), z - 32, z + 32))).getCategory() == Biome.Category.SAVANNA) {
+                    world2.addParticle(IWParticles.GUST, MathHelper.lerp(world2.random.nextDouble(), x - 32, x + 32), MathHelper.lerp(world2.random.nextDouble(), y - 32, y + 32), MathHelper.lerp(world2.random.nextDouble(), z - 32, z + 32), 0f, 0f, 0f);
                 }
                 if (
-                        world.getBiome(new BlockPos(MathHelper.lerp(world.random.nextDouble(), x - 32, x + 32), player.getBlockPos().getY(), MathHelper.lerp(world.random.nextDouble(), z - 32, z + 32))).doesNotSnow(new BlockPos(MathHelper.lerp(world.random.nextDouble(), x - 32, x + 32), player.getBlockPos().getY(), MathHelper.lerp(world.random.nextDouble(), z - 32, z + 32))) && world.getBiome(new BlockPos(MathHelper.lerp(world.random.nextDouble(), x - 32, x + 32), player.getBlockPos().getY(), MathHelper.lerp(world.random.nextDouble(), z - 32, z + 32))).getPrecipitation().equals(Biome.Precipitation.RAIN)
+                        world2.getBiome(new BlockPos(MathHelper.lerp(world2.random.nextDouble(), x - 32, x + 32), player2.getBlockPos().getY(), MathHelper.lerp(world2.random.nextDouble(), z - 32, z + 32))).doesNotSnow(new BlockPos(MathHelper.lerp(world2.random.nextDouble(), x - 32, x + 32), player2.getBlockPos().getY(), MathHelper.lerp(world2.random.nextDouble(), z - 32, z + 32))) && world2.getBiome(new BlockPos(MathHelper.lerp(world2.random.nextDouble(), x - 32, x + 32), player2.getBlockPos().getY(), MathHelper.lerp(world2.random.nextDouble(), z - 32, z + 32))).getPrecipitation().equals(Biome.Precipitation.RAIN)
                 ) {
-                    world.addParticle(IWParticles.RAIN, MathHelper.lerp(world.random.nextDouble(), x - 32, x + 32), player.getBlockPos().getY() + 100, MathHelper.lerp(world.random.nextDouble(), z - 32, z + 32), 0f, 0f, 0f);
+                    world2.addParticle(IWParticles.RAIN, MathHelper.lerp(world2.random.nextDouble(), x - 32, x + 32), player2.getBlockPos().getY() + 100, MathHelper.lerp(world2.random.nextDouble(), z - 32, z + 32), 0f, 0f, 0f);
                 }
                 if (
-                        !(world.getBiome(new BlockPos(MathHelper.lerp(world.random.nextDouble(), x - 32, x + 32), player.getBlockPos().getY(), MathHelper.lerp(world.random.nextDouble(), z - 32, z + 32))).doesNotSnow(new BlockPos(MathHelper.lerp(world.random.nextDouble(), x - 32, x + 32), player.getBlockPos().getY(), MathHelper.lerp(world.random.nextDouble(), z - 32, z + 32)))) ||
-                        world.getBiome(new BlockPos(MathHelper.lerp(world.random.nextDouble(), x - 32, x + 32), player.getBlockPos().getY(), MathHelper.lerp(world.random.nextDouble(), z - 32, z + 32))).getPrecipitation() == Biome.Precipitation.SNOW)
+                        !(world2.getBiome(new BlockPos(MathHelper.lerp(world2.random.nextDouble(), x - 32, x + 32), player2.getBlockPos().getY(), MathHelper.lerp(world2.random.nextDouble(), z - 32, z + 32))).doesNotSnow(new BlockPos(MathHelper.lerp(world2.random.nextDouble(), x - 32, x + 32), player2.getBlockPos().getY(), MathHelper.lerp(world2.random.nextDouble(), z - 32, z + 32)))) ||
+                        world2.getBiome(new BlockPos(MathHelper.lerp(world2.random.nextDouble(), x - 32, x + 32), player2.getBlockPos().getY(), MathHelper.lerp(world2.random.nextDouble(), z - 32, z + 32))).getPrecipitation() == Biome.Precipitation.SNOW)
                 {
                     if (Math.random() < 0.4) {
-                        world.addParticle(IWParticles.SNOW, MathHelper.lerp(world.random.nextDouble(), x - 32, x + 32), player.getBlockPos().getY() + 100, MathHelper.lerp(world.random.nextDouble(), z - 32, z + 32), 0f, 0f, 0f);
+                        world2.addParticle(IWParticles.SNOW, MathHelper.lerp(world2.random.nextDouble(), x - 32, x + 32), player2.getBlockPos().getY() + 100, MathHelper.lerp(world2.random.nextDouble(), z - 32, z + 32), 0f, 0f, 0f);
                     }
                 }
 
