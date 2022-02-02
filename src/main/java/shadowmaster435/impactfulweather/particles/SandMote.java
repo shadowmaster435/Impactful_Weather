@@ -6,6 +6,8 @@ import net.fabricmc.fabric.api.client.particle.v1.FabricSpriteProvider;
 import net.minecraft.client.particle.*;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.particle.DefaultParticleType;
+import net.minecraft.tag.FluidTags;
+import net.minecraft.util.math.BlockPos;
 
 
 @Environment(EnvType.CLIENT)
@@ -15,6 +17,7 @@ public class SandMote extends AnimatedParticle {
     public float Sinefunc() {
         return (float) ((float) (Math.sin(this.age) / 8.0) / 16.0);
     }
+    public static int groundtimer;
 
     public SandMote(ClientWorld world, double x, double y, double z, double Xv, double Yv, double Zv, SpriteProvider sprites) {
         super(world, x, y, z, sprites, 0f);
@@ -44,18 +47,32 @@ public class SandMote extends AnimatedParticle {
         this.prevPosY = this.y;
         this.prevPosZ = this.z;
         this.prevAngle = this.angle;
-        this.angle += 3.1415927F * this.field_3809 * 2.0F;
         this.scale = 0.15F;
         ++age1;
 
-        if (this.age1 >= 200) {
+        if (this.age1 >= 200 || groundtimer > 15) {
             this.markDead();
-        }
+        } else {
+            if (this.world.getFluidState(new BlockPos(this.x, this.y, this.z)).isIn(FluidTags.WATER) || this.world.getFluidState(new BlockPos(this.x, this.y, this.z)).isIn(FluidTags.LAVA)) {
+                this.velocityY = Sinefunc();
+                this.velocityX = 0.2;
+                this.velocityZ = 0.2;
+                this.velocityY = (this.velocityY - 0.0025) + Sinefunc();
+                this.angle += 3.1415927F * this.field_3809 * 0.5F;
 
-        else {
-            this.velocityX = 0.6;
-            this.velocityZ = 0.6;
-            this.velocityY = (this.velocityY - 0.0025) + Sinefunc();
+                ++groundtimer;
+            } else if (this.onGround) {
+                this.velocityX = 0;
+                this.velocityZ = 0;
+                this.velocityY = 0;
+                this.angle = this.prevAngle;
+                ++groundtimer;
+            } else {
+                this.velocityX = 0.6;
+                this.velocityZ = 0.6;
+                this.angle += 3.1415927F * this.field_3809 * 2.0F;
+                this.velocityY = (this.velocityY - 0.0025) + Sinefunc();
+            }
         }
         this.move(this.velocityX, this.velocityY, this.velocityZ);
     }

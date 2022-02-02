@@ -11,7 +11,7 @@ import net.minecraft.util.math.BlockPos;
 
 
 @Environment(EnvType.CLIENT)
-public class Gust extends AnimatedParticle {
+public class RainSplash extends AnimatedParticle {
     public float Sinefunc() {
         return (float) ((float) (Math.sin(this.age) / 8.0) / 16.0);
     }
@@ -19,12 +19,12 @@ public class Gust extends AnimatedParticle {
     public static ClientWorld cworld;
     private final float field_3809;
 
-    public Gust(ClientWorld world, double x, double y, double z, SpriteProvider sprites, float up) {
+    public RainSplash(ClientWorld world, double x, double y, double z, SpriteProvider sprites, float up) {
         super(world, x, y, z, sprites, up);
         this.velocityX = 0.0D;
         this.velocityY = 0;
         this.velocityZ = 0.0D;
-        this.maxAge = (int) (15 + Math.floor(Math.random() * 5));
+        this.maxAge = 5;
         this.gravityStrength = 0f;
         this.alpha = 0.0f;
         this.scale = 0.0f;
@@ -34,7 +34,7 @@ public class Gust extends AnimatedParticle {
 
         this.setSpriteForAge(this.spriteProvider);
 
-        this.setBoundingBoxSpacing(0.02F, 0.02f);
+        this.setBoundingBoxSpacing(0.02F, 0.1f);
     }
 
 
@@ -43,44 +43,32 @@ public class Gust extends AnimatedParticle {
         this.prevPosY = this.y;
         this.prevPosZ = this.z;
         this.alpha = 1;
-
-        if (this.age > this.maxAge || this.world.getFluidState(new BlockPos(this.x, this.y, this.z)).isIn(FluidTags.WATER) || this.world.getFluidState(new BlockPos(this.x, this.y, this.z)).isIn(FluidTags.LAVA)) {
-
+        this.scale = 0.2f;
+        if (this.age > this.maxAge) {
             this.markDead();
             this.age = 0;
         } else {
             ++this.age;
             this.setSpriteForAge(this.spriteProvider);
-            if (this.age < 5) {
-                this.alpha = this.alpha + 0.04f;
-            }
-            else {
-                this.alpha = 0.2f;
-            }
-            if (this.age >= 10) {
-                this.alpha = this.alpha - 0.04f;
-            } else {
-                this.alpha = 0.2f;
-            }
         }
     }
 
     public ParticleTextureSheet getType() {
-        return ParticleTextureSheet.PARTICLE_SHEET_TRANSLUCENT;
+        return ParticleTextureSheet.PARTICLE_SHEET_OPAQUE;
     }
 
     @Environment(EnvType.CLIENT)
-    public static class GustFactory implements ParticleFactory<DefaultParticleType> {
+    public static class RainSplashFactory implements ParticleFactory<DefaultParticleType> {
         private final SpriteProvider spriteProvider;
 
-        public GustFactory(FabricSpriteProvider sprites) {
+        public RainSplashFactory(FabricSpriteProvider sprites) {
             this.spriteProvider = sprites;
 
         }
 
         @Override
         public Particle createParticle(DefaultParticleType type, ClientWorld world, double x, double y, double z, double Xv, double Yv, double Zv) {
-            Gust rain = new Gust(world, x, y, z, spriteProvider, upv);
+            RainSplash rain = new RainSplash(world, x, y, z, spriteProvider, upv);
             rain.setSprite(this.spriteProvider);
             return rain;
         }

@@ -13,6 +13,7 @@ public class IWParticles {
     public static final DefaultParticleType SANDMOTE = FabricParticleTypes.simple(true);
     public static final DefaultParticleType REDSANDMOTE = FabricParticleTypes.simple(true);
     public static final DefaultParticleType RAIN = FabricParticleTypes.simple(true);
+    public static final DefaultParticleType RAINSPLASH = FabricParticleTypes.simple(true);
     public static final DefaultParticleType TUMBLEBUSH = FabricParticleTypes.simple(true);
     public static final DefaultParticleType SNOW = FabricParticleTypes.simple(true);
     public static final DefaultParticleType GUST = FabricParticleTypes.simple(true);
@@ -23,12 +24,14 @@ public class IWParticles {
         ParticleFactoryRegistry.getInstance().register(SANDMOTE, SandMote.SandMoteFactory::new);
         ParticleFactoryRegistry.getInstance().register(REDSANDMOTE, RedSandMote.RedSandMoteFactory::new);
         ParticleFactoryRegistry.getInstance().register(RAIN, Rain.RainFactory::new);
+        ParticleFactoryRegistry.getInstance().register(RAINSPLASH, RainSplash.RainSplashFactory::new);
         ParticleFactoryRegistry.getInstance().register(TUMBLEBUSH, TumbleBush.TumbleBushFactory::new);
         ParticleFactoryRegistry.getInstance().register(SNOW, Snow.SnowFactory::new);
         ParticleFactoryRegistry.getInstance().register(GUST, Gust.GustFactory::new);
         Registry.register(Registry.PARTICLE_TYPE, new Identifier("impactfulweather", "sandmote"), SANDMOTE);
         Registry.register(Registry.PARTICLE_TYPE, new Identifier("impactfulweather", "redsandmote"), REDSANDMOTE);
         Registry.register(Registry.PARTICLE_TYPE, new Identifier("impactfulweather", "rain"), RAIN);
+        Registry.register(Registry.PARTICLE_TYPE, new Identifier("impactfulweather", "rainsplash"), RAINSPLASH);
         Registry.register(Registry.PARTICLE_TYPE, new Identifier("impactfulweather", "tumblebush"), TUMBLEBUSH);
         Registry.register(Registry.PARTICLE_TYPE, new Identifier("impactfulweather", "snow"), SNOW);
         Registry.register(Registry.PARTICLE_TYPE, new Identifier("impactfulweather", "gust"), GUST);

@@ -26,6 +26,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import shadowmaster435.impactfulweather.init.IWParticles;
+import shadowmaster435.impactfulweather.particles.Rain;
 
 import java.util.Random;
 
@@ -79,7 +80,9 @@ public class WorldRendererMixin {
                 if (
                         world2.getBiome(new BlockPos(MathHelper.lerp(world2.random.nextDouble(), x - 32, x + 32), player2.getBlockPos().getY(), MathHelper.lerp(world2.random.nextDouble(), z - 32, z + 32))).doesNotSnow(new BlockPos(MathHelper.lerp(world2.random.nextDouble(), x - 32, x + 32), player2.getBlockPos().getY(), MathHelper.lerp(world2.random.nextDouble(), z - 32, z + 32))) && world2.getBiome(new BlockPos(MathHelper.lerp(world2.random.nextDouble(), x - 32, x + 32), player2.getBlockPos().getY(), MathHelper.lerp(world2.random.nextDouble(), z - 32, z + 32))).getPrecipitation().equals(Biome.Precipitation.RAIN)
                 ) {
-                    world2.addParticle(IWParticles.RAIN, MathHelper.lerp(world2.random.nextDouble(), x - 32, x + 32), player2.getBlockPos().getY() + 100, MathHelper.lerp(world2.random.nextDouble(), z - 32, z + 32), 0f, 0f, 0f);
+                    for (int am = 0; am < Rain.rainamount; ++am) {
+                        world2.addParticle(IWParticles.RAIN, MathHelper.lerp(world2.random.nextDouble(), x - 32, x + 32), player2.getBlockPos().getY() + 100, MathHelper.lerp(world2.random.nextDouble(), z - 32, z + 32), 0f, 0f, 0f);
+                    }
                 }
                 if (
                         !(world2.getBiome(new BlockPos(MathHelper.lerp(world2.random.nextDouble(), x - 32, x + 32), player2.getBlockPos().getY(), MathHelper.lerp(world2.random.nextDouble(), z - 32, z + 32))).doesNotSnow(new BlockPos(MathHelper.lerp(world2.random.nextDouble(), x - 32, x + 32), player2.getBlockPos().getY(), MathHelper.lerp(world2.random.nextDouble(), z - 32, z + 32)))) ||
@@ -107,10 +110,13 @@ public class WorldRendererMixin {
         if (f <= 0.0f) {
             return;
         }
+
         Random random = new Random((long)this.ticks * 312987231L);
         ClientWorld worldView = instance.world;
         BlockPos blockPos = new BlockPos(camera.getPos());
         BlockPos blockPos2 = null;
+        assert instance.player != null;
+        BlockPos playerpos = instance.player.getBlockPos();
         int i = (int)(100.0f * f * f) / (instance.options.particles == ParticlesMode.DECREASED ? 2 : 1);
         for (int j = 0; j < i; ++j) {
             int k = random.nextInt(21) - 10;
@@ -123,12 +129,12 @@ public class WorldRendererMixin {
         }
         if (blockPos2 != null && random.nextInt(3) < this.field_20793++) {
             this.field_20793 = 0;
-            if (instance.world.getBiome(blockPos).getCategory() == Biome.Category.PLAINS) {
+            if (instance.world.getBiome(blockPos).getPrecipitation() == Biome.Precipitation.RAIN) {
 
                 if (blockPos2.getY() > blockPos.getY() + 1 && worldView.getTopPosition(Heightmap.Type.MOTION_BLOCKING, blockPos).getY() > MathHelper.floor(blockPos.getY())) {
-                    instance.world.playSound(blockPos2, SoundEvents.WEATHER_RAIN_ABOVE, SoundCategory.WEATHER, 0.1f, 0.5f, false);
+                    instance.world.playSound(playerpos, SoundEvents.WEATHER_RAIN_ABOVE, SoundCategory.WEATHER, 0.1f, 0.5f, false);
                 } else {
-                    instance.world.playSound(blockPos2, SoundEvents.WEATHER_RAIN, SoundCategory.WEATHER, 0.2f, 1.0f, false);
+                    instance.world.playSound(playerpos, SoundEvents.WEATHER_RAIN, SoundCategory.WEATHER, 0.2f, 1.0f, false);
                 }
             }
         }

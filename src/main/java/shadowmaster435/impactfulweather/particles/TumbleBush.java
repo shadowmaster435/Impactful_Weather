@@ -6,6 +6,9 @@ import net.fabricmc.fabric.api.client.particle.v1.FabricSpriteProvider;
 import net.minecraft.client.particle.*;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.particle.DefaultParticleType;
+import net.minecraft.particle.ParticleTypes;
+import net.minecraft.tag.FluidTags;
+import net.minecraft.util.math.BlockPos;
 
 
 @Environment(EnvType.CLIENT)
@@ -46,17 +49,35 @@ public class TumbleBush extends SpriteBillboardParticle {
         this.prevPosZ = this.z;
         this.prevAngle = this.angle;
         this.angle += 3.1415927F * this.field_3809 * (rotvel + 1);
-        this.scale = 0.4F;
+        this.scale = 0.5F;
         ++age1;
         if (this.onGround) {
             rotvel = 2;
             ++groundtimer;
             if (this.velocityY < -0.8) {
-                this.velocityY = 0.6;
+                this.velocityY = (this.velocityY * -1) * 0.3F;
             } else {
                 this.velocityY = this.velocityY * -1;
             }
+        } else if (this.world.getFluidState(new BlockPos(this.x, this.y, this.z)).isIn(FluidTags.WATER)) {
+            for (int b = 0; b < 8; ++b) {
+                this.world.addParticle(ParticleTypes.SPLASH,this.x, this.y, this.z,1,1.2,1);
+            }
+            this.markDead();
+            ++groundtimer;
+        }
+        else if (this.world.getFluidState(new BlockPos(this.x, this.y, this.z)).isIn(FluidTags.LAVA)) {
+            for (int i = 0; i < 4; ++i) {
+                this.world.addParticle(ParticleTypes.LARGE_SMOKE,this.x, this.y, this.z,0.4,0.2,0.4);
+                this.world.addParticle(ParticleTypes.FLAME,this.x, this.y, this.z,0.4,0.2,0.4);
+                this.world.addParticle(ParticleTypes.LAVA,this.x, this.y, this.z,0.4,0.2,0.4);
+
+            }
+            this.markDead();
         } else {
+            this.velocityX = 0.4;
+            this.velocityZ = 0.4;
+            this.velocityY = (this.velocityY - 0.05);
             groundtimer = 0;
             if (rotvel <= 0) {
                 rotvel = 0;
@@ -64,12 +85,12 @@ public class TumbleBush extends SpriteBillboardParticle {
                 rotvel = rotvel - 0.2f;
             }
         }
-        if (this.age1 >= 150 || groundtimer > 5) {
+        if (this.age1 >= 150 || groundtimer > 15) {
             this.markDead();
+        } else if (groundtimer > 5) {
+            this.scale -= 0.05f;
         }
-        this.velocityX = 0.4;
-        this.velocityZ = 0.4;
-        this.velocityY = (this.velocityY - 0.05);
+
         this.move(this.velocityX, this.velocityY, this.velocityZ);
     }
 
