@@ -48,9 +48,9 @@ public class SandMote extends AnimatedParticle {
         this.prevPosZ = this.z;
         this.prevAngle = this.angle;
         this.scale = 0.15F;
-        ++age1;
+        ++this.age;
 
-        if (this.age1 >= 200 || groundtimer > 15) {
+        if (this.age >= 90) {
             this.markDead();
         } else {
             if (this.world.getFluidState(new BlockPos(this.x, this.y, this.z)).isIn(FluidTags.WATER) || this.world.getFluidState(new BlockPos(this.x, this.y, this.z)).isIn(FluidTags.LAVA)) {
@@ -59,14 +59,9 @@ public class SandMote extends AnimatedParticle {
                 this.velocityZ = 0.2;
                 this.velocityY = (this.velocityY - 0.0025) + Sinefunc();
                 this.angle += 3.1415927F * this.field_3809 * 0.5F;
-
                 ++groundtimer;
             } else if (this.onGround) {
-                this.velocityX = 0;
-                this.velocityZ = 0;
-                this.velocityY = 0;
-                this.angle = this.prevAngle;
-                ++groundtimer;
+                this.markDead();
             } else {
                 this.velocityX = 0.6;
                 this.velocityZ = 0.6;
