@@ -3,47 +3,41 @@ package shadowmaster435.impactfulweather.particles;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.particle.v1.FabricSpriteProvider;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.particle.*;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.particle.DefaultParticleType;
-import net.minecraft.particle.ParticleTypes;
 import net.minecraft.tag.FluidTags;
 import net.minecraft.util.math.BlockPos;
 import shadowmaster435.impactfulweather.init.IWParticles;
 
 
 @Environment(EnvType.CLIENT)
-public class Rain extends AnimatedParticle {
-    public static int rainamount = 1;
+public class HeavyRainExt extends AnimatedParticle {
     public static ClientWorld cworld;
-    public Rain(ClientWorld world, double x, double y, double z, SpriteProvider sprites) {
+    public HeavyRainExt(ClientWorld world, double x, double y, double z, SpriteProvider sprites) {
         super(world, x, y, z, sprites, 0f);
         this.velocityX = 0.0D;
         this.velocityY = -3;
         this.velocityZ = 0.0D;
         this.gravityStrength = 0f;
+        this.maxAge = 15;
         this.scale = 0.125f;
         cworld = world;
         this.setSprite(sprites.getSprite(world.random));
         this.setBoundingBoxSpacing(0.02F, 0.02F);
-        rainamount = 2;
     }
     public void tick() {
         this.scale = 0.125f;
-
+        ++this.age;
         this.prevPosX = this.x;
         this.prevPosY = this.y;
         this.prevPosZ = this.z;
-        if (this.onGround || this.world.getBlockState(new BlockPos(this.x, this.y, this.z)).getMaterial().blocksMovement() || this.world.getFluidState(new BlockPos(this.x, this.y, this.z)).isIn(FluidTags.WATER) || this.world.getFluidState(new BlockPos(this.x, this.y, this.z)).isIn(FluidTags.LAVA)) {
-            if (this.world.getFluidState(new BlockPos(this.x, this.y, this.z)).isIn(FluidTags.WATER)) {
-                this.markDead();
-            } else {
-                world.addParticle(IWParticles.RAINSPLASH, prevPosX, prevPosY + 0.1, prevPosZ, 0, 0, 0);
-            }
+        if (this.world.getFluidState(new BlockPos(this.x, this.y, this.z)).isIn(FluidTags.WATER)) {
+            this.markDead();
+        } else if (this.age >= 20 || this.onGround || this.world.getBlockState(new BlockPos(this.x, this.y, this.z)).getMaterial().blocksMovement() || this.world.getFluidState(new BlockPos(this.x, this.y, this.z)).isIn(FluidTags.WATER) || this.world.getFluidState(new BlockPos(this.x, this.y, this.z)).isIn(FluidTags.LAVA)) {
             this.markDead();
         } else {
-            this.velocityX = 0;
+            this.velocityX = -HeavyRain.heavyrainvel;
             this.velocityZ = 0;
             this.velocityY = -3;
         }
@@ -55,17 +49,17 @@ public class Rain extends AnimatedParticle {
     }
 
     @Environment(EnvType.CLIENT)
-    public static class RainFactory implements ParticleFactory<DefaultParticleType> {
+    public static class HeavyRainExtFactory implements ParticleFactory<DefaultParticleType> {
         private final SpriteProvider spriteProvider;
 
-        public RainFactory(FabricSpriteProvider sprites) {
+        public HeavyRainExtFactory(FabricSpriteProvider sprites) {
             this.spriteProvider = sprites;
 
         }
 
         @Override
         public Particle createParticle(DefaultParticleType type, ClientWorld world, double x, double y, double z, double Xv, double Yv, double Zv) {
-            Rain rain = new Rain(world, x, y, z, spriteProvider);
+            HeavyRainExt rain = new HeavyRainExt(world, x, y, z, spriteProvider);
             rain.setSprite(this.spriteProvider);
             return rain;
         }

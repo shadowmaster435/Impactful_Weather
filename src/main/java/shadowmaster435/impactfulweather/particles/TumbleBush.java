@@ -51,7 +51,10 @@ public class TumbleBush extends SpriteBillboardParticle {
         this.angle += 3.1415927F * this.field_3809 * (rotvel + 1);
         this.scale = 0.5F;
         ++age1;
-        if (this.onGround) {
+        if (this.world.getBlockState(new BlockPos(this.x, this.y, this.z)).getMaterial().blocksMovement()) {
+            this.markDead();
+        }
+        if (this.onGround ) {
             rotvel = 2;
             ++groundtimer;
             if (this.velocityY < -0.8) {

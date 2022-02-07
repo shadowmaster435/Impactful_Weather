@@ -41,14 +41,15 @@ public class Snow extends AnimatedParticle {
             this.groundtimer = this.groundtimer - 1;
             this.velocityY = 0;
             this.scale = this.scale - 0.035f;
-            if (this.groundtimer <= 0) {
+            if (this.groundtimer <= 0 || this.world.getBlockState(new BlockPos(this.x, this.y, this.z)).getMaterial().blocksMovement()) {
                 this.markDead();
             }
         } else {
+
             this.groundtimer = 5;
             this.scale = 0.175f;
-            this.velocityX = Sinefunc() * 64;
-            this.velocityZ = Sinefunc() * 64;
+            this.velocityX = 0;
+            this.velocityZ = 0;
             this.velocityY = -0.75;
         }
         this.move(this.velocityX, this.velocityY, this.velocityZ);

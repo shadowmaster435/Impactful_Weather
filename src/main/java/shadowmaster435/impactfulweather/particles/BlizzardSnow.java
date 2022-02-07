@@ -3,49 +3,60 @@ package shadowmaster435.impactfulweather.particles;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.particle.v1.FabricSpriteProvider;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.particle.*;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.particle.DefaultParticleType;
-import net.minecraft.particle.ParticleTypes;
 import net.minecraft.tag.FluidTags;
 import net.minecraft.util.math.BlockPos;
-import shadowmaster435.impactfulweather.init.IWParticles;
 
 
 @Environment(EnvType.CLIENT)
-public class Rain extends AnimatedParticle {
-    public static int rainamount = 1;
+public class BlizzardSnow extends AnimatedParticle {
+    public float Sinefunc() {
+        return (float) ((float) (Math.sin(this.age) / 8.0) / 16.0);
+    }
+    public static float upv;
     public static ClientWorld cworld;
-    public Rain(ClientWorld world, double x, double y, double z, SpriteProvider sprites) {
-        super(world, x, y, z, sprites, 0f);
+
+    public BlizzardSnow(ClientWorld world, double x, double y, double z, SpriteProvider sprites, float up) {
+        super(world, x, y, z, sprites, up);
         this.velocityX = 0.0D;
         this.velocityY = -3;
         this.velocityZ = 0.0D;
         this.gravityStrength = 0f;
         this.scale = 0.125f;
+        upv = up;
         cworld = world;
+        this.setBoundingBoxSpacing(0.01F, 0.01F);
         this.setSprite(sprites.getSprite(world.random));
-        this.setBoundingBoxSpacing(0.02F, 0.02F);
-        rainamount = 2;
     }
-    public void tick() {
-        this.scale = 0.125f;
 
+    public float groundtimer = 5;
+
+    public void tick() {
         this.prevPosX = this.x;
         this.prevPosY = this.y;
         this.prevPosZ = this.z;
+
         if (this.onGround || this.world.getBlockState(new BlockPos(this.x, this.y, this.z)).getMaterial().blocksMovement() || this.world.getFluidState(new BlockPos(this.x, this.y, this.z)).isIn(FluidTags.WATER) || this.world.getFluidState(new BlockPos(this.x, this.y, this.z)).isIn(FluidTags.LAVA)) {
-            if (this.world.getFluidState(new BlockPos(this.x, this.y, this.z)).isIn(FluidTags.WATER)) {
+            this.groundtimer = this.groundtimer - 1;
+            this.velocityY = 0;
+            this.scale = this.scale - 0.035f;
+            if (this.groundtimer <= 0) {
                 this.markDead();
-            } else {
-                world.addParticle(IWParticles.RAINSPLASH, prevPosX, prevPosY + 0.1, prevPosZ, 0, 0, 0);
             }
-            this.markDead();
         } else {
-            this.velocityX = 0;
+            ++this.age;
+
+            if (this.age >= 40) {
+                this.markDead();
+            }
+
+            this.groundtimer = 5;
+            this.scale = 0.175f;
+            this.velocityX = 2;
             this.velocityZ = 0;
-            this.velocityY = -3;
+            this.velocityY = 0;
         }
         this.move(this.velocityX, this.velocityY, this.velocityZ);
     }
@@ -55,17 +66,17 @@ public class Rain extends AnimatedParticle {
     }
 
     @Environment(EnvType.CLIENT)
-    public static class RainFactory implements ParticleFactory<DefaultParticleType> {
+    public static class BlizzardSnowFactory implements ParticleFactory<DefaultParticleType> {
         private final SpriteProvider spriteProvider;
 
-        public RainFactory(FabricSpriteProvider sprites) {
+        public BlizzardSnowFactory(FabricSpriteProvider sprites) {
             this.spriteProvider = sprites;
 
         }
 
         @Override
         public Particle createParticle(DefaultParticleType type, ClientWorld world, double x, double y, double z, double Xv, double Yv, double Zv) {
-            Rain rain = new Rain(world, x, y, z, spriteProvider);
+            BlizzardSnow rain = new BlizzardSnow(world, x, y, z, spriteProvider, upv);
             rain.setSprite(this.spriteProvider);
             return rain;
         }

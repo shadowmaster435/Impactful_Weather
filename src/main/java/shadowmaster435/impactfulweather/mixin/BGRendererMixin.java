@@ -32,7 +32,6 @@ public class BGRendererMixin {
     @Shadow
     private static float blue;
 
-
     @Inject(at = @At("HEAD"), method = "render")
     private static void render(Camera camera, float tickDelta, ClientWorld world, int i2, float f, CallbackInfo info) {
         if (world.isRaining() && world.getBiome(camera.getBlockPos()).getCategory() == Biome.Category.DESERT) {

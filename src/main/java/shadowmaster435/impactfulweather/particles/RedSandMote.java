@@ -59,7 +59,7 @@ public class RedSandMote extends AnimatedParticle {
                 this.velocityY = (this.velocityY - 0.0025) + Sinefunc();
                 this.angle += 3.1415927F * this.field_3809 * 0.5F;
                 ++groundtimer;
-            } else if (this.onGround) {
+            } else if (this.onGround || this.y < 63 || this.world.getBlockState(new BlockPos(this.x, this.y, this.z)).getMaterial().blocksMovement()) {
                 this.markDead();
             } else {
                 this.velocityX = 0.6;
