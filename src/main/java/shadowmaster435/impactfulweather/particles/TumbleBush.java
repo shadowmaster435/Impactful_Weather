@@ -26,17 +26,9 @@ public class TumbleBush extends SpriteBillboardParticle {
         this.velocityZ = 0.0D;
         this.gravityStrength = 0f;
         this.field_3809 = ((float) Math.random() - 0.5F) * 0.1F;
-
+        this.alpha = 0;
         this.setBoundingBoxSpacing(1F, 1F);
-        this.maxAge = (int) 100;
-        if (Math.random() > 0.5) {
-            this.angle += (int) (Math.random() * 20 + 10) * this.age;
-        } else {
-            this.angle += (int) (Math.random() * -20 - 10) * this.age;
-        }
-        if (this.age - 50 >= 0) {
-            this.alpha = this.age + (this.age * -1);
-        }
+        this.maxAge = 100;
         setSprite(sprites.getSprite(world.random));
     }
     public int age1;
@@ -51,6 +43,13 @@ public class TumbleBush extends SpriteBillboardParticle {
         this.angle += 3.1415927F * this.field_3809 * (rotvel + 1);
         this.scale = 0.5F;
         ++age1;
+        if (this.age < 10) {
+            this.alpha = this.age / 10f;
+        } else if (this.age > 90) {
+            this.alpha = 1f - ((this.age - 90) / 10f);
+        } else {
+            this.alpha = 1f;
+        }
         if (this.world.getBlockState(new BlockPos(this.x, this.y, this.z)).getMaterial().blocksMovement()) {
             this.markDead();
         }
@@ -88,17 +87,17 @@ public class TumbleBush extends SpriteBillboardParticle {
                 rotvel = rotvel - 0.2f;
             }
         }
-        if (this.age1 >= 150 || groundtimer > 15) {
+        if (this.age1 >= 100 || groundtimer > 15) {
             this.markDead();
         } else if (groundtimer > 5) {
             this.scale -= 0.05f;
         }
-
+        ++age;
         this.move(this.velocityX, this.velocityY, this.velocityZ);
     }
 
     public ParticleTextureSheet getType() {
-        return ParticleTextureSheet.PARTICLE_SHEET_OPAQUE;
+        return ParticleTextureSheet.PARTICLE_SHEET_TRANSLUCENT;
     }
 
     @Environment(EnvType.CLIENT)

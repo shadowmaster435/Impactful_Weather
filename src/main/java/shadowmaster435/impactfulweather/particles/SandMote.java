@@ -25,19 +25,12 @@ public class SandMote extends AnimatedParticle {
         this.velocityY = (Math.random() * 0.1D) + 0.05D;
         this.velocityZ = 0.0D;
         this.gravityStrength = 0f;
+        this.scale = 0.15F;
+        this.alpha = 0;
         this.field_3809 = ((float) Math.random() - 0.5F) * 0.1F;
-
         this.setBoundingBoxSpacing(0.01F, 0.01F);
-        this.maxAge = (int) (Math.random() * 20) + 50;
-        if (Math.random() > 0.5) {
-            this.angle += (int) (Math.random() * 20 + 10) * this.age;
-        } else {
-            this.angle += (int) (Math.random() * -20 - 10) * this.age;
-        }
-        if (this.age - 50 >= 0) {
-            this.alpha = this.age + (this.age * -1);
-        }
-        setSprite(sprites.getSprite(world.random));
+        this.maxAge = 40;
+        this.setSprite(sprites.getSprite(world.random));
     }
 
     public int age1;
@@ -49,8 +42,14 @@ public class SandMote extends AnimatedParticle {
         this.prevAngle = this.angle;
         this.scale = 0.15F;
         ++this.age;
-
-        if (this.age >= 90) {
+        if (this.age < 10) {
+            this.alpha = this.age / 10f;
+        } else if (this.age > (this.maxAge - 10)) {
+            this.alpha = 1f - ((this.age - (this.maxAge - 10)) / 10f);
+        } else {
+            this.alpha = 1f;
+        }
+        if (this.age >= this.maxAge) {
             this.markDead();
         } else {
             if (this.world.getFluidState(new BlockPos(this.x, this.y, this.z)).isIn(FluidTags.WATER) || this.world.getFluidState(new BlockPos(this.x, this.y, this.z)).isIn(FluidTags.LAVA)) {
@@ -73,7 +72,7 @@ public class SandMote extends AnimatedParticle {
     }
 
     public ParticleTextureSheet getType() {
-        return ParticleTextureSheet.PARTICLE_SHEET_OPAQUE;
+        return ParticleTextureSheet.PARTICLE_SHEET_TRANSLUCENT;
     }
 
     @Environment(EnvType.CLIENT)

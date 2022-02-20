@@ -25,6 +25,7 @@ public class Snow extends AnimatedParticle {
         this.velocityZ = 0.0D;
         this.gravityStrength = 0f;
         this.scale = 0.125f;
+        this.alpha = 0f;
         upv = up;
         cworld = world;
         this.setBoundingBoxSpacing(0.01F, 0.01F);
@@ -37,6 +38,12 @@ public class Snow extends AnimatedParticle {
         this.prevPosX = this.x;
         this.prevPosY = this.y;
         this.prevPosZ = this.z;
+        ++this.age;
+        if (this.age < 10) {
+            this.alpha = this.age / 10f;
+        } else {
+            this.alpha = 1f;
+        }
         if (this.onGround || this.world.getFluidState(new BlockPos(this.x, this.y, this.z)).isIn(FluidTags.WATER) || this.world.getFluidState(new BlockPos(this.x, this.y, this.z)).isIn(FluidTags.LAVA)) {
             this.groundtimer = this.groundtimer - 1;
             this.velocityY = 0;
@@ -56,7 +63,7 @@ public class Snow extends AnimatedParticle {
     }
 
     public ParticleTextureSheet getType() {
-        return ParticleTextureSheet.PARTICLE_SHEET_OPAQUE;
+        return ParticleTextureSheet.PARTICLE_SHEET_TRANSLUCENT;
     }
 
     @Environment(EnvType.CLIENT)

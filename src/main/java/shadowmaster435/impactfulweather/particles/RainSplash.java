@@ -6,8 +6,6 @@ import net.fabricmc.fabric.api.client.particle.v1.FabricSpriteProvider;
 import net.minecraft.client.particle.*;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.particle.DefaultParticleType;
-import net.minecraft.tag.FluidTags;
-import net.minecraft.util.math.BlockPos;
 
 
 @Environment(EnvType.CLIENT)

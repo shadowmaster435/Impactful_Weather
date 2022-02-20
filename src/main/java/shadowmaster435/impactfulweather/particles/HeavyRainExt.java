@@ -8,7 +8,6 @@ import net.minecraft.client.world.ClientWorld;
 import net.minecraft.particle.DefaultParticleType;
 import net.minecraft.tag.FluidTags;
 import net.minecraft.util.math.BlockPos;
-import shadowmaster435.impactfulweather.init.IWParticles;
 
 
 @Environment(EnvType.CLIENT)
@@ -34,18 +33,25 @@ public class HeavyRainExt extends AnimatedParticle {
         this.prevPosZ = this.z;
         if (this.world.getFluidState(new BlockPos(this.x, this.y, this.z)).isIn(FluidTags.WATER)) {
             this.markDead();
-        } else if (this.age >= 20 || this.onGround || this.world.getBlockState(new BlockPos(this.x, this.y, this.z)).getMaterial().blocksMovement() || this.world.getFluidState(new BlockPos(this.x, this.y, this.z)).isIn(FluidTags.WATER) || this.world.getFluidState(new BlockPos(this.x, this.y, this.z)).isIn(FluidTags.LAVA)) {
+        } else if (this.age >= this.maxAge || this.onGround || this.world.getBlockState(new BlockPos(this.x, this.y, this.z)).getMaterial().blocksMovement() || this.world.getFluidState(new BlockPos(this.x, this.y, this.z)).isIn(FluidTags.WATER) || this.world.getFluidState(new BlockPos(this.x, this.y, this.z)).isIn(FluidTags.LAVA)) {
             this.markDead();
         } else {
             this.velocityX = -HeavyRain.heavyrainvel;
             this.velocityZ = 0;
             this.velocityY = -3;
         }
+        if (this.age < 5) {
+            this.alpha = this.age / 5f;
+        } else if (this.age > (this.maxAge - 5)) {
+            this.alpha = 1f - ((this.age - (this.maxAge - 10)) / 5f);
+        } else {
+            this.alpha = 1f;
+        }
         this.move(this.velocityX, this.velocityY, this.velocityZ);
     }
 
     public ParticleTextureSheet getType() {
-        return ParticleTextureSheet.PARTICLE_SHEET_OPAQUE;
+        return ParticleTextureSheet.PARTICLE_SHEET_TRANSLUCENT;
     }
 
     @Environment(EnvType.CLIENT)

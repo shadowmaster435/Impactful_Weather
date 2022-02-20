@@ -9,7 +9,6 @@ import net.minecraft.particle.DefaultParticleType;
 import net.minecraft.tag.FluidTags;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
 import shadowmaster435.impactfulweather.init.IWParticles;
 
 
@@ -41,11 +40,14 @@ public class HeavyRain extends AnimatedParticle {
             if (this.world.getFluidState(new BlockPos(this.x, this.y, this.z)).isIn(FluidTags.WATER) || this.world.getFluidState(new BlockPos(this.x, this.y, this.z)).isIn(FluidTags.LAVA)) {
                 this.markDead();
             } else {
-                world.addParticle(IWParticles.RAINSPLASH, prevPosX, prevPosY + 0.1, prevPosZ, 0, 0, 0);
+                if (Math.random() > 0.5) {
+
+                    world.addParticle(IWParticles.RAINSPLASH, prevPosX, prevPosY + 0.1, prevPosZ, 0, 0, 0);
+                }
             }
             this.markDead();
         } else {
-            if (Math.random() > 0.99) {
+            if (Math.random() > 0.9975) {
                 world.addParticle(IWParticles.HEAVYRAINEXT, MathHelper.lerp(Math.random(), this.x - 0.5, this.x + 0.5), MathHelper.lerp(Math.random(), this.y - 0.5, this.y + 0.5), MathHelper.lerp(Math.random(), this.z - 0.5, this.z + 0.5), 0, 0, 0);
             }
             this.velocityX = -2;

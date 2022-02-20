@@ -25,6 +25,8 @@ public class BlizzardSnow extends AnimatedParticle {
         this.velocityZ = 0.0D;
         this.gravityStrength = 0f;
         this.scale = 0.125f;
+        this.alpha = 0;
+        this.maxAge = 40;
         upv = up;
         cworld = world;
         this.setBoundingBoxSpacing(0.01F, 0.01F);
@@ -48,7 +50,7 @@ public class BlizzardSnow extends AnimatedParticle {
         } else {
             ++this.age;
 
-            if (this.age >= 40) {
+            if (this.age >= this.maxAge) {
                 this.markDead();
             }
 
@@ -58,11 +60,18 @@ public class BlizzardSnow extends AnimatedParticle {
             this.velocityZ = 0;
             this.velocityY = 0;
         }
+        if (this.age < 10) {
+            this.alpha = this.age / 10f;
+        } else if (this.age > (this.maxAge - 10)) {
+            this.alpha = 1f - ((this.age - (this.maxAge - 10)) / 10f);
+        } else {
+            this.alpha = 1f;
+        }
         this.move(this.velocityX, this.velocityY, this.velocityZ);
     }
 
     public ParticleTextureSheet getType() {
-        return ParticleTextureSheet.PARTICLE_SHEET_OPAQUE;
+        return ParticleTextureSheet.PARTICLE_SHEET_TRANSLUCENT;
     }
 
     @Environment(EnvType.CLIENT)
