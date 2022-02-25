@@ -1,0 +1,13 @@
+{
+  "category.impactfulweather.general": "General",
+  "text.autoconfig.impactfulweather.option.particleamount": "Particle Spawns Per Tick",
+  "text.autoconfig.impactfulweather.option.spread": "Radius In Blocks Particles Can Spawn",
+  "text.autoconfig.impactfulweather.option.particleDensity": "Spawns Per Tick Multiplier",
+  "text.autoconfig.impactfulweather.option.dodenserain": "Enable/Disable Dense Rain",
+  "optiontooltip.impactfulweather.particleamount": "Determines How Many Particles Can Spawn Per Tick",
+  "optiontooltip.impactfulweather.density": "Particle Amount Multiplier Useful For Radius Adjustments",
+  "optiontooltip.impactfulweather.dodenserain": "Double Rain Particles For Better Visuals",
+  "optiontooltip.impactfulweather.radius": "Radius In Which Particles Can Spawn At Capped At 64",
+
+  "text.autoconfig.impactfulweather.title": "Biome Particle Weather"
+}

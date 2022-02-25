@@ -1,21 +1,25 @@
 {
   "schemaVersion": 1,
-  "id": "examplemod",
-  "version": "${version}",
-  "name": "Example Mod",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "id": "impactfulweather",
+  "version": "1.3.2",
+  "name": "Biome Particle Weather",
+  "description": "Replaces vanilla minecraft weather rendering with shiny new particle variants + a few other goodies!",
   "authors": [
     "shadowmaster435"
   ],
   "contact": {
-    "bug report": "https://github.com/shadowmaster435/Impactful_Weather/issues"
+    "issues": "https://github.com/shadowmaster435/Impactful_Weather/issues",
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/biome-particle-weather"
   },
   "license": "GPLv3",
-  "environment": "*",
+  "environment": "client",
   "icon": "assets/impactfulweather/icon.png",
   "entrypoints": {
     "client": [
       "shadowmaster435.impactfulweather.client.ImpactfulWeatherClient"
+    ],
+    "modmenu": [
+      "shadowmaster435.impactfulweather.client.BPWModMenuIntegration"
     ]
   },
   "mixins": [
@@ -24,6 +28,15 @@
   "depends": {
     "fabricloader": ">=0.13.0",
     "fabric": "*",
-    "minecraft": "1.18.1"
-  }
+    "minecraft": "1.18.1",
+    "cloth-config2": "*"
+  },
+  "custom": {
+    "modmenu": {
+        "id": "impactfulweather",
+        "name": "Biome Particle Weather",
+        "description": "Replaces vanilla minecraft weather rendering with shiny new particle variants + a few other goodies!",
+        "icon": "assets/impactfulweather/icon.png"
+      }
+    }
 }
