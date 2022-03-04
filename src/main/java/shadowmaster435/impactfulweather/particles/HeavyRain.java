@@ -3,6 +3,7 @@ package shadowmaster435.impactfulweather.particles;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.particle.v1.FabricSpriteProvider;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.particle.*;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.particle.DefaultParticleType;
@@ -17,6 +18,8 @@ public class HeavyRain extends AnimatedParticle {
     public static int rainamount = 1;
     public static ClientWorld cworld;
     public static int heavyrainvel = 1;
+    public float light;
+
     public HeavyRain(ClientWorld world, double x, double y, double z, SpriteProvider sprites) {
         super(world, x, y, z, sprites, 0f);
         this.velocityX = 0.0D;
@@ -26,24 +29,23 @@ public class HeavyRain extends AnimatedParticle {
         this.scale = 0.125f;
         cworld = world;
         this.angle = -45;
+
         this.setSprite(sprites.getSprite(world.random));
-        this.setBoundingBoxSpacing(0.02F, 0.02F);
+        this.setBoundingBoxSpacing(0.05F, 0.5F);
+        this.light = world.getBrightness(new BlockPos(this.x, this.y, this.z)) + 0.01f;
+        this.setColor((15f / this.light),(15f / this.light), (15f / this.light));
         rainamount = 2;
     }
     public void tick() {
+        this.light = world.getBrightness(new BlockPos(this.x, this.y, this.z)) + 0.01f;
+        this.setColor((15f / this.light),(15f / this.light), (15f / this.light));
         this.scale = 0.125f;
         heavyrainvel = 2;
-        this.prevPosX = this.x;
-        this.prevPosY = this.y;
-        this.prevPosZ = this.z;
-        if (this.world.getBlockState(new BlockPos(this.x, this.y, this.z)).getMaterial().blocksMovement() || this.onGround || this.world.getFluidState(new BlockPos(this.x, this.y, this.z)).isIn(FluidTags.WATER) || this.world.getFluidState(new BlockPos(this.x, this.y, this.z)).isIn(FluidTags.LAVA)) {
-            if (this.world.getFluidState(new BlockPos(this.x, this.y, this.z)).isIn(FluidTags.WATER) || this.world.getFluidState(new BlockPos(this.x, this.y, this.z)).isIn(FluidTags.LAVA)) {
-                this.markDead();
-            } else {
-                if (Math.random() > 0.5) {
 
-                    world.addParticle(IWParticles.RAINSPLASH, prevPosX, prevPosY + 0.1, prevPosZ, 0, 0, 0);
-                }
+        if (!this.world.getBlockState(new BlockPos(this.x, this.y, this.z)).getMaterial().isReplaceable() || this.onGround || this.world.getFluidState(new BlockPos(this.x, this.y, this.z)).isIn(FluidTags.WATER) || this.world.getFluidState(new BlockPos(this.x, this.y, this.z)).isIn(FluidTags.LAVA)) {
+            if (!this.world.getFluidState(new BlockPos(this.x, this.y, this.z)).isIn(FluidTags.WATER) && !this.world.getFluidState(new BlockPos(this.x, this.y, this.z)).isIn(FluidTags.LAVA)) {
+                world.addParticle(IWParticles.RAINSPLASH, this.x, this.y + 0.1, this.z, 0, 0, 0);
+
             }
             this.markDead();
         } else {

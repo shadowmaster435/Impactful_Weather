@@ -2,11 +2,10 @@
   "required": true,
   "minVersion": "0.8",
   "package": "shadowmaster435.impactfulweather.mixin",
-  "compatibilityLevel": "JAVA_16",
+  "compatibilityLevel": "JAVA_17",
   "mixins": [
   ],
   "client": [
-    "BGRendererMixin",
     "WorldRendererMixin"
   ],
   "injectors": {

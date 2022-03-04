@@ -5,14 +5,12 @@ import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.client.gui.screen.Screen;
 import shadowmaster435.impactfulweather.init.IWParticles;
 
 @Environment(EnvType.CLIENT)
 public class ImpactfulWeatherClient implements ClientModInitializer {
 
     public static BPWModConfig config = null;
-    public static Screen screen;
     @Override
     public void onInitializeClient() {
 

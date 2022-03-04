@@ -3,6 +3,7 @@ package shadowmaster435.impactfulweather.particles;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.particle.v1.FabricSpriteProvider;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.particle.*;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.particle.DefaultParticleType;
@@ -15,6 +16,9 @@ import shadowmaster435.impactfulweather.init.IWParticles;
 public class Rain extends AnimatedParticle {
     public static int rainamount = 1;
     public static ClientWorld cworld;
+    public float light;
+
+   
     public Rain(ClientWorld world, double x, double y, double z, SpriteProvider sprites) {
         super(world, x, y, z, sprites, 0f);
         this.velocityX = 0.0D;
@@ -26,17 +30,20 @@ public class Rain extends AnimatedParticle {
         this.setSprite(sprites.getSprite(world.random));
         this.setBoundingBoxSpacing(0.02F, 0.02F);
         rainamount = 2;
+        this.light = world.getBrightness(new BlockPos(this.x, this.y, this.z)) + 0.01f;
+        this.setColor((15f / this.light),(15f / this.light), (15f / this.light));
+
     }
     public void tick() {
+        this.light = world.getBrightness(new BlockPos(this.x, this.y, this.z)) + 0.01f;
+        this.setColor((15f / this.light),(15f / this.light), (15f / this.light));
         this.scale = 0.125f;
 
         this.prevPosX = this.x;
         this.prevPosY = this.y;
         this.prevPosZ = this.z;
         if (this.onGround || this.world.getBlockState(new BlockPos(this.x, this.y, this.z)).getMaterial().blocksMovement() || this.world.getFluidState(new BlockPos(this.x, this.y, this.z)).isIn(FluidTags.WATER) || this.world.getFluidState(new BlockPos(this.x, this.y, this.z)).isIn(FluidTags.LAVA)) {
-            if (this.world.getFluidState(new BlockPos(this.x, this.y, this.z)).isIn(FluidTags.WATER)) {
-                this.markDead();
-            } else {
+            if (!this.world.getFluidState(new BlockPos(this.x, this.y, this.z)).isIn(FluidTags.WATER)) {
                 world.addParticle(IWParticles.RAINSPLASH, prevPosX, prevPosY + 0.1, prevPosZ, 0, 0, 0);
             }
             this.markDead();

@@ -3,6 +3,7 @@ package shadowmaster435.impactfulweather.particles;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.particle.v1.FabricSpriteProvider;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.particle.*;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.particle.DefaultParticleType;
@@ -13,6 +14,8 @@ import net.minecraft.util.math.BlockPos;
 @Environment(EnvType.CLIENT)
 public class HeavyRainExt extends AnimatedParticle {
     public static ClientWorld cworld;
+    public float light;
+
     public HeavyRainExt(ClientWorld world, double x, double y, double z, SpriteProvider sprites) {
         super(world, x, y, z, sprites, 0f);
         this.velocityX = 0.0D;
@@ -24,8 +27,13 @@ public class HeavyRainExt extends AnimatedParticle {
         cworld = world;
         this.setSprite(sprites.getSprite(world.random));
         this.setBoundingBoxSpacing(0.02F, 0.02F);
+        this.light = world.getBrightness(new BlockPos(this.x, this.y, this.z)) + 0.01f;
+        this.setColor((15f / this.light),(15f / this.light), (15f / this.light));
+
     }
     public void tick() {
+        this.light = world.getBrightness(new BlockPos(this.x, this.y, this.z)) + 0.01f;
+        this.setColor((15f / this.light),(15f / this.light), (15f / this.light));
         this.scale = 0.125f;
         ++this.age;
         this.prevPosX = this.x;

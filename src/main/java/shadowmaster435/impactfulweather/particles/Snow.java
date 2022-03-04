@@ -3,6 +3,7 @@ package shadowmaster435.impactfulweather.particles;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.particle.v1.FabricSpriteProvider;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.particle.*;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.particle.DefaultParticleType;
@@ -12,11 +13,10 @@ import net.minecraft.util.math.BlockPos;
 
 @Environment(EnvType.CLIENT)
 public class Snow extends AnimatedParticle {
-    public float Sinefunc() {
-        return (float) ((float) (Math.sin(this.age) / 8.0) / 16.0);
-    }
     public static float upv;
     public static ClientWorld cworld;
+    public float light;
+
 
     public Snow(ClientWorld world, double x, double y, double z, SpriteProvider sprites, float up) {
         super(world, x, y, z, sprites, up);
@@ -27,14 +27,18 @@ public class Snow extends AnimatedParticle {
         this.scale = 0.125f;
         this.alpha = 0f;
         upv = up;
-        cworld = world;
+        cworld = this.world;
         this.setBoundingBoxSpacing(0.01F, 0.01F);
         this.setSprite(sprites.getSprite(world.random));
+        this.light = world.getBrightness(new BlockPos(this.x, this.y, this.z)) + 0.01f;
+        this.setColor((15f / this.light),(15f / this.light), (15f / this.light));
     }
 
     public float groundtimer = 5;
 
     public void tick() {
+        float light = world.getBrightness(new BlockPos(this.x, this.y, this.z)) + 0.01f;
+        this.setColor((15f / this.light),(15f / this.light), (15f / this.light));
         this.prevPosX = this.x;
         this.prevPosY = this.y;
         this.prevPosZ = this.z;

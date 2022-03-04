@@ -3,6 +3,7 @@ package shadowmaster435.impactfulweather.particles;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.particle.v1.FabricSpriteProvider;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.particle.*;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.particle.DefaultParticleType;
@@ -14,10 +15,7 @@ import net.minecraft.util.math.BlockPos;
 @Environment(EnvType.CLIENT)
 public class TumbleBush extends SpriteBillboardParticle {
     private final float field_3809;
-
-    public float Sinefunc() {
-        return (float) ((float) (Math.sin(this.age) / 8.0) / 16.0);
-    }
+    public float light;
 
     public TumbleBush(ClientWorld world, double x, double y, double z, double Xv, double Yv, double Zv, SpriteProvider sprites) {
         super(world, x, y, z, Xv, Yv, Zv);
@@ -29,16 +27,21 @@ public class TumbleBush extends SpriteBillboardParticle {
         this.alpha = 0;
         this.setBoundingBoxSpacing(1F, 1F);
         this.maxAge = 100;
-        setSprite(sprites.getSprite(world.random));
+        this.setSprite(sprites.getSprite(world.random));
+        this.light = world.getBrightness(new BlockPos(this.x, this.y, this.z)) + 0.01f;
+        this.setColor((15f / this.light),(15f / this.light), (15f / this.light));
     }
     public int age1;
     public int groundtimer;
 
     public static float rotvel = 0;
     public void tick() {
+        this.light = world.getBrightness(new BlockPos(this.x, this.y, this.z)) + 0.01f;
+        this.setColor((15f / this.light),(15f / this.light), (15f / this.light));
         this.prevPosX = this.x;
         this.prevPosY = this.y;
         this.prevPosZ = this.z;
+
         this.prevAngle = this.angle;
         this.angle += 3.1415927F * this.field_3809 * (rotvel + 1);
         this.scale = 0.5F;

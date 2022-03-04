@@ -3,6 +3,7 @@ package shadowmaster435.impactfulweather.particles;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.particle.v1.FabricSpriteProvider;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.particle.*;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.particle.DefaultParticleType;
@@ -17,6 +18,7 @@ public class RedSandMote extends AnimatedParticle {
     public float Sinefunc() {
         return (float) ((float) (Math.sin(this.age) / 8.0) / 16.0);
     }
+    public float light;
 
     public RedSandMote(ClientWorld world, double x, double y, double z, double Xv, double Yv, double Zv, SpriteProvider sprites) {
         super(world, x, y, z, sprites, 0f);
@@ -30,25 +32,29 @@ public class RedSandMote extends AnimatedParticle {
         this.setBoundingBoxSpacing(0.01F, 0.01F);
         this.maxAge = 40;
         this.setSprite(sprites.getSprite(world.random));
+        this.light = world.getBrightness(new BlockPos(this.x, this.y, this.z)) + 0.01f;
+        this.setColor((15f / this.light),(15f / this.light), (15f / this.light));
     }
-
-    public static int groundtimer;
+        public static int groundtimer;
 
     public void tick() {
+        this.light = world.getBrightness(new BlockPos(this.x, this.y, this.z)) + 0.01f;
+        this.setColor((15f / this.light),(15f / this.light), (15f / this.light));
         this.prevPosX = this.x;
         this.prevPosY = this.y;
         this.prevPosZ = this.z;
         this.prevAngle = this.angle;
         this.scale = 0.15F;
+
         ++this.age;
         if (this.age < 10) {
             this.alpha = this.age / 10f;
-        } else if (this.age > 50) {
+        } else if (this.age > (this.maxAge - 10)) {
             this.alpha = 1f - ((this.age - 50) / 10f);
         } else {
             this.alpha = 1f;
         }
-        if (this.age >= 90) {
+        if (this.age >= this.maxAge) {
             this.markDead();
         } else {
             if (this.world.getFluidState(new BlockPos(this.x, this.y, this.z)).isIn(FluidTags.WATER) || this.world.getFluidState(new BlockPos(this.x, this.y, this.z)).isIn(FluidTags.LAVA)) {

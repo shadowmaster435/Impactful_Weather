@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "impactfulweather",
-  "version": "1.3.2",
+  "version": "1.3.3",
   "name": "Biome Particle Weather",
   "description": "Replaces vanilla minecraft weather rendering with shiny new particle variants + a few other goodies!",
   "authors": [
@@ -28,7 +28,7 @@
   "depends": {
     "fabricloader": ">=0.13.0",
     "fabric": "*",
-    "minecraft": "1.18.1",
+    "minecraft": "1.18.2",
     "cloth-config2": "*"
   },
   "custom": {
