@@ -21,6 +21,10 @@ public class IWParticles {
     public static final DefaultParticleType BLIZZARDSNOW = FabricParticleTypes.simple(true);
     public static final DefaultParticleType BLIZZARDWIND = FabricParticleTypes.simple(true);
     public static final DefaultParticleType GUST = FabricParticleTypes.simple(true);
+    public static final DefaultParticleType WEEPINGTEAR = FabricParticleTypes.simple(true);
+    public static final DefaultParticleType WEEPINGTEARSPLASH = FabricParticleTypes.simple(true);
+    public static final DefaultParticleType WARPEDSPORE = FabricParticleTypes.simple(true);
+    public static final DefaultParticleType UPDRAFT = FabricParticleTypes.simple(true);
 
     @Environment(EnvType.CLIENT)
     public static void initClient() {
@@ -35,6 +39,10 @@ public class IWParticles {
         ParticleFactoryRegistry.getInstance().register(BLIZZARDSNOW, BlizzardSnow.BlizzardSnowFactory::new);
         ParticleFactoryRegistry.getInstance().register(BLIZZARDWIND, BlizzardWind.BlizzardWindFactory::new);
         ParticleFactoryRegistry.getInstance().register(GUST, Gust.GustFactory::new);
+        ParticleFactoryRegistry.getInstance().register(WARPEDSPORE, WarpedSpore.Factory::new);
+        ParticleFactoryRegistry.getInstance().register(WEEPINGTEAR, WeepingTear.Factory::new);
+        ParticleFactoryRegistry.getInstance().register(WEEPINGTEARSPLASH, WeepingTearSplash.Factory::new);
+        ParticleFactoryRegistry.getInstance().register(UPDRAFT, Updraft.Factory::new);
         Registry.register(Registry.PARTICLE_TYPE, new Identifier("impactfulweather", "sandmote"), SANDMOTE);
         Registry.register(Registry.PARTICLE_TYPE, new Identifier("impactfulweather", "redsandmote"), REDSANDMOTE);
         Registry.register(Registry.PARTICLE_TYPE, new Identifier("impactfulweather", "rain"), RAIN);
@@ -46,5 +54,10 @@ public class IWParticles {
         Registry.register(Registry.PARTICLE_TYPE, new Identifier("impactfulweather", "blizzardsnow"), BLIZZARDSNOW);
         Registry.register(Registry.PARTICLE_TYPE, new Identifier("impactfulweather", "blizzardwind"), BLIZZARDWIND);
         Registry.register(Registry.PARTICLE_TYPE, new Identifier("impactfulweather", "gust"), GUST);
+        Registry.register(Registry.PARTICLE_TYPE, new Identifier("impactfulweather", "weepingtear"), WEEPINGTEAR);
+        Registry.register(Registry.PARTICLE_TYPE, new Identifier("impactfulweather", "weepingtearsplash"), WEEPINGTEARSPLASH);
+        Registry.register(Registry.PARTICLE_TYPE, new Identifier("impactfulweather", "warpedspore"), WARPEDSPORE);
+        Registry.register(Registry.PARTICLE_TYPE, new Identifier("impactfulweather", "updraft"), UPDRAFT);
+
     }
 }
