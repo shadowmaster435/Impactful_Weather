@@ -25,6 +25,8 @@ public class IWParticles {
     public static final DefaultParticleType WEEPINGTEARSPLASH = FabricParticleTypes.simple(true);
     public static final DefaultParticleType WARPEDSPORE = FabricParticleTypes.simple(true);
     public static final DefaultParticleType UPDRAFT = FabricParticleTypes.simple(true);
+    public static final DefaultParticleType STORMSOUL = FabricParticleTypes.simple(true);
+    public static final DefaultParticleType STORMSOULIMPACT = FabricParticleTypes.simple(true);
 
     @Environment(EnvType.CLIENT)
     public static void initClient() {
@@ -43,6 +45,8 @@ public class IWParticles {
         ParticleFactoryRegistry.getInstance().register(WEEPINGTEAR, WeepingTear.Factory::new);
         ParticleFactoryRegistry.getInstance().register(WEEPINGTEARSPLASH, WeepingTearSplash.Factory::new);
         ParticleFactoryRegistry.getInstance().register(UPDRAFT, Updraft.Factory::new);
+        ParticleFactoryRegistry.getInstance().register(STORMSOUL, StormSoul.Factory::new);
+        ParticleFactoryRegistry.getInstance().register(STORMSOULIMPACT, StormSoulImpact.Factory::new);
         Registry.register(Registry.PARTICLE_TYPE, new Identifier("impactfulweather", "sandmote"), SANDMOTE);
         Registry.register(Registry.PARTICLE_TYPE, new Identifier("impactfulweather", "redsandmote"), REDSANDMOTE);
         Registry.register(Registry.PARTICLE_TYPE, new Identifier("impactfulweather", "rain"), RAIN);
@@ -58,6 +62,8 @@ public class IWParticles {
         Registry.register(Registry.PARTICLE_TYPE, new Identifier("impactfulweather", "weepingtearsplash"), WEEPINGTEARSPLASH);
         Registry.register(Registry.PARTICLE_TYPE, new Identifier("impactfulweather", "warpedspore"), WARPEDSPORE);
         Registry.register(Registry.PARTICLE_TYPE, new Identifier("impactfulweather", "updraft"), UPDRAFT);
+        Registry.register(Registry.PARTICLE_TYPE, new Identifier("impactfulweather", "stormsoul"), STORMSOUL);
+        Registry.register(Registry.PARTICLE_TYPE, new Identifier("impactfulweather", "stormsoulimpact"), STORMSOULIMPACT);
 
     }
 }

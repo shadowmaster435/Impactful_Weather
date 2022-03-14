@@ -23,18 +23,25 @@ public class WarpedSpore extends AnimatedParticle {
 
     public WarpedSpore(ClientWorld world, double x, double y, double z, SpriteProvider sprites) {
         super(world, x, y, z, sprites, 0f);
-        this.velocityX = 0.0D;
-        this.velocityY = -3;
-        this.velocityZ = 0.0D;
+        this.velocityX = 0.25D;
+        this.velocityY = 0.075;
+        this.velocityZ = -0.25D;
         this.gravityStrength = 0f;
-        this.scale = 0.125f;
+        this.scale = 0.2f;
+        this.alpha = 0;
         this.maxAge = 50;
         this.setSprite(sprites.getSprite(world.random));
         this.setBoundingBoxSpacing(0.02F, 0.02F);
     }
     public void tick() {
-        this.scale = 0.125f;
+        this.scale = 0.2f;
+
         ++this.age;
+       /* if ((this.age + 1) % 6 == 0) {
+
+            this.angle += (3.15 * (this.velocityX));
+        }*/
+
         if (this.age < 10) {
             this.alpha = this.age / 10f;
         } else if (this.age > (this.maxAge - 10)) {
@@ -42,7 +49,7 @@ public class WarpedSpore extends AnimatedParticle {
         } else {
             this.alpha = 1f;
         }
-        float offset = (float) (Math.sin((age + MinecraftClient.getInstance().getTickDelta()) / 8.0) / 16.0);
+        float offset = (float) (Math.sin((this.age + MinecraftClient.getInstance().getTickDelta()) / 8.0) / 16.0);
 
         this.prevPosX = this.x;
         this.prevPosY = this.y;
@@ -50,7 +57,7 @@ public class WarpedSpore extends AnimatedParticle {
         if (this.age >= this.maxAge || this.world.getBlockState(new BlockPos(this.x, this.y, this.z)).getMaterial().blocksMovement() || this.world.getFluidState(new BlockPos(this.x, this.y, this.z)).isIn(FluidTags.WATER) || this.world.getFluidState(new BlockPos(this.x, this.y, this.z)).isIn(FluidTags.LAVA)) {
             this.markDead();
         } else {
-            if (MiscUtil.ifchance(85)) {
+            if (MiscUtil.ifchance(95)) {
                 world.addParticle(ParticleTypes.PORTAL, this.x,this.y ,this.z,this.velocityX,this.velocityY,this.velocityZ);
             }
             this.velocityX = 0 - offset;
