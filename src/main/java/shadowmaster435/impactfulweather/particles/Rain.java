@@ -1,5 +1,6 @@
 package shadowmaster435.impactfulweather.particles;
 
+import me.shedaniel.autoconfig.AutoConfig;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.particle.v1.FabricSpriteProvider;
@@ -9,6 +10,7 @@ import net.minecraft.client.world.ClientWorld;
 import net.minecraft.particle.DefaultParticleType;
 import net.minecraft.tag.FluidTags;
 import net.minecraft.util.math.BlockPos;
+import shadowmaster435.impactfulweather.client.BPWModConfig;
 import shadowmaster435.impactfulweather.init.IWParticles;
 
 
@@ -34,6 +36,8 @@ public class Rain extends AnimatedParticle {
         this.setColor((15f / this.light),(15f / this.light), (15f / this.light));
 
     }
+    public static final BPWModConfig config = AutoConfig.getConfigHolder(BPWModConfig.class).getConfig();
+
     public void tick() {
         this.light = world.getBrightness(new BlockPos(this.x, this.y, this.z)) + 0.01f;
         this.setColor((15f / this.light),(15f / this.light), (15f / this.light));
@@ -43,8 +47,10 @@ public class Rain extends AnimatedParticle {
         this.prevPosY = this.y;
         this.prevPosZ = this.z;
         if (this.onGround || this.world.getBlockState(new BlockPos(this.x, this.y, this.z)).getMaterial().blocksMovement() || this.world.getFluidState(new BlockPos(this.x, this.y, this.z)).isIn(FluidTags.WATER) || this.world.getFluidState(new BlockPos(this.x, this.y, this.z)).isIn(FluidTags.LAVA)) {
-            if (!this.world.getFluidState(new BlockPos(this.x, this.y, this.z)).isIn(FluidTags.WATER)) {
-                world.addParticle(IWParticles.RAINSPLASH, prevPosX, prevPosY + 0.1, prevPosZ, 0, 0, 0);
+            if (config.particletoggles.rainsplash) {
+                if (!this.world.getFluidState(new BlockPos(this.x, this.y, this.z)).isIn(FluidTags.WATER)) {
+                    world.addParticle(IWParticles.RAINSPLASH, prevPosX, prevPosY + 0.1, prevPosZ, 0, 0, 0);
+                }
             }
             this.markDead();
         } else {

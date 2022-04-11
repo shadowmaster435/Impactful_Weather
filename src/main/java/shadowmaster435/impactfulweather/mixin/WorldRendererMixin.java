@@ -1,29 +1,29 @@
 package shadowmaster435.impactfulweather.mixin;
 
 
-import me.shedaniel.autoconfig.AutoConfig;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.option.ParticlesMode;
 import net.minecraft.client.render.Camera;
+import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.render.LightmapTextureManager;
 import net.minecraft.client.render.WorldRenderer;
+import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.client.world.ClientWorld;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Matrix4f;
 import net.minecraft.world.Heightmap;
-import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import org.jetbrains.annotations.Nullable;
-import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import shadowmaster435.impactfulweather.util.FogUtil;
 import shadowmaster435.impactfulweather.util.ParticleUtil;
 
 import java.util.Random;
@@ -37,9 +37,16 @@ public class WorldRendererMixin {
     @Shadow
     private int field_20793;
 
-    /**
-     * @author shadowmaster435
-     */
+    @Shadow @Nullable private ClientWorld world;
+
+    @Inject(at = @At("HEAD"), method = "render")
+    private void render(MatrixStack matrices, float tickDelta, long limitTime, boolean renderBlockOutline, Camera camera, GameRenderer gameRenderer, LightmapTextureManager lightmapTextureManager, Matrix4f positionMatrix, CallbackInfo ci) {
+   /*     assert this.world != null;
+        FogUtil.applyFog(gameRenderer, this.world, camera);*/
+    }
+
+
+
     @Inject(at = @At("HEAD"), method = "renderWeather")
     private void renderweather(LightmapTextureManager manager, float f, double d, double e, double g, CallbackInfo ci) {
         ParticleUtil.spawnweatherparticles();

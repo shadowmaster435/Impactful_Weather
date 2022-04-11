@@ -31,7 +31,7 @@ public class ParticleUtil {
         if (!MinecraftClient.getInstance().isPaused()) {
             if (netherweathertimer == 0) {
                 weathertoggle = !weathertoggle;
-                netherweathertimer = (config.nweatherbasedelay * 20) + (int) (Math.random() * config.nweatherrandomdelay * 20);
+                netherweathertimer = (config.misc.nweatherbasedelay * 20) + (int) (Math.random() * config.misc.nweatherrandomdelay * 20);
             }
             if (netherweathertimer > 0) {
                 --netherweathertimer;
@@ -54,64 +54,111 @@ public class ParticleUtil {
         double x = (double)i + random.nextDouble();
         double y = (double)j + random.nextDouble();
         double z = (double)k + random.nextDouble();
-
-        for (double hj = 0; hj < Math.ceil((double) config.particleamount * ((config.particleDensity * 0.03125))); hj++) {
+        for (double hj = 0; hj < Math.ceil((double) config.particleamountconfig.particleamount * ((config.particleamountconfig.particleDensity * 0.03125))); hj++) {
             if ((world2.isRaining() || world2.isThundering()) && !instance2.isPaused()) {
                 for (int l = 0; l < 8; ++l) {
-                    if ( Biome.getCategory(world2.getBiome(new BlockPos(MathHelper.lerp(world2.random.nextDouble(), x - 64, x + 64), MathHelper.lerp(world2.random.nextDouble(), 64, 256), MathHelper.lerp(world2.random.nextDouble(), z - 64, z + 64)))).equals(Biome.Category.MESA) || Biome.getCategory(world2.getBiome(new BlockPos(MathHelper.lerp(world2.random.nextDouble(), x - 64, x + 64), MathHelper.lerp(world2.random.nextDouble(), 64, 256), MathHelper.lerp(world2.random.nextDouble(), z - 64, z + 64)))).equals(Biome.Category.DESERT)) {
-                        if (config.redsandstorms ||Biome.getCategory(world2.getBiome(new BlockPos(MathHelper.lerp(world2.random.nextDouble(), x - 64, x + 64), MathHelper.lerp(world2.random.nextDouble(), 64, 256), MathHelper.lerp(world2.random.nextDouble(), z - 64, z + 64)))).equals(Biome.Category.MESA)) {
-                            world2.addParticle(IWParticles.REDSANDMOTE, MathHelper.lerp(world2.random.nextDouble(), x - 48, x + 48), MathHelper.lerp(world2.random.nextDouble(), 63, 90), MathHelper.lerp(world2.random.nextDouble(), z - 48, z + 48), 0f, 0f, 0f);
-                        } else {
-                            if (config.sandstorms) {
-                                world2.addParticle(IWParticles.SANDMOTE, MathHelper.lerp(world2.random.nextDouble(), x - 48, x + 48), MathHelper.lerp(world2.random.nextDouble(), 63, 90), MathHelper.lerp(world2.random.nextDouble(), z - 48, z + 48), 0f, 0f, 0f);
-                            }
-                        }
-                        if (Math.random() < 0.0075) {
-                            if (Biome.getCategory(world2.getBiome(new BlockPos(pos.getX(), pos.getY(), pos.getZ()))).equals(Biome.Category.DESERT) || Biome.getCategory(world2.getBiome(new BlockPos(pos.getX(), pos.getY(), pos.getZ()))).equals(Biome.Category.MESA)) {
-                                if (config.sandstorms && Biome.getCategory(world2.getBiome(new BlockPos(pos.getX(), pos.getY(), pos.getZ()))).equals(Biome.Category.DESERT)) {
-                                    world2.addParticle(IWParticles.TUMBLEBUSH, MathHelper.lerp(world2.random.nextDouble(), x - 64, x + 64), MathHelper.lerp(world2.random.nextDouble(), 64, 110), MathHelper.lerp(world2.random.nextDouble(), z - 64, z + 64), 0f, 0f, 0f);
+                    for (int i1 = 1; i1 <= config.particleamountconfig.sandmotemodifier; ++i1) {
+                        if (Biome.getCategory(world2.getBiome(new BlockPos(MathHelper.lerp(world2.random.nextDouble(), x - 64, x + 64), MathHelper.lerp(world2.random.nextDouble(), 64, 256), MathHelper.lerp(world2.random.nextDouble(), z - 64, z + 64)))).equals(Biome.Category.MESA) || Biome.getCategory(world2.getBiome(new BlockPos(MathHelper.lerp(world2.random.nextDouble(), x - 64, x + 64), MathHelper.lerp(world2.random.nextDouble(), 64, 256), MathHelper.lerp(world2.random.nextDouble(), z - 64, z + 64)))).equals(Biome.Category.DESERT)) {
+                            if (config.toggles.redsandstorms || Biome.getCategory(world2.getBiome(new BlockPos(MathHelper.lerp(world2.random.nextDouble(), x - 64, x + 64), MathHelper.lerp(world2.random.nextDouble(), 64, 256), MathHelper.lerp(world2.random.nextDouble(), z - 64, z + 64)))).equals(Biome.Category.MESA)) {
+                                if (config.particletoggles.redsandmote) {
+                                    world2.addParticle(IWParticles.REDSANDMOTE, MathHelper.lerp(world2.random.nextDouble(), x - 48, x + 48), MathHelper.lerp(world2.random.nextDouble(), 63, 90), MathHelper.lerp(world2.random.nextDouble(), z - 48, z + 48), 0f, 0f, 0f);
                                 }
-                                if (config.redsandstorms && Biome.getCategory(world2.getBiome(new BlockPos(pos.getX(), pos.getY(), pos.getZ()))).equals(Biome.Category.MESA)) {
-                                    world2.addParticle(IWParticles.TUMBLEBUSH, MathHelper.lerp(world2.random.nextDouble(), x - 64, x + 64), MathHelper.lerp(world2.random.nextDouble(), 64, 110), MathHelper.lerp(world2.random.nextDouble(), z - 64, z + 64), 0f, 0f, 0f);
+                            } else {
+                                if (config.toggles.sandstorms) {
+                                    if (config.particletoggles.sandmote) {
+                                        world2.addParticle(IWParticles.SANDMOTE, MathHelper.lerp(world2.random.nextDouble(), x - 48, x + 48), MathHelper.lerp(world2.random.nextDouble(), 63, 90), MathHelper.lerp(world2.random.nextDouble(), z - 48, z + 48), 0f, 0f, 0f);
+                                    }
                                 }
                             }
                         }
                     }
-                    if (config.wind || Biome.getCategory(world2.getBiome(new BlockPos(MathHelper.lerp(world2.random.nextDouble(), x - 64, x + 64), MathHelper.lerp(world2.random.nextDouble(), 64, 256), MathHelper.lerp(world2.random.nextDouble(), z - 64, z + 64)))).equals(Biome.Category.SAVANNA)) {
-                        world2.addParticle(IWParticles.GUST, MathHelper.lerp(world2.random.nextDouble(), x - 64, x + 64), MathHelper.lerp(world2.random.nextDouble(), y - 64, y + 64), MathHelper.lerp(world2.random.nextDouble(), z - 64, z + 64), 0f, 0f, 0f);
+                        for (int i1 = 1; i1 <= config.particleamountconfig.tumblebushmodifier; ++i1) {
+
+                            if (config.particletoggles.tumblebush) {
+                            if (Math.random() < 0.0075) {
+                                if (Biome.getCategory(world2.getBiome(new BlockPos(pos.getX(), pos.getY(), pos.getZ()))).equals(Biome.Category.DESERT) || Biome.getCategory(world2.getBiome(new BlockPos(pos.getX(), pos.getY(), pos.getZ()))).equals(Biome.Category.MESA)) {
+                                    if (config.toggles.sandstorms && Biome.getCategory(world2.getBiome(new BlockPos(pos.getX(), pos.getY(), pos.getZ()))).equals(Biome.Category.DESERT)) {
+                                        world2.addParticle(IWParticles.TUMBLEBUSH, MathHelper.lerp(world2.random.nextDouble(), x - 64, x + 64), MathHelper.lerp(world2.random.nextDouble(), 64, 110), MathHelper.lerp(world2.random.nextDouble(), z - 64, z + 64), 0f, 0f, 0f);
+                                    }
+                                    if (config.toggles.redsandstorms && Biome.getCategory(world2.getBiome(new BlockPos(pos.getX(), pos.getY(), pos.getZ()))).equals(Biome.Category.MESA)) {
+                                        world2.addParticle(IWParticles.TUMBLEBUSH, MathHelper.lerp(world2.random.nextDouble(), x - 64, x + 64), MathHelper.lerp(world2.random.nextDouble(), 64, 110), MathHelper.lerp(world2.random.nextDouble(), z - 64, z + 64), 0f, 0f, 0f);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    for (int i1 = 1; i1 <= config.particleamountconfig.windmodifier; ++i1) {
+                        if (config.toggles.wind || Biome.getCategory(world2.getBiome(new BlockPos(MathHelper.lerp(world2.random.nextDouble(), x - 64, x + 64), MathHelper.lerp(world2.random.nextDouble(), 64, 256), MathHelper.lerp(world2.random.nextDouble(), z - 64, z + 64)))).equals(Biome.Category.SAVANNA)) {
+                            world2.addParticle(IWParticles.GUST, MathHelper.lerp(world2.random.nextDouble(), x - 64, x + 64), MathHelper.lerp(world2.random.nextDouble(), y - 64, y + 64), MathHelper.lerp(world2.random.nextDouble(), z - 64, z + 64), 0f, 0f, 0f);
+                        }
                     }
                     if (world2.getBiome(player2.getBlockPos()).value().getPrecipitation() == Biome.Precipitation.RAIN) {
-                        if (config.dodenserain) {
+                        if (config.toggles.dodenserain) {
                             for (int am = 0; am < Rain.rainamount; ++am) {
-                                if (config.heavyrain && (world2.isThundering() || Biome.getCategory(world2.getBiome(new BlockPos(MathHelper.lerp(world2.random.nextDouble(), x - 64, x + 64), MathHelper.lerp(world2.random.nextDouble(), 64, 256), MathHelper.lerp(world2.random.nextDouble(), z - 64, z + 64)))).equals(Biome.Category.JUNGLE))) {
-                                    world2.addParticle(IWParticles.HEAVYRAIN, MathHelper.lerp(world2.random.nextDouble(), x - 32, x + 96) - HeavyRain.heavyrainvel, player2.getBlockPos().getY() + 100, MathHelper.lerp(world2.random.nextDouble(), z - 64, z + 64), 0f, 0f, 0f);
+                                if (config.toggles.heavyrain && (world2.isThundering() || Biome.getCategory(world2.getBiome(new BlockPos(MathHelper.lerp(world2.random.nextDouble(), x - 64, x + 64), MathHelper.lerp(world2.random.nextDouble(), 64, 256), MathHelper.lerp(world2.random.nextDouble(), z - 64, z + 64)))).equals(Biome.Category.JUNGLE))) {
+                                    for (int i1 = 1; i1 <= config.particleamountconfig.heavyrainmodifier; ++i1) {
+
+                                        if (config.particletoggles.heavyrain) {
+                                            world2.addParticle(IWParticles.HEAVYRAIN, MathHelper.lerp(world2.random.nextDouble(), x - 32, x + 96) - HeavyRain.heavyrainvel, player2.getBlockPos().getY() + 100, MathHelper.lerp(world2.random.nextDouble(), z - 64, z + 64), 0f, 0f, 0f);
+                                        }
+                                    }
                                 } else {
-                                    world2.addParticle(IWParticles.RAIN, MathHelper.lerp(world2.random.nextDouble(), x - 64, x + 64), player2.getBlockPos().getY() + 100, MathHelper.lerp(world2.random.nextDouble(), z - 64, z + 64), 0f, 0f, 0f);
+                                    for (int i1 = 1; i1 <= config.particleamountconfig.rainmodifier; ++i1) {
+
+                                        if (config.particletoggles.rain) {
+                                            world2.addParticle(IWParticles.RAIN, MathHelper.lerp(world2.random.nextDouble(), x - 64, x + 64), player2.getBlockPos().getY() + 100, MathHelper.lerp(world2.random.nextDouble(), z - 64, z + 64), 0f, 0f, 0f);
+                                        }
+                                    }
                                 }
                             }
                         } else {
-                            if (config.heavyrain && (world2.isThundering() || Biome.getCategory(world2.getBiome(new BlockPos(MathHelper.lerp(world2.random.nextDouble(), x - 64, x + 64), MathHelper.lerp(world2.random.nextDouble(), 64, 256), MathHelper.lerp(world2.random.nextDouble(), z - 64, z + 64)))).equals(Biome.Category.JUNGLE))) {
-                                world2.addParticle( IWParticles.HEAVYRAIN, MathHelper.lerp(world2.random.nextDouble(), x - 32, x + 96) - HeavyRain.heavyrainvel, player2.getBlockPos().getY() + 100, MathHelper.lerp(world2.random.nextDouble(), z - 64, z + 64), 0f, 0f, 0f);
+                            if (config.toggles.heavyrain && (world2.isThundering() || Biome.getCategory(world2.getBiome(new BlockPos(MathHelper.lerp(world2.random.nextDouble(), x - 64, x + 64), MathHelper.lerp(world2.random.nextDouble(), 64, 256), MathHelper.lerp(world2.random.nextDouble(), z - 64, z + 64)))).equals(Biome.Category.JUNGLE))) {
+                                for (int i1 = 1; i1 <= config.particleamountconfig.heavyrainmodifier; ++i1) {
+
+                                    if (config.particletoggles.heavyrain) {
+
+                                        world2.addParticle(IWParticles.HEAVYRAIN, MathHelper.lerp(world2.random.nextDouble(), x - 32, x + 96) - HeavyRain.heavyrainvel, player2.getBlockPos().getY() + 100, MathHelper.lerp(world2.random.nextDouble(), z - 64, z + 64), 0f, 0f, 0f);
+                                    }
+                                }
                             } else {
-                                world2.addParticle(IWParticles.RAIN, MathHelper.lerp(world2.random.nextDouble(), x - 64, x + 64), player2.getBlockPos().getY() + 100, MathHelper.lerp(world2.random.nextDouble(), z - 64, z + 64), 0f, 0f, 0f);
+                                for (int i1 = 1; i1 <= config.particleamountconfig.rainmodifier; ++i1) {
+
+                                    if (config.particletoggles.rain) {
+                                        world2.addParticle(IWParticles.RAIN, MathHelper.lerp(world2.random.nextDouble(), x - 64, x + 64), player2.getBlockPos().getY() + 100, MathHelper.lerp(world2.random.nextDouble(), z - 64, z + 64), 0f, 0f, 0f);
+                                    }
+                                }
                             }
                         }
                     }
                     if (
                             world2.getBiome(player2.getBlockPos()).value().getPrecipitation() == Biome.Precipitation.SNOW) {
-                        if (world2.isThundering() && config.blizzards) {
+                        if (world2.isThundering() && config.toggles.blizzards) {
                             if (Math.random() < 0.75) {
-                                if (config.dodenserain) {
-                                    for (int ikl = 0; ikl < 2; ++ikl) {
-                                        world2.addParticle(IWParticles.BLIZZARDSNOW, MathHelper.lerp(world2.random.nextDouble(), x - 96, x + 48), MathHelper.lerp(world2.random.nextDouble(), y - 64, y + 64), MathHelper.lerp(world2.random.nextDouble(), z - 64, z + 64), 0f, 0f, 0f);
+                                if (config.toggles.dodenserain) {
+                                    if (config.particletoggles.blizzardsnow) {
+                                        for (int i1 = 1; i1 <= config.particleamountconfig.blizzardsnowmodifier; ++i1) {
+                                            world2.addParticle(IWParticles.BLIZZARDSNOW, MathHelper.lerp(world2.random.nextDouble(), x - 96, x + 48), MathHelper.lerp(world2.random.nextDouble(), y - 64, y + 64), MathHelper.lerp(world2.random.nextDouble(), z - 64, z + 64), 0f, 0f, 0f);
+                                        }
                                     }
                                 } else {
-                                    world2.addParticle(IWParticles.BLIZZARDSNOW, MathHelper.lerp(world2.random.nextDouble(), x - 96, x + 48), MathHelper.lerp(world2.random.nextDouble(), y - 64, y + 64), MathHelper.lerp(world2.random.nextDouble(), z - 64, z + 64), 0f, 0f, 0f);
+                                    if (config.particletoggles.blizzardsnow) {
+                                        for (int i1 = 1; i1 <= config.particleamountconfig.blizzardsnowmodifier; ++i1) {
+                                            world2.addParticle(IWParticles.BLIZZARDSNOW, MathHelper.lerp(world2.random.nextDouble(), x - 96, x + 48), MathHelper.lerp(world2.random.nextDouble(), y - 64, y + 64), MathHelper.lerp(world2.random.nextDouble(), z - 64, z + 64), 0f, 0f, 0f);
+                                        }
+                                    }
                                 }
-                                world2.addParticle(IWParticles.BLIZZARDWIND, MathHelper.lerp(world2.random.nextDouble(), x - 64, x + 64), MathHelper.lerp(world2.random.nextDouble(), y - 64, y + 64), MathHelper.lerp(world2.random.nextDouble(), z - 64, z + 64), 0f, 0f, 0f);
+                                for (int i1 = 1; i1 <= config.particleamountconfig.blizzardwindmodifier; ++i1) {
+                                    if (config.particletoggles.blizzardwind) {
+                                        world2.addParticle(IWParticles.BLIZZARDWIND, MathHelper.lerp(world2.random.nextDouble(), x - 64, x + 64), MathHelper.lerp(world2.random.nextDouble(), y - 64, y + 64), MathHelper.lerp(world2.random.nextDouble(), z - 64, z + 64), 0f, 0f, 0f);
+                                    }
+                                }
                             }
                         } else {
-                            world2.addParticle(IWParticles.SNOW, MathHelper.lerp(world2.random.nextDouble(), x - 64, x + 64), player2.getBlockPos().getY() + 50, MathHelper.lerp(world2.random.nextDouble(), z - 64, z + 64), 0f, 0f, 0f);
+                            for (int i1 = 1; i1 <= config.particleamountconfig.snowmodifier; ++i1) {
+                                if (config.particletoggles.snow) {
+                                    world2.addParticle(IWParticles.SNOW, MathHelper.lerp(world2.random.nextDouble(), x - 64, x + 64), player2.getBlockPos().getY() + 50, MathHelper.lerp(world2.random.nextDouble(), z - 64, z + 64), 0f, 0f, 0f);
+                                }
+                            }
                         }
                     }
 
@@ -119,29 +166,32 @@ public class ParticleUtil {
 
             }
             //nether particles
-            if ((weathertoggle || config.endlessnweather) && !MinecraftClient.getInstance().isPaused()) {
+            if (player2.getWorld().getDimension().getCoordinateScale() == 8 && (weathertoggle || config.toggles.endlessnweather) && !MinecraftClient.getInstance().isPaused()) {
                 if (world2.getBiome(player2.getBlockPos()).getKey().isPresent()) {
-                    if (config.updrafts && world2.getBiome(player2.getBlockPos()).getKey().get().equals(BiomeKeys.NETHER_WASTES) || world2.getBiome(player2.getBlockPos()).getKey().get().equals(BiomeKeys.BASALT_DELTAS)) {
+                    if (config.toggles.updrafts && world2.getBiome(player2.getBlockPos()).getKey().get().equals(BiomeKeys.NETHER_WASTES) || world2.getBiome(player2.getBlockPos()).getKey().get().equals(BiomeKeys.BASALT_DELTAS)) {
                         for (int l = 0; l < 8; ++l) {
-                            world2.addParticle(IWParticles.UPDRAFT, MathHelper.lerp(world2.random.nextDouble(), x - 48, x + 48), MathHelper.lerp(world2.random.nextDouble(), y - 48, y + 48), MathHelper.lerp(world2.random.nextDouble(), z - 48, z + 48), 0f, 0f, 0f);
+                            for (int i1 = 1; i1 <= config.particleamountconfig.updraftmodifier; ++i1) {
+
+                                world2.addParticle(IWParticles.UPDRAFT, MathHelper.lerp(world2.random.nextDouble(), x - 48, x + 48), MathHelper.lerp(world2.random.nextDouble(), y - 48, y + 48), MathHelper.lerp(world2.random.nextDouble(), z - 48, z + 48), 0f, 0f, 0f);
+                            }
                         }
                     }
-                    if (config.sporestorm && world2.getBiome(player2.getBlockPos()).getKey().get().equals(BiomeKeys.WARPED_FOREST)) {
+                    if (config.toggles.sporestorm && world2.getBiome(player2.getBlockPos()).getKey().get().equals(BiomeKeys.WARPED_FOREST)) {
                         for (int l = 0; l < 12; ++l) {
-
-                            world2.addParticle(IWParticles.WARPEDSPORE, MathHelper.lerp(world2.random.nextDouble(), x - 48, x + 48), MathHelper.lerp(world2.random.nextDouble(), y - 48, y + 48), MathHelper.lerp(world2.random.nextDouble(), z - 48, z + 48), 0f, 0f, 0f);
-
+                            for (int i1 = 1; i1 <= config.particleamountconfig.sporemodifier; ++i1) {
+                                world2.addParticle(IWParticles.WARPEDSPORE, MathHelper.lerp(world2.random.nextDouble(), x - 48, x + 48), MathHelper.lerp(world2.random.nextDouble(), y - 48, y + 48), MathHelper.lerp(world2.random.nextDouble(), z - 48, z + 48), 0f, 0f, 0f);
+                            }
                         }
                     }
-                    if (!config.weepingrain) {
+                    if (!config.toggles.weepingrain) {
                         continue;
                     } else {
-                        for (int x2 = 1; x2 < 32; ++x2) {
-                            for (int y2 = 1; y2 < 32; ++y2) {
-                                for (int z2 = 1; z2 < 32; ++z2) {
-                                    int xps = (pos.getX() - 16) + x2;
-                                    int yps = (pos.getY() - 16) + y2;
-                                    int zps = (pos.getZ() - 16) + z2;
+                        for (int x2 = 1; x2 < config.misc.searchDist.x; ++x2) {
+                            for (int y2 = 1; y2 < config.misc.searchDist.y; ++y2) {
+                                for (int z2 = 1; z2 < config.misc.searchDist.z; ++z2) {
+                                    int xps = (pos.getX() - config.misc.searchDist.x / 2) + x2;
+                                    int yps = (pos.getY() - config.misc.searchDist.y / 2) + y2;
+                                    int zps = (pos.getZ() - config.misc.searchDist.z / 2) + z2;
                                     if (world2.getBiome(new BlockPos(xps, yps, zps)).getKey().get().equals(BiomeKeys.CRIMSON_FOREST)) {
                                         if (world2.getBlockState(new BlockPos(xps, yps, zps)).getBlock().equals(Blocks.CRIMSON_FUNGUS)) {
                                             fungusposlist.add(new BlockPos(xps, yps, zps));
@@ -156,16 +206,14 @@ public class ParticleUtil {
                             }
                         }
                     }
-                    if (!config.soulstorms) {
-                        continue;
-                    } else {
-                        for (int x2 = 1; x2 < 32; ++x2) {
-                            for (int y2 = 1; y2 < 32; ++y2) {
-                                for (int z2 = 1; z2 < 32; ++z2) {
-                                    int xps = (pos.getX() - 16) + x2;
-                                    int yps = (pos.getY() - 16) + y2;
-                                    int zps = (pos.getZ() - 16) + z2;
-                                    if (config.soulstorms && world2.getBlockState(new BlockPos(xps, yps, zps)).getBlock().equals(Blocks.SOUL_SAND) || world2.getBlockState(new BlockPos(xps, yps, zps)).getBlock().equals(Blocks.SOUL_SOIL)) {
+                    if (config.toggles.soulstorms) {
+                        for (int x2 = 1; x2 < config.misc.searchDist.x; ++x2) {
+                            for (int y2 = 1; y2 < config.misc.searchDist.y; ++y2) {
+                                for (int z2 = 1; z2 < config.misc.searchDist.z; ++z2) {
+                                    int xps = (pos.getX() - config.misc.searchDist.x / 2) + x2;
+                                    int yps = (pos.getY() - config.misc.searchDist.y / 2) + y2;
+                                    int zps = (pos.getZ() - config.misc.searchDist.z / 2) + z2;
+                                    if (config.toggles.soulstorms && world2.getBlockState(new BlockPos(xps, yps, zps)).getBlock().equals(Blocks.SOUL_SAND) || world2.getBlockState(new BlockPos(xps, yps, zps)).getBlock().equals(Blocks.SOUL_SOIL)) {
                                         if (world2.isAir(new BlockPos(xps, yps + 1, zps)) && world2.getBiome(new BlockPos(xps, yps, zps)).getKey().get().equals(BiomeKeys.SOUL_SAND_VALLEY)) {
                                             soulsandposlist.add(new BlockPos(xps, yps, zps));
                                         }
@@ -174,13 +222,16 @@ public class ParticleUtil {
                             }
                         }
                     }
-                    if (config.weepingrain) {
+                    if (config.toggles.weepingrain) {
                         for (int index = 1; index < fungusblockposlist.size(); ++index) {
                             int xf = fungusblockposlist.get(index).getX();
                             int yf = fungusblockposlist.get(index).getY();
                             int zf = fungusblockposlist.get(index).getZ();
-                            if (Math.random() > 0.985) {
-                                world2.addParticle(IWParticles.WEEPINGTEAR, MathHelper.lerp(world2.random.nextDouble(), xf, xf + 1), MathHelper.lerp(world2.random.nextDouble(), yf, yf + 1), MathHelper.lerp(world2.random.nextDouble(), zf, zf + 1), 0, 0, 0);
+                                if (Math.random() > 0.985) {
+                                    for (int i1 = 1; i1 <= config.particleamountconfig.tearmodifier; ++i1) {
+
+                                        world2.addParticle(IWParticles.WEEPINGTEAR, MathHelper.lerp(world2.random.nextDouble(), xf, xf + 1), MathHelper.lerp(world2.random.nextDouble(), yf, yf + 1), MathHelper.lerp(world2.random.nextDouble(), zf, zf + 1), 0, 0, 0);
+                                    }
                             }
                         }
 
@@ -188,18 +239,23 @@ public class ParticleUtil {
                             int xf = fungusposlist.get(index).getX();
                             int yf = fungusposlist.get(index).getY();
                             int zf = fungusposlist.get(index).getZ();
-                            if (Math.random() > 0.97) {
-                                world2.addParticle(IWParticles.WEEPINGTEAR, MathHelper.lerp(world2.random.nextDouble(), xf, xf + 1), MathHelper.lerp(world2.random.nextDouble(), yf, yf + 1), MathHelper.lerp(world2.random.nextDouble(), zf, zf + 1), 0, 0, 0);
+                            for (int i1 = 1; i1 <= config.particleamountconfig.tearmodifier; ++i1) {
+
+                                if (Math.random() > 0.97) {
+                                    world2.addParticle(IWParticles.WEEPINGTEAR, MathHelper.lerp(world2.random.nextDouble(), xf, xf + 1), MathHelper.lerp(world2.random.nextDouble(), yf, yf + 1), MathHelper.lerp(world2.random.nextDouble(), zf, zf + 1), 0, 0, 0);
+                                }
                             }
                         }
                     }
-                    if (config.soulstorms) {
+                    if (config.toggles.soulstorms) {
                         for (int index = 1; index < soulsandposlist.size(); ++index) {
                             int xf = soulsandposlist.get(index).getX();
                             int yf = soulsandposlist.get(index).getY();
                             int zf = soulsandposlist.get(index).getZ();
-                            if (Math.random() > 0.9975) {
-                                world2.addParticle(IWParticles.STORMSOUL, MathHelper.lerp(world2.random.nextDouble(), xf, xf + 1), yf + 2, MathHelper.lerp(world2.random.nextDouble(), zf, zf + 1), 0, 0, 0);
+                            for (int i1 = 1; i1 <= config.particleamountconfig.soulmodifier; ++i1) {
+                                if (Math.random() > 0.9975) {
+                                    world2.addParticle(IWParticles.STORMSOUL, MathHelper.lerp(world2.random.nextDouble(), xf, xf + 1), yf + 2, MathHelper.lerp(world2.random.nextDouble(), zf, zf + 1), 0, 0, 0);
+                                }
                             }
                         }
                     }

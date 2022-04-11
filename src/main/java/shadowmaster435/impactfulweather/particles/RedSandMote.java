@@ -9,6 +9,8 @@ import net.minecraft.client.world.ClientWorld;
 import net.minecraft.particle.DefaultParticleType;
 import net.minecraft.tag.FluidTags;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.LightType;
+import shadowmaster435.impactfulweather.util.MiscUtil;
 
 
 @Environment(EnvType.CLIENT)
@@ -32,14 +34,28 @@ public class RedSandMote extends AnimatedParticle {
         this.setBoundingBoxSpacing(0.01F, 0.01F);
         this.maxAge = 40;
         this.setSprite(sprites.getSprite(world.random));
-        this.light = world.getBrightness(new BlockPos(this.x, this.y, this.z)) + 0.01f;
-        this.setColor((15f / this.light),(15f / this.light), (15f / this.light));
     }
-        public static int groundtimer;
 
     public void tick() {
-        this.light = world.getBrightness(new BlockPos(this.x, this.y, this.z)) + 0.01f;
-        this.setColor((15f / this.light),(15f / this.light), (15f / this.light));
+        /*this.light = MiscUtil.makeUnInt(15, MiscUtil.getRealLightLevel(world, new BlockPos(this.prevPosX, this.prevPosY, this.prevPosZ)));
+        if (this.light < 0.275f) {
+            this.setColor(0.275f, 0.275f, 0.275f);
+        } else {
+            if (this.world.isThundering() && this.world.isSkyVisible(new BlockPos(this.prevPosX, this.prevPosY, this.prevPosZ))) {
+                this.setColor(0.275f, 0.275f, 0.275f);
+
+            }
+            if (this.world.isRaining() && this.world.isSkyVisible(new BlockPos(this.prevPosX, this.prevPosY, this.prevPosZ))) {
+                this.setColor(this.light + 0.75f, this.light + 0.75f, this.light + 0.75f);
+
+            }
+                if (this.world.isSkyVisible(new BlockPos(this.prevPosX, this.prevPosY, this.prevPosZ)) && this.world.getTime() > 1000 && this.world.getTime() < 11000) {
+                    this.setColor(255, 255, 255);
+                } else {
+                    this.setColor(this.light, this.light, this.light);
+
+                }
+        }*/
         this.prevPosX = this.x;
         this.prevPosY = this.y;
         this.prevPosZ = this.z;
@@ -63,7 +79,7 @@ public class RedSandMote extends AnimatedParticle {
                 this.velocityZ = 0.2;
                 this.velocityY = (this.velocityY - 0.0025) + Sinefunc();
                 this.angle += 3.1415927F * this.field_3809 * 0.5F;
-                ++groundtimer;
+              //  ++groundtimer;
             } else if (this.onGround || this.y < 63 || this.world.getBlockState(new BlockPos(this.x, this.y, this.z)).getMaterial().blocksMovement()) {
                 this.markDead();
             } else {

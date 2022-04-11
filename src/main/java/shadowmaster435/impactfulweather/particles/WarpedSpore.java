@@ -37,10 +37,6 @@ public class WarpedSpore extends AnimatedParticle {
         this.scale = 0.2f;
 
         ++this.age;
-       /* if ((this.age + 1) % 6 == 0) {
-
-            this.angle += (3.15 * (this.velocityX));
-        }*/
 
         if (this.age < 10) {
             this.alpha = this.age / 10f;

@@ -33,13 +33,13 @@ public class SandMote extends AnimatedParticle {
         this.setBoundingBoxSpacing(0.01F, 0.01F);
         this.maxAge = 40;
         this.setSprite(sprites.getSprite(world.random));
-        this.light = world.getBrightness(new BlockPos(this.x, this.y, this.z)) + 0.01f;
-        this.setColor((15f / this.light),(15f / this.light), (15f / this.light));
-    }
+     /*   this.light = this.world.getBrightness(new BlockPos(this.x, this.y, this.z)) + 0.01f;
+        this.setColor((15f / this.light)*255,(15f / this.light)*255, (15f / this.light) *255);
+   */ }
 
     public void tick() {
-        this.light = world.getBrightness(new BlockPos(this.x, this.y, this.z)) + 0.01f;
-        this.setColor((15f / this.light),(15f / this.light), (15f / this.light));
+        ClientWorld clientWorld = MinecraftClient.getInstance().world;
+        assert clientWorld != null;
         this.prevPosX = this.x;
         this.prevPosY = this.y;
         this.prevPosZ = this.z;

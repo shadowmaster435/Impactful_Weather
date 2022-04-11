@@ -1,5 +1,6 @@
 package shadowmaster435.impactfulweather.particles;
 
+import me.shedaniel.autoconfig.AutoConfig;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.particle.v1.FabricSpriteProvider;
@@ -9,6 +10,7 @@ import net.minecraft.client.world.ClientWorld;
 import net.minecraft.particle.DefaultParticleType;
 import net.minecraft.tag.FluidTags;
 import net.minecraft.util.math.BlockPos;
+import shadowmaster435.impactfulweather.client.BPWModConfig;
 
 
 @Environment(EnvType.CLIENT)
@@ -16,6 +18,7 @@ public class Snow extends AnimatedParticle {
     public static float upv;
     public static ClientWorld cworld;
     public float light;
+    public static final BPWModConfig config = AutoConfig.getConfigHolder(BPWModConfig.class).getConfig();
 
 
     public Snow(ClientWorld world, double x, double y, double z, SpriteProvider sprites, float up) {
@@ -30,15 +33,11 @@ public class Snow extends AnimatedParticle {
         cworld = this.world;
         this.setBoundingBoxSpacing(0.01F, 0.01F);
         this.setSprite(sprites.getSprite(world.random));
-        this.light = world.getBrightness(new BlockPos(this.x, this.y, this.z)) + 0.01f;
-        this.setColor((15f / this.light),(15f / this.light), (15f / this.light));
-    }
+     }
 
     public float groundtimer = 5;
 
     public void tick() {
-        float light = world.getBrightness(new BlockPos(this.x, this.y, this.z)) + 0.01f;
-        this.setColor((15f / this.light),(15f / this.light), (15f / this.light));
         this.prevPosX = this.x;
         this.prevPosY = this.y;
         this.prevPosZ = this.z;
@@ -61,7 +60,7 @@ public class Snow extends AnimatedParticle {
             this.scale = 0.175f;
             this.velocityX = 0;
             this.velocityZ = 0;
-            this.velocityY = -0.75;
+            this.velocityY = Math.abs(config.misc.snowspeedmodifier) * -1;
         }
         this.move(this.velocityX, this.velocityY, this.velocityZ);
     }
