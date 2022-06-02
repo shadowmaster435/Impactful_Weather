@@ -1,22 +1,29 @@
 package shadowmaster435.impactfulweather.util;
 
+import com.mojang.serialization.Codec;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.tag.BiomeTags;
+import net.minecraft.tag.TagKey;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.registry.Registry;
+import net.minecraft.util.registry.RegistryEntry;
+import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.LightType;
 import net.minecraft.world.RaycastContext;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeKeys;
+import net.minecraft.world.biome.source.BiomeAccess;
 
-import java.rmi.registry.Registry;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -26,6 +33,19 @@ public class MiscUtil {
 
     public static BlockHitResult getBlockHitResult(World world, LivingEntity placer) {
         return world.raycast(new RaycastContext(placer.getEyePos(), placer.raycast(4, MinecraftClient.getInstance().getTickDelta(), false).getPos(), RaycastContext.ShapeType.OUTLINE, RaycastContext.FluidHandling.NONE, placer));
+    }
+    public static boolean forloopdecimalizer(float modifier, float delta) {
+        float remainder = (float) Math.abs(modifier - Math.ceil(modifier));
+        int decimalplace = Integer.parseInt("1" + ("0".repeat(String.valueOf(modifier).length() - 2)));
+        float floatresult;
+                    floatresult = modifier * (remainder + 1);
+
+        if (delta - floatresult >= 0) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+
     }
 
     public static boolean IsBlockAtPos(Block block, BlockPos pos, World world) {
@@ -74,6 +94,22 @@ public class MiscUtil {
         return val > 0 ? maxval / val : 0;
     }
 
+    public static BiomeKeys getBiomeRegistry(RegistryEntry<Biome> keys) {
+
+        return RegistryKey.of(Registry.BIOME_KEY, new Identifier());
+    }
+
+ /*   public static TagKey<BiomeTags> getBiomeCatagory(RegistryKey<Biome> biomeRegistryKey) {
+
+        RegistryKey<Biome> registryKey = biomeRegistryKey;
+        return TagKey.of(Registry.BIOME_KEY, biomeRegistryKey);
+    }
+    public static boolean isBiomeAtPos(Regis.istryKey<Biome> current, RegistryKey<Biome> compare, BlockPos pos) {
+        return compare.getValue() == current.getValue();
+    }*/
+
+
+
     public static float getRealLightLevel(ClientWorld world, BlockPos pos) {
         int skylight;
         // int blocklight =  world.getLightLevel(LightType.BLOCK, pos) > 3 ? world.getLightLevel(LightType.BLOCK, pos) : 1;
@@ -95,7 +131,7 @@ public class MiscUtil {
         } else if ((world.getTime() < 1000 && world.getTime() > 0)|| (world.getTime() < 13000 && world.getTime() > 12000)) {
             timelight = 12;
         }
-        int gammaval = (int) Math.floor(MinecraftClient.getInstance().options.gamma * 3);
+        int gammaval = (int) Math.floor(MinecraftClient.getInstance().options.getGamma().getValue() * 3d);
         if (blocklight < 3) {
             light = Math.abs(timelight - skylight + gammaval);
         } else {

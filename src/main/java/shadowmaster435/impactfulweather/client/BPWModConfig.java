@@ -21,27 +21,30 @@ public class BPWModConfig implements ConfigData {
 
 
     public static class AmountConf {
-        public int particleamount = 32;
-        public int particleDensity = 1;
-        public int sandmotemodifier = 1;
-        public int snowmodifier = 1;
-        public int blizzardsnowmodifier = 1;
-        public int blizzardwindmodifier = 1;
-        public int updraftmodifier = 1;
-        public int windmodifier = 1;
-        public int sporemodifier = 1;
-        public int soulmodifier = 1;
-        public int tearmodifier = 1;
-        public int rainmodifier = 1;
-        public int heavyrainmodifier = 1;
-        public int tumblebushmodifier = 1;
+        public float particleamount = 32;
+        public float particleDensity = 1;
+        public float sandmotemodifier = 1;
+        public float snowmodifier = 1;
+        public float blizzardsnowmodifier = 1;
+        public float blizzardwindmodifier = 1;
+        public float updraftmodifier = 1;
+        public float windmodifier = 1;
+        public float sporemodifier = 1;
+        public float soulmodifier = 1;
+        public float tearmodifier = 1;
+        public float rainmodifier = 1;
+        public float heavyrainmodifier = 1;
+        public float tumblebushmodifier = 1;
     }
 
 
     public static class Miscconf {
         public int nweatherbasedelay = 120;
         public int nweatherrandomdelay = 240;
+
+        public boolean renderedweather = false;
         public float snowspeedmodifier = 1;
+
 
         @ConfigEntry.Gui.CollapsibleObject
         public BlockSearchDist searchDist = new BlockSearchDist();

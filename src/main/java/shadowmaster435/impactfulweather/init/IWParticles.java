@@ -28,6 +28,7 @@ public class IWParticles {
     public static final DefaultParticleType STORMSOUL = FabricParticleTypes.simple(true);
     public static final DefaultParticleType STORMSOULIMPACT = FabricParticleTypes.simple(true);
 
+
     @Environment(EnvType.CLIENT)
     public static void initClient() {
         ParticleFactoryRegistry.getInstance().register(SANDMOTE, SandMote.SandMoteFactory::new);
@@ -47,6 +48,7 @@ public class IWParticles {
         ParticleFactoryRegistry.getInstance().register(UPDRAFT, Updraft.Factory::new);
         ParticleFactoryRegistry.getInstance().register(STORMSOUL, StormSoul.Factory::new);
         ParticleFactoryRegistry.getInstance().register(STORMSOULIMPACT, StormSoulImpact.Factory::new);
+
         Registry.register(Registry.PARTICLE_TYPE, new Identifier("impactfulweather", "sandmote"), SANDMOTE);
         Registry.register(Registry.PARTICLE_TYPE, new Identifier("impactfulweather", "redsandmote"), REDSANDMOTE);
         Registry.register(Registry.PARTICLE_TYPE, new Identifier("impactfulweather", "rain"), RAIN);

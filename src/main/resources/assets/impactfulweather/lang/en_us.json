@@ -5,6 +5,8 @@
   "text.autoconfig.impactfulweather.option.particleamountconfig": "Particle Multiplier Options",
   "text.autoconfig.impactfulweather.option.misc.searchDist": "Particle Spawner Block Search Distance (Performance Impact)",
   "text.autoconfig.impactfulweather.option.misc": "Misc. Options",
+  "text.autoconfig.impactfulweather.option.misc.renderedweather": "Render Vanilla Weather",
+
 
   "text.autoconfig.impactfulweather.option.toggles.dodenserain": "Double Rain Particles",
   "text.autoconfig.impactfulweather.option.toggles.wind": "Enable Wind",
