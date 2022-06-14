@@ -94,10 +94,7 @@ public class MiscUtil {
         return val > 0 ? maxval / val : 0;
     }
 
-    public static BiomeKeys getBiomeRegistry(RegistryEntry<Biome> keys) {
 
-        return RegistryKey.of(Registry.BIOME_KEY, new Identifier());
-    }
 
  /*   public static TagKey<BiomeTags> getBiomeCatagory(RegistryKey<Biome> biomeRegistryKey) {
 

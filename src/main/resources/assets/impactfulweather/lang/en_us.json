@@ -37,6 +37,8 @@
   "text.autoconfig.impactfulweather.option.particleamountconfig.tearmodifier": "Weeping Tear Particle Multiplier",
   "text.autoconfig.impactfulweather.option.particleamountconfig.sporemodifier": "Spore Particle Multiplier",
   "text.autoconfig.impactfulweather.option.particleamountconfig.windmodifier": "Wind Particle Multiplier",
+  "text.autoconfig.impactfulweather.option.particleamountconfig.fireflymodifier": "Firefly Particle Multiplier",
+
 
   "text.autoconfig.impactfulweather.option.particletoggles.rain": "Enable Rain Particles",
   "text.autoconfig.impactfulweather.option.particletoggles.heavyrain": "Enable Heavy Rain Particles",
@@ -47,6 +49,7 @@
   "text.autoconfig.impactfulweather.option.particletoggles.tumblebush": "Enable Tumble Bush Particles",
   "text.autoconfig.impactfulweather.option.particletoggles.sandmote": "Enable Sand Mote Particles",
   "text.autoconfig.impactfulweather.option.particletoggles.redsandmote": "Enable Red Sand Mote Particles",
+  "text.autoconfig.impactfulweather.option.particletoggles.fireflies": "Enable Fireflies",
 
 
   "text.autoconfig.impactfulweather.option.misc.searchDist.x": "X",

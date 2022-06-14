@@ -10,6 +10,7 @@ import net.minecraft.client.world.ClientWorld;
 import net.minecraft.particle.DefaultParticleType;
 import net.minecraft.tag.FluidTags;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.biome.BiomeKeys;
 import shadowmaster435.impactfulweather.client.BPWModConfig;
 import shadowmaster435.impactfulweather.init.IWParticles;
 
@@ -50,6 +51,7 @@ public class Rain extends AnimatedParticle {
             if (config.particletoggles.rainsplash) {
                 if (!this.world.getFluidState(new BlockPos(this.x, this.y, this.z)).isIn(FluidTags.WATER)) {
                     world.addParticle(IWParticles.RAINSPLASH, prevPosX, prevPosY + 0.1, prevPosZ, 0, 0, 0);
+
                 }
             }
             this.markDead();

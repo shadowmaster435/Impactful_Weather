@@ -28,6 +28,10 @@ public class IWParticles {
     public static final DefaultParticleType STORMSOUL = FabricParticleTypes.simple(true);
     public static final DefaultParticleType STORMSOULIMPACT = FabricParticleTypes.simple(true);
 
+    public static final DefaultParticleType FIREFLY = FabricParticleTypes.simple(true);
+
+    public static final DefaultParticleType FOG = FabricParticleTypes.simple(true);
+
 
     @Environment(EnvType.CLIENT)
     public static void initClient() {
@@ -48,6 +52,8 @@ public class IWParticles {
         ParticleFactoryRegistry.getInstance().register(UPDRAFT, Updraft.Factory::new);
         ParticleFactoryRegistry.getInstance().register(STORMSOUL, StormSoul.Factory::new);
         ParticleFactoryRegistry.getInstance().register(STORMSOULIMPACT, StormSoulImpact.Factory::new);
+        ParticleFactoryRegistry.getInstance().register(FIREFLY, FireFly.Factory::new);
+        ParticleFactoryRegistry.getInstance().register(FOG, Fog.Factory::new);
 
         Registry.register(Registry.PARTICLE_TYPE, new Identifier("impactfulweather", "sandmote"), SANDMOTE);
         Registry.register(Registry.PARTICLE_TYPE, new Identifier("impactfulweather", "redsandmote"), REDSANDMOTE);
@@ -66,6 +72,8 @@ public class IWParticles {
         Registry.register(Registry.PARTICLE_TYPE, new Identifier("impactfulweather", "updraft"), UPDRAFT);
         Registry.register(Registry.PARTICLE_TYPE, new Identifier("impactfulweather", "stormsoul"), STORMSOUL);
         Registry.register(Registry.PARTICLE_TYPE, new Identifier("impactfulweather", "stormsoulimpact"), STORMSOULIMPACT);
+        Registry.register(Registry.PARTICLE_TYPE, new Identifier("impactfulweather", "firefly"), FIREFLY);
+        Registry.register(Registry.PARTICLE_TYPE, new Identifier("impactfulweather", "fog"), FOG);
 
     }
 }

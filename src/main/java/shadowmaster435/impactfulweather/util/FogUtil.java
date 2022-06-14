@@ -23,7 +23,7 @@ public class FogUtil {
 
             RenderSystem.setShaderFogColor(200, 190, 120);
             profiler.swap("fog");
-            BackgroundRenderer.applyFog(camera, BackgroundRenderer.FogType.FOG_TERRAIN, Math.max(g, 32.0F), false);
+//            BackgroundRenderer.applyFog(camera, BackgroundRenderer.FogType.FOG_TERRAIN, Math.max(g, 32.0F), false);
             profiler.swap("sky");
             RenderSystem.setShaderFogColor(170, 160, 110);
 

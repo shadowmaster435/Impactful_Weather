@@ -35,10 +35,16 @@ public class BPWModConfig implements ConfigData {
         public float rainmodifier = 1;
         public float heavyrainmodifier = 1;
         public float tumblebushmodifier = 1;
+
+        public float fireflymodifier = 1;
+
+
     }
 
 
     public static class Miscconf {
+
+     //   public float lightningburnmarklifespan = 500;
         public int nweatherbasedelay = 120;
         public int nweatherrandomdelay = 240;
 
@@ -56,6 +62,8 @@ public class BPWModConfig implements ConfigData {
     }
 
     public static class Particletoggles {
+        public boolean fireflies = true;
+
         public boolean sandmote = true;
         public boolean redsandmote = true;
         public boolean tumblebush = true;
@@ -74,7 +82,7 @@ public class BPWModConfig implements ConfigData {
         public boolean updrafts = true;
         public boolean soulstorms = true;
         public boolean endlessnweather = false;
-        public boolean dodenserain = true;
+
 
         public boolean sandstorms = true;
         public boolean redsandstorms = true;

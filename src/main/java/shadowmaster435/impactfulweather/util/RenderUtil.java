@@ -12,14 +12,16 @@ import net.minecraft.client.render.*;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.Matrix4f;
+import net.minecraft.util.StringHelper;
+import net.minecraft.util.collection.DefaultedList;
+import net.minecraft.util.math.*;
 import shadowmaster435.impactfulweather.client.BPWModConfig;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
+import java.util.function.Predicate;
 
 public class RenderUtil {
     private static final Identifier SWAMPFOG = new Identifier("impactfulweather:textures/environment/swampfog.png");
@@ -32,6 +34,111 @@ public class RenderUtil {
     public static int successcount;
     public static int diagsuccesscount;
 
+
+
+    public static double burnx = 0;
+    public static double burny = 0;
+    public static double burnz = 0;
+    public static ArrayList<BlockPos> burnmarklist = new ArrayList<>();
+    public static ArrayList<Vec3d> generatedmarkvectors = new ArrayList<>();
+    public static ArrayList<Vector4f> generatedmarkquads = new ArrayList<>();
+    
+    public static ArrayList<ArrayList<Vector4f>> markgenvectposlist = new ArrayList<>();
+
+    public static ArrayList<String> timerwithid = new ArrayList<>();
+
+    /*public static void RenderLightningBurnMark(MatrixStack matrices, float ticks) {
+        Tessellator tessellator = Tessellator.getInstance();
+        BufferBuilder bufferBuilder = tessellator.getBuffer();
+        RenderSystem.enableCull();
+        RenderSystem.enableDepthTest();
+        RenderSystem.disableBlend();
+        bufferBuilder.begin(VertexFormat.DrawMode.QUADS, VertexFormats.POSITION_COLOR);
+        for (ArrayList<Vector4f> list : markgenvectposlist) {
+            for (Vector4f quad : list) {
+                bufferBuilder.vertex(matrices.peek().getPositionMatrix(), quad.getX(), quad.getY(), quad.getZ()).color( 0, 0, 0, quad.getW());
+                bufferBuilder.vertex(matrices.peek().getPositionMatrix(), quad.getX() + 0.0625f, quad.getY(), quad.getZ()).color( 0, 0, 0, quad.getW());
+                bufferBuilder.vertex(matrices.peek().getPositionMatrix(), quad.getX() + 0.0625f, quad.getY(), quad.getZ() + 0.0625f).color( 0, 0, 0, quad.getW());
+                bufferBuilder.vertex(matrices.peek().getPositionMatrix(), quad.getX(), quad.getY(), quad.getZ() + 0.0625f).color( 0, 0, 0, quad.getW());
+
+            }
+        }
+        RenderSystem.enableBlend();
+        RenderSystem.disableDepthTest();
+        RenderSystem.disableCull();
+        tessellator.draw();
+        if (ticks >= 1) {
+        for (String timer : timerwithid) {
+            String id = timer.substring(0, timer.indexOf(":"));
+            int actualtimer = Integer.parseInt(timer.substring(timer.indexOf(":" + 1), timer.indexOf("|")));
+            String owner = timer.substring(timer.indexOf("|"));
+
+
+            if (actualtimer > ParticleUtil.config.misc.lightningburnmarklifespan) {
+                timerwithid.remove(timer);
+                if (Integer.parseInt(owner) != markgenvectposlist.size()) {
+                    ArrayList<Vector4f> removalflagged = new ArrayList<>();
+                    removalflagged.add(new Vector4f(0,0,0,0));
+
+                    // Make Sure We Don't Remove Stuff From The Array And Shift Indexes
+                    if (markgenvectposlist.get(Integer.parseInt(owner)) != removalflagged) {
+                        markgenvectposlist.set(Integer.parseInt(owner), removalflagged);
+                    }
+                    removalflagged.clear();
+                } else {
+                    markgenvectposlist.remove(Integer.parseInt(owner));
+                }
+
+
+            } else {
+                // Remove if at end of list
+                timerwithid.set(timerwithid.indexOf(timer), timer.substring(0, timer.indexOf("|")) + (actualtimer + 1));
+            }
+        }
+    }
+    }
+
+    // Caclulate The Way For The Burn Mark To Look And Set Result In Array
+    public static void SetBurnArrayPos(BlockPos hitpos) {
+        burnmarklist.add(hitpos);
+        for (int i = 0; i < 5; ++i) {
+            // Add Points To Array
+            if (Math.random() > 0.5) {
+                generatedmarkvectors.add(new Vec3d(Math.min(Math.random() * 16, 16), hitpos.getY(), Math.min(Math.random() * 16, 16)));
+            } else {
+                generatedmarkvectors.add(new Vec3d(Math.min(Math.random() * -16, -16), hitpos.getY(), Math.min(Math.random() * -16, -16)));
+            }
+
+        }
+        for (Vec3d pos: generatedmarkvectors) {
+                for (int s = 0; s < 16; ++s) {
+                    // Pixel Unit Distances
+                    double distx = MathHelper.lerp((s + 1f) / 16f, 0, Math.min(pos.x, Math.round(pos.x)));
+                    double distz = MathHelper.lerp((s + 1f) / 16f, 0, Math.min(pos.z, Math.round(pos.z)));
+
+                    // Wideness of the generated triangle at position along line
+                    double wideness = 1 - (s * 0.25);
+
+                    // Check for full surface
+                    if (MinecraftClient.getInstance().world.getBlockState(new BlockPos(pos).offset(Direction.DOWN, 1)).isSideSolidFullSquare(MinecraftClient.getInstance().world, new BlockPos(pos), Direction.UP)) {
+                        generatedmarkquads.add(new Vector4f((float) distx, (float) pos.y, (float) distz, 1f));
+                    }
+                    // The W postion is used for the alpha Value
+                    for (int h = 1; h < 9; ++h) {
+                        if (MinecraftClient.getInstance().world.getBlockState(new BlockPos(pos).offset(Direction.DOWN, 1)).isSideSolidFullSquare(MinecraftClient.getInstance().world, new BlockPos(pos), Direction.UP)) {
+                            if (Math.abs(h - 1) - 4 < wideness * 4) {
+                                generatedmarkquads.add(new Vector4f((float) distx + (h - 5) * 0.25f, (float) pos.y, (float) distz + (h - 5) * 0.25f, (float) wideness));
+                            }
+                        }
+                    }
+                }
+                // Add and id quads to lists
+                timerwithid.add(Math.floor(Math.random() * 100) + "" + Math.floor(Math.random() * 100) + "" + Math.floor(Math.random() * 100) + ":" + "0|" + markgenvectposlist.size());
+                markgenvectposlist.add(generatedmarkquads);
+                generatedmarkquads.clear();
+            }
+    }*/
+    
     /*public static void RenderSwampFog(MatrixStack matrices, int ticks, Camera camera, Matrix4f matrix4f) {
         BufferBuilder bufferBuilder = Tessellator.getInstance().getBuffer();
         MinecraftClient instance = MinecraftClient.getInstance();

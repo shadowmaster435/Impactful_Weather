@@ -40,6 +40,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import shadowmaster435.impactfulweather.init.IWParticles;
 import shadowmaster435.impactfulweather.util.ParticleUtil;
+import shadowmaster435.impactfulweather.util.RenderUtil;
 
 import java.util.Random;
 
@@ -50,15 +51,14 @@ public abstract class WorldRendererMixin {
     private int ticks;
 
     @Shadow
-    private int field_20793;
+    private int rainSoundCounter;
 
     @Shadow @Nullable private ClientWorld world;
 
 
     @Inject(at = @At("HEAD"), method = "render")
     private void render(MatrixStack matrices, float tickDelta, long limitTime, boolean renderBlockOutline, Camera camera, GameRenderer gameRenderer, LightmapTextureManager lightmapTextureManager, Matrix4f positionMatrix, CallbackInfo ci) {
-   /*     assert this.world != null;
-        FogUtil.applyFog(gameRenderer, this.world, camera);*/
+       // RenderUtil.RenderLightningBurnMark(matrices, tickDelta);
     }
 
 
@@ -95,7 +95,7 @@ public abstract class WorldRendererMixin {
             WorldView worldView = client.world;
             BlockPos blockPos = new BlockPos(camera.getPos());
             BlockPos blockPos2 = null;
-            int i = (int)(100.0F * f * f) / (client.options.particles == ParticlesMode.DECREASED ? 2 : 1);
+            int i = (int)(100.0F * f * f) / (client.options.getParticles().getValue() == ParticlesMode.DECREASED ? 2 : 1);
 
             for(int j = 0; j < i; ++j) {
                 int k = random.nextInt(21) - 10;
@@ -104,7 +104,7 @@ public abstract class WorldRendererMixin {
                 Biome biome = (Biome)worldView.getBiome(blockPos3).value();
                 if (blockPos3.getY() > worldView.getBottomY() && blockPos3.getY() <= blockPos.getY() + 10 && blockPos3.getY() >= blockPos.getY() - 10 && biome.getPrecipitation() == Biome.Precipitation.RAIN && biome.doesNotSnow(blockPos3)) {
                     blockPos2 = blockPos3.down();
-                    if (client.options.particles == ParticlesMode.MINIMAL) {
+                    if (client.options.getParticles().getValue() == ParticlesMode.MINIMAL) {
                         break;
                     }
 
@@ -123,8 +123,8 @@ public abstract class WorldRendererMixin {
                 }
             }
 
-            if (blockPos2 != null && random.nextInt(3) < this.field_20793++) {
-                this.field_20793 = 0;
+            if (blockPos2 != null && random.nextInt(3) < this.rainSoundCounter++) {
+                this.rainSoundCounter = 0;
                 if (blockPos2.getY() > blockPos.getY() + 1 && worldView.getTopPosition(Heightmap.Type.MOTION_BLOCKING, blockPos).getY() > MathHelper.floor((float)blockPos.getY())) {
                     client.world.playSound(blockPos2, SoundEvents.WEATHER_RAIN_ABOVE, SoundCategory.WEATHER, 0.1F, 0.5F, false);
                 } else {
