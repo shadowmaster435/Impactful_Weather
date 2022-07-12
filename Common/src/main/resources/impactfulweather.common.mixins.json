@@ -1,0 +1,16 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "compatibilityLevel": "JAVA_17",
+  "package": "shadowmaster435.impactfulweather.mixin",
+  "refmap": "impactfulweather.refmap.json",
+  "mixins": [
+  ],
+  "client": [
+    "WorldRendererMixin",
+    "LightningEntityMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
