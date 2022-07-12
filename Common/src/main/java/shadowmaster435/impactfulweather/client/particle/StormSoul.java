@@ -43,11 +43,11 @@ public class StormSoul extends SimpleAnimatedParticle {
         }
         if (this.level.getBlockState(new BlockPos(this.x, this.y, this.z)).getBlock() == Blocks.SOUL_SAND || this.age > this.lifetime || this.onGround || this.level.getBlockState(new BlockPos(this.x, this.y, this.z)).getMaterial().blocksMotion() || this.level.getFluidState(new BlockPos(this.x, this.y, this.z)).is(FluidTags.WATER) || this.level.getFluidState(new BlockPos(this.x, this.y, this.z)).is(FluidTags.LAVA)) {
             if (this.level.getBlockState(new BlockPos(this.x, this.y, this.z)).getBlock() == Blocks.SOUL_SAND) {
-                this.level.addParticle(ModRegistry.STORMSOULIMPACT, this.x, this.y + 0.2 + 0.075, this.z, 0, 0, 0);
+                this.level.addParticle(ModRegistry.STORMSOULIMPACT.get(), this.x, this.y + 0.2 + 0.075, this.z, 0, 0, 0);
 
             }
             if (this.onGround) {
-                    this.level.addParticle(ModRegistry.STORMSOULIMPACT, this.x, this.y + 0.2, this.z, 0, 0, 0);
+                    this.level.addParticle(ModRegistry.STORMSOULIMPACT.get(), this.x, this.y + 0.2, this.z, 0, 0, 0);
                 }
             this.remove();
         } else {

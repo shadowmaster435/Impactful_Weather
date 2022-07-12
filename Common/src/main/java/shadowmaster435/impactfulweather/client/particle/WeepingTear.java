@@ -33,7 +33,7 @@ public class WeepingTear extends SimpleAnimatedParticle {
         this.zo = this.z;
         if (this.age > this.lifetime || this.onGround) {
             if (this.onGround) {
-                this.level.addParticle(ModRegistry.WEEPINGTEARSPLASH, this.x, this.y + 0.0625f, this.z, 0, 0, 0);
+                this.level.addParticle(ModRegistry.WEEPINGTEARSPLASH.get(), this.x, this.y + 0.0625f, this.z, 0, 0, 0);
             }
             this.remove();
         } else {

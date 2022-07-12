@@ -83,13 +83,13 @@ public class ParticleUtil {
                                         || world2.getBiome(new BlockPos(Mth.lerp(world2.random.nextDouble(), x - 64, x + 64), Mth.lerp(world2.random.nextDouble(), 64, 256), Mth.lerp(world2.random.nextDouble(), z - 64, z + 64))).is(Biomes.ERODED_BADLANDS)
                                         || world2.getBiome(new BlockPos(Mth.lerp(world2.random.nextDouble(), x - 64, x + 64), Mth.lerp(world2.random.nextDouble(), 64, 256), Mth.lerp(world2.random.nextDouble(), z - 64, z + 64))).is(Biomes.BADLANDS)) {
                                     if (ClientConfig.INSTANCE.particleToggles.redsandmote.get()) {
-                                        world2.addParticle(ModRegistry.REDSANDMOTE, Mth.lerp(world2.random.nextDouble(), x - 48, x + 48), Mth.lerp(world2.random.nextDouble(), 63, 90), Mth.lerp(world2.random.nextDouble(), z - 48, z + 48), 0f, 0f, 0f);
+                                        world2.addParticle(ModRegistry.REDSANDMOTE.get(), Mth.lerp(world2.random.nextDouble(), x - 48, x + 48), Mth.lerp(world2.random.nextDouble(), 63, 90), Mth.lerp(world2.random.nextDouble(), z - 48, z + 48), 0f, 0f, 0f);
                                     }
                                 }
                                 if (world2.getBiome(new BlockPos(Mth.lerp(world2.random.nextDouble(), x - 64, x + 64), Mth.lerp(world2.random.nextDouble(), 64, 256), Mth.lerp(world2.random.nextDouble(), z - 64, z + 64))).is(Biomes.DESERT)) {
                                     if (ClientConfig.INSTANCE.particleToggles.sandstorms.get()) {
                                         if (ClientConfig.INSTANCE.particleToggles.sandmote.get()) {
-                                            world2.addParticle(ModRegistry.SANDMOTE, Mth.lerp(world2.random.nextDouble(), x - 48, x + 48), Mth.lerp(world2.random.nextDouble(), 63, 90), Mth.lerp(world2.random.nextDouble(), z - 48, z + 48), 0f, 0f, 0f);
+                                            world2.addParticle(ModRegistry.SANDMOTE.get(), Mth.lerp(world2.random.nextDouble(), x - 48, x + 48), Mth.lerp(world2.random.nextDouble(), 63, 90), Mth.lerp(world2.random.nextDouble(), z - 48, z + 48), 0f, 0f, 0f);
                                         }
                                     }
                                 }
@@ -106,14 +106,14 @@ public class ParticleUtil {
                                 {
 
                                             if (Math.random() < 0.0075 && ClientConfig.INSTANCE.particleToggles.sandstorms.get() && world2.getBiome(new BlockPos(Mth.lerp(world2.random.nextDouble(), x - 64, x + 64), Mth.lerp(world2.random.nextDouble(), 64, 256), Mth.lerp(world2.random.nextDouble(), z - 64, z + 64))).is(Biomes.DESERT)) {
-                                                world2.addParticle(ModRegistry.TUMBLEBUSH, Mth.lerp(world2.random.nextDouble(), x - 64, x + 64), Mth.lerp(world2.random.nextDouble(), 64, 110), Mth.lerp(world2.random.nextDouble(), z - 64, z + 64), 0f, 0f, 0f);
+                                                world2.addParticle(ModRegistry.TUMBLEBUSH.get(), Mth.lerp(world2.random.nextDouble(), x - 64, x + 64), Mth.lerp(world2.random.nextDouble(), 64, 110), Mth.lerp(world2.random.nextDouble(), z - 64, z + 64), 0f, 0f, 0f);
                                             }
                                             if (Math.random() < 0.0075 &&ClientConfig.INSTANCE.particleToggles.redsandstorms.get() && world2.getBiome(new BlockPos(Mth.lerp(world2.random.nextDouble(), x - 64, x + 64), Mth.lerp(world2.random.nextDouble(), 64, 256), Mth.lerp(world2.random.nextDouble(), z - 64, z + 64))).is(Biomes.WOODED_BADLANDS)
                                                     || world2.getBiome(new BlockPos(Mth.lerp(world2.random.nextDouble(), x - 64, x + 64), Mth.lerp(world2.random.nextDouble(), 64, 256), Mth.lerp(world2.random.nextDouble(), z - 64, z + 64))).is(Biomes.ERODED_BADLANDS)
                                                     || world2.getBiome(new BlockPos(Mth.lerp(world2.random.nextDouble(), x - 64, x + 64), Mth.lerp(world2.random.nextDouble(), 64, 256), Mth.lerp(world2.random.nextDouble(), z - 64, z + 64))).is(Biomes.BADLANDS)
                                             ) {
 
-                                                world2.addParticle(ModRegistry.TUMBLEBUSH, Mth.lerp(world2.random.nextDouble(), x - 64, x + 64), Mth.lerp(world2.random.nextDouble(), 64, 110), Mth.lerp(world2.random.nextDouble(), z - 64, z + 64), 0f, 0f, 0f);
+                                                world2.addParticle(ModRegistry.TUMBLEBUSH.get(), Mth.lerp(world2.random.nextDouble(), x - 64, x + 64), Mth.lerp(world2.random.nextDouble(), 64, 110), Mth.lerp(world2.random.nextDouble(), z - 64, z + 64), 0f, 0f, 0f);
                                             }
                                 }
                     }
@@ -123,7 +123,7 @@ public class ParticleUtil {
                             if (ClientConfig.INSTANCE.particleToggles.wind.get() &&  world2.getBiome(new BlockPos(Mth.lerp(world2.random.nextDouble(), x - 64, x + 64), Mth.lerp(world2.random.nextDouble(), 64, 256), Mth.lerp(world2.random.nextDouble(), z - 64, z + 64))).is(Biomes.SAVANNA)
                             ||  world2.getBiome(new BlockPos(Mth.lerp(world2.random.nextDouble(), x - 64, x + 64), Mth.lerp(world2.random.nextDouble(), 64, 256), Mth.lerp(world2.random.nextDouble(), z - 64, z + 64))).is(Biomes.SAVANNA_PLATEAU) ||
                                     world2.getBiome(new BlockPos(Mth.lerp(world2.random.nextDouble(), x - 64, x + 64), Mth.lerp(world2.random.nextDouble(), 64, 256), Mth.lerp(world2.random.nextDouble(), z - 64, z + 64))).is(Biomes.WINDSWEPT_SAVANNA)) {
-                                world2.addParticle(ModRegistry.GUST, Mth.lerp(world2.random.nextDouble(), x - 64, x + 64), Mth.lerp(world2.random.nextDouble(), y - 64, y + 64), Mth.lerp(world2.random.nextDouble(), z - 64, z + 64), 0f, 0f, 0f);
+                                world2.addParticle(ModRegistry.GUST.get(), Mth.lerp(world2.random.nextDouble(), x - 64, x + 64), Mth.lerp(world2.random.nextDouble(), y - 64, y + 64), Mth.lerp(world2.random.nextDouble(), z - 64, z + 64), 0f, 0f, 0f);
                             }
                         }
                     }
@@ -134,7 +134,7 @@ public class ParticleUtil {
                                 if (MiscUtil.forloopdecimalizer(ClientConfig.INSTANCE.particleAmounts.heavyrainmodifier.get(), i1)) {
                                     if (ClientConfig.INSTANCE.particleToggles.heavyrain.get()) {
 
-                                        world2.addParticle(ModRegistry.HEAVYRAIN, Mth.lerp(world2.random.nextDouble(), x - 32, x + 96) - HeavyRain.heavyrainvel, player2.blockPosition().getY() + 100, Mth.lerp(world2.random.nextDouble(), z - 64, z + 64), 0f, 0f, 0f);
+                                        world2.addParticle(ModRegistry.HEAVYRAIN.get(), Mth.lerp(world2.random.nextDouble(), x - 32, x + 96) - HeavyRain.heavyrainvel, player2.blockPosition().getY() + 100, Mth.lerp(world2.random.nextDouble(), z - 64, z + 64), 0f, 0f, 0f);
                                     }
                                 }
                             }
@@ -143,7 +143,7 @@ public class ParticleUtil {
                                 if (MiscUtil.forloopdecimalizer(ClientConfig.INSTANCE.particleAmounts.rainmodifier.get(), i1)) {
 
                                     if (ClientConfig.INSTANCE.particleToggles.rain.get()) {
-                                        world2.addParticle(ModRegistry.RAIN, Mth.lerp(world2.random.nextDouble(), x - 64, x + 64), player2.blockPosition().getY() + 100, Mth.lerp(world2.random.nextDouble(), z - 64, z + 64), 0f, 0f, 0f);
+                                        world2.addParticle(ModRegistry.RAIN.get(), Mth.lerp(world2.random.nextDouble(), x - 64, x + 64), player2.blockPosition().getY() + 100, Mth.lerp(world2.random.nextDouble(), z - 64, z + 64), 0f, 0f, 0f);
                                     }
                                 }
                             }
@@ -157,7 +157,7 @@ public class ParticleUtil {
                                         for (int i1 = 1; i1 <= ClientConfig.INSTANCE.particleAmounts.blizzardsnowmodifier.get(); ++i1) {
                                             if (MiscUtil.forloopdecimalizer(ClientConfig.INSTANCE.particleAmounts.blizzardsnowmodifier.get(), i1)) {
 
-                                                world2.addParticle(ModRegistry.BLIZZARDSNOW, Mth.lerp(world2.random.nextDouble(), x - 96, x + 48), Mth.lerp(world2.random.nextDouble(), y - 64, y + 64), Mth.lerp(world2.random.nextDouble(), z - 64, z + 64), 0f, 0f, 0f);
+                                                world2.addParticle(ModRegistry.BLIZZARDSNOW.get(), Mth.lerp(world2.random.nextDouble(), x - 96, x + 48), Mth.lerp(world2.random.nextDouble(), y - 64, y + 64), Mth.lerp(world2.random.nextDouble(), z - 64, z + 64), 0f, 0f, 0f);
                                             }
                                             }
                                     }
@@ -165,7 +165,7 @@ public class ParticleUtil {
                                     if (ClientConfig.INSTANCE.particleToggles.blizzardwind.get()) {
                                         if (MiscUtil.forloopdecimalizer(ClientConfig.INSTANCE.particleAmounts.blizzardwindmodifier.get(), i1)) {
 
-                                            world2.addParticle(ModRegistry.BLIZZARDWIND, Mth.lerp(world2.random.nextDouble(), x - 64, x + 64), Mth.lerp(world2.random.nextDouble(), y - 64, y + 64), Mth.lerp(world2.random.nextDouble(), z - 64, z + 64), 0f, 0f, 0f);
+                                            world2.addParticle(ModRegistry.BLIZZARDWIND.get(), Mth.lerp(world2.random.nextDouble(), x - 64, x + 64), Mth.lerp(world2.random.nextDouble(), y - 64, y + 64), Mth.lerp(world2.random.nextDouble(), z - 64, z + 64), 0f, 0f, 0f);
                                         }
                                     }
                                 }
@@ -175,7 +175,7 @@ public class ParticleUtil {
                                 if (MiscUtil.forloopdecimalizer(ClientConfig.INSTANCE.particleAmounts.snowmodifier.get(), i1)) {
 
                                     if (ClientConfig.INSTANCE.particleToggles.snow.get()) {
-                                        world2.addParticle(ModRegistry.SNOW, Mth.lerp(world2.random.nextDouble(), x - 64, x + 64), player2.blockPosition().getY() + 50, Mth.lerp(world2.random.nextDouble(), z - 64, z + 64), 0f, 0f, 0f);
+                                        world2.addParticle(ModRegistry.SNOW.get(), Mth.lerp(world2.random.nextDouble(), x - 64, x + 64), player2.blockPosition().getY() + 50, Mth.lerp(world2.random.nextDouble(), z - 64, z + 64), 0f, 0f, 0f);
                                     }
                                 }
                             }
@@ -191,11 +191,11 @@ public class ParticleUtil {
                             for (int i1 = 1; i1 <= ClientConfig.INSTANCE.particleAmounts.fireflymodifier.get(); ++i1) {
                                 if (Math.random() > 0.95) {
 
-                                    world2.addParticle(ModRegistry.FIREFLY, Mth.lerp(world2.random.nextDouble(), x - 64, x + 64), Mth.lerp(world2.random.nextDouble(), 64, 76), Mth.lerp(world2.random.nextDouble(), z - 64, z + 64), 0f, 0f, 0f);
+                                    world2.addParticle(ModRegistry.FIREFLY.get(), Mth.lerp(world2.random.nextDouble(), x - 64, x + 64), Mth.lerp(world2.random.nextDouble(), 64, 76), Mth.lerp(world2.random.nextDouble(), z - 64, z + 64), 0f, 0f, 0f);
                                 }
                                 if (Math.random() > 0.8) {
 
-                                    world2.addParticle(ModRegistry.FIREFLY, Mth.lerp(world2.random.nextDouble(), x - 48, x + 48), Mth.lerp(world2.random.nextDouble(), 64, 72), Mth.lerp(world2.random.nextDouble(), z - 48, z + 48), 0f, 0f, 0f);
+                                    world2.addParticle(ModRegistry.FIREFLY.get(), Mth.lerp(world2.random.nextDouble(), x - 48, x + 48), Mth.lerp(world2.random.nextDouble(), 64, 72), Mth.lerp(world2.random.nextDouble(), z - 48, z + 48), 0f, 0f, 0f);
                                 }
                             }
                         }
@@ -209,7 +209,7 @@ public class ParticleUtil {
                             for (int i1 = 1; i1 <= ClientConfig.INSTANCE.particleAmounts.updraftmodifier.get(); ++i1) {
                                 if (MiscUtil.forloopdecimalizer(ClientConfig.INSTANCE.particleAmounts.updraftmodifier.get(), i1)) {
 
-                                    world2.addParticle(ModRegistry.UPDRAFT, Mth.lerp(world2.random.nextDouble(), x - 48, x + 48), Mth.lerp(world2.random.nextDouble(), y - 48, y + 48), Mth.lerp(world2.random.nextDouble(), z - 48, z + 48), 0f, 0f, 0f);
+                                    world2.addParticle(ModRegistry.UPDRAFT.get(), Mth.lerp(world2.random.nextDouble(), x - 48, x + 48), Mth.lerp(world2.random.nextDouble(), y - 48, y + 48), Mth.lerp(world2.random.nextDouble(), z - 48, z + 48), 0f, 0f, 0f);
                                 }
                             }
                         }
@@ -219,7 +219,7 @@ public class ParticleUtil {
                             for (int i1 = 0; i1 <= ClientConfig.INSTANCE.particleAmounts.sporemodifier.get(); ++i1) {
                                 if (MiscUtil.forloopdecimalizer(ClientConfig.INSTANCE.particleAmounts.sporemodifier.get(), i1)) {
 
-                                    world2.addParticle(ModRegistry.WARPEDSPORE, Mth.lerp(world2.random.nextDouble(), x - 48, x + 48), Mth.lerp(world2.random.nextDouble(), y - 48, y + 48), Mth.lerp(world2.random.nextDouble(), z - 48, z + 48), 0f, 0f, 0f);
+                                    world2.addParticle(ModRegistry.WARPEDSPORE.get(), Mth.lerp(world2.random.nextDouble(), x - 48, x + 48), Mth.lerp(world2.random.nextDouble(), y - 48, y + 48), Mth.lerp(world2.random.nextDouble(), z - 48, z + 48), 0f, 0f, 0f);
                                 }
                             }
                         }
@@ -263,7 +263,7 @@ public class ParticleUtil {
                                     for (int i1 = 1; i1 <= ClientConfig.INSTANCE.particleAmounts.tearmodifier.get(); ++i1) {
                                         if (MiscUtil.forloopdecimalizer(ClientConfig.INSTANCE.particleAmounts.tearmodifier.get(), i1)) {
 
-                                            world2.addParticle(ModRegistry.WEEPINGTEAR, Mth.lerp(world2.random.nextDouble(), xf, xf + 1), Mth.lerp(world2.random.nextDouble(), yf, yf + 1), Mth.lerp(world2.random.nextDouble(), zf, zf + 1), 0, 0, 0);
+                                            world2.addParticle(ModRegistry.WEEPINGTEAR.get(), Mth.lerp(world2.random.nextDouble(), xf, xf + 1), Mth.lerp(world2.random.nextDouble(), yf, yf + 1), Mth.lerp(world2.random.nextDouble(), zf, zf + 1), 0, 0, 0);
                                         }
                                     }
                             }
@@ -277,7 +277,7 @@ public class ParticleUtil {
                                 while (timerval >= 1) {
 
                                     if (Math.random() > 0.97) {
-                                    world2.addParticle(ModRegistry.WEEPINGTEAR, Mth.lerp(world2.random.nextDouble(), xf, xf + 1), Mth.lerp(world2.random.nextDouble(), yf, yf + 1), Mth.lerp(world2.random.nextDouble(), zf, zf + 1), 0, 0, 0);
+                                    world2.addParticle(ModRegistry.WEEPINGTEAR.get(), Mth.lerp(world2.random.nextDouble(), xf, xf + 1), Mth.lerp(world2.random.nextDouble(), yf, yf + 1), Mth.lerp(world2.random.nextDouble(), zf, zf + 1), 0, 0, 0);
                                     }
                                 }
                             }
@@ -294,11 +294,11 @@ public class ParticleUtil {
                             for (int i1 = 0; i1 <= ClientConfig.INSTANCE.particleAmounts.soulmodifier.get(); ++i1) {
                                 if (ClientConfig.INSTANCE.particleAmounts.soulmodifier.get() < 1) {
                                     if (Math.random() > 0.9975) {
-                                        world2.addParticle(ModRegistry.STORMSOUL, Mth.lerp(world2.random.nextDouble(), xf, xf + 1), yf + 2, Mth.lerp(world2.random.nextDouble(), zf, zf + 1), 0, 0, 0);
+                                        world2.addParticle(ModRegistry.STORMSOUL.get(), Mth.lerp(world2.random.nextDouble(), xf, xf + 1), yf + 2, Mth.lerp(world2.random.nextDouble(), zf, zf + 1), 0, 0, 0);
                                     }
                                 } else {
                                     if (Math.random() > 0.9975) {
-                                        world2.addParticle(ModRegistry.STORMSOUL, Mth.lerp(world2.random.nextDouble(), xf, xf + 1), yf + 2, Mth.lerp(world2.random.nextDouble(), zf, zf + 1), 0, 0, 0);
+                                        world2.addParticle(ModRegistry.STORMSOUL.get(), Mth.lerp(world2.random.nextDouble(), xf, xf + 1), yf + 2, Mth.lerp(world2.random.nextDouble(), zf, zf + 1), 0, 0, 0);
                                     }
                                 }
                             }

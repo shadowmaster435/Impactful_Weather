@@ -79,7 +79,7 @@ public class ClientConfig {
             builder.pop();
         }
 
-        private static class SearchDistanceConfig {
+        public static class SearchDistanceConfig {
             public final ForgeConfigSpec.IntValue x;
             public final ForgeConfigSpec.IntValue y;
             public final ForgeConfigSpec.IntValue z;

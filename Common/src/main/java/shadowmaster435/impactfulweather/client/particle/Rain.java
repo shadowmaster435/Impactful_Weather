@@ -42,7 +42,7 @@ public class Rain extends SimpleAnimatedParticle {
         if (this.onGround || this.level.getBlockState(new BlockPos(this.x, this.y, this.z)).getMaterial().blocksMotion() || this.level.getFluidState(new BlockPos(this.x, this.y, this.z)).is(FluidTags.WATER) || this.level.getFluidState(new BlockPos(this.x, this.y, this.z)).is(FluidTags.LAVA)) {
             if (ClientConfig.INSTANCE.particleToggles.rainsplash.get()) {
                 if (!this.level.getFluidState(new BlockPos(this.x, this.y, this.z)).is(FluidTags.WATER)) {
-                    level.addParticle(ModRegistry.RAINSPLASH, xo, yo + 0.1, zo, 0, 0, 0);
+                    level.addParticle(ModRegistry.RAINSPLASH.get(), xo, yo + 0.1, zo, 0, 0, 0);
 
                 }
             }

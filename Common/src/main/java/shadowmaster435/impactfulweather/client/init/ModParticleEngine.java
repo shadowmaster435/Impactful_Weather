@@ -6,25 +6,25 @@ import shadowmaster435.impactfulweather.init.ModRegistry;
 
 public class ModParticleEngine {
     
-    public static void initClient() {
-        ClientCoreServices.CLIENT_REGISTRATION.registerParticleProvider(ModRegistry.SANDMOTE, SandMote.SandMoteFactory::new);
-        ClientCoreServices.CLIENT_REGISTRATION.registerParticleProvider(ModRegistry.REDSANDMOTE, RedSandMote.RedSandMoteFactory::new);
-        ClientCoreServices.CLIENT_REGISTRATION.registerParticleProvider(ModRegistry.RAIN, Rain.RainFactory::new);
-        ClientCoreServices.CLIENT_REGISTRATION.registerParticleProvider(ModRegistry.HEAVYRAIN, HeavyRain.HeavyRainFactory::new);
-        ClientCoreServices.CLIENT_REGISTRATION.registerParticleProvider(ModRegistry.HEAVYRAINEXT, HeavyRainExt.HeavyRainExtFactory::new);
-        ClientCoreServices.CLIENT_REGISTRATION.registerParticleProvider(ModRegistry.RAINSPLASH, RainSplash.RainSplashFactory::new);
-        ClientCoreServices.CLIENT_REGISTRATION.registerParticleProvider(ModRegistry.TUMBLEBUSH, TumbleBush.TumbleBushFactory::new);
-        ClientCoreServices.CLIENT_REGISTRATION.registerParticleProvider(ModRegistry.SNOW, Snow.SnowFactory::new);
-        ClientCoreServices.CLIENT_REGISTRATION.registerParticleProvider(ModRegistry.BLIZZARDSNOW, BlizzardSnow.BlizzardSnowFactory::new);
-        ClientCoreServices.CLIENT_REGISTRATION.registerParticleProvider(ModRegistry.BLIZZARDWIND, BlizzardWind.BlizzardWindFactory::new);
-        ClientCoreServices.CLIENT_REGISTRATION.registerParticleProvider(ModRegistry.GUST, Gust.GustFactory::new);
-        ClientCoreServices.CLIENT_REGISTRATION.registerParticleProvider(ModRegistry.WARPEDSPORE, WarpedSpore.Factory::new);
-        ClientCoreServices.CLIENT_REGISTRATION.registerParticleProvider(ModRegistry.WEEPINGTEAR, WeepingTear.Factory::new);
-        ClientCoreServices.CLIENT_REGISTRATION.registerParticleProvider(ModRegistry.WEEPINGTEARSPLASH, WeepingTearSplash.Factory::new);
-        ClientCoreServices.CLIENT_REGISTRATION.registerParticleProvider(ModRegistry.UPDRAFT, Updraft.Factory::new);
-        ClientCoreServices.CLIENT_REGISTRATION.registerParticleProvider(ModRegistry.STORMSOUL, StormSoul.Factory::new);
-        ClientCoreServices.CLIENT_REGISTRATION.registerParticleProvider(ModRegistry.STORMSOULIMPACT, StormSoulImpact.Factory::new);
-        ClientCoreServices.CLIENT_REGISTRATION.registerParticleProvider(ModRegistry.FIREFLY, FireFly.Factory::new);
-        ClientCoreServices.CLIENT_REGISTRATION.registerParticleProvider(ModRegistry.FOG, Fog.Factory::new);
+    public static void registerProviders() {
+        ClientCoreServices.CLIENT_REGISTRATION.registerParticleProvider(ModRegistry.SANDMOTE.get(), SandMote.SandMoteFactory::new);
+        ClientCoreServices.CLIENT_REGISTRATION.registerParticleProvider(ModRegistry.REDSANDMOTE.get(), RedSandMote.RedSandMoteFactory::new);
+        ClientCoreServices.CLIENT_REGISTRATION.registerParticleProvider(ModRegistry.RAIN.get(), Rain.RainFactory::new);
+        ClientCoreServices.CLIENT_REGISTRATION.registerParticleProvider(ModRegistry.HEAVYRAIN.get(), HeavyRain.HeavyRainFactory::new);
+        ClientCoreServices.CLIENT_REGISTRATION.registerParticleProvider(ModRegistry.HEAVYRAINEXT.get(), HeavyRainExt.HeavyRainExtFactory::new);
+        ClientCoreServices.CLIENT_REGISTRATION.registerParticleProvider(ModRegistry.RAINSPLASH.get(), RainSplash.RainSplashFactory::new);
+        ClientCoreServices.CLIENT_REGISTRATION.registerParticleProvider(ModRegistry.TUMBLEBUSH.get(), TumbleBush.TumbleBushFactory::new);
+        ClientCoreServices.CLIENT_REGISTRATION.registerParticleProvider(ModRegistry.SNOW.get(), Snow.SnowFactory::new);
+        ClientCoreServices.CLIENT_REGISTRATION.registerParticleProvider(ModRegistry.BLIZZARDSNOW.get(), BlizzardSnow.BlizzardSnowFactory::new);
+        ClientCoreServices.CLIENT_REGISTRATION.registerParticleProvider(ModRegistry.BLIZZARDWIND.get(), BlizzardWind.BlizzardWindFactory::new);
+        ClientCoreServices.CLIENT_REGISTRATION.registerParticleProvider(ModRegistry.GUST.get(), Gust.GustFactory::new);
+        ClientCoreServices.CLIENT_REGISTRATION.registerParticleProvider(ModRegistry.WARPEDSPORE.get(), WarpedSpore.Factory::new);
+        ClientCoreServices.CLIENT_REGISTRATION.registerParticleProvider(ModRegistry.WEEPINGTEAR.get(), WeepingTear.Factory::new);
+        ClientCoreServices.CLIENT_REGISTRATION.registerParticleProvider(ModRegistry.WEEPINGTEARSPLASH.get(), WeepingTearSplash.Factory::new);
+        ClientCoreServices.CLIENT_REGISTRATION.registerParticleProvider(ModRegistry.UPDRAFT.get(), Updraft.Factory::new);
+        ClientCoreServices.CLIENT_REGISTRATION.registerParticleProvider(ModRegistry.STORMSOUL.get(), StormSoul.Factory::new);
+        ClientCoreServices.CLIENT_REGISTRATION.registerParticleProvider(ModRegistry.STORMSOULIMPACT.get(), StormSoulImpact.Factory::new);
+        ClientCoreServices.CLIENT_REGISTRATION.registerParticleProvider(ModRegistry.FIREFLY.get(), FireFly.Factory::new);
+        ClientCoreServices.CLIENT_REGISTRATION.registerParticleProvider(ModRegistry.FOG.get(), Fog.Factory::new);
     }
 }

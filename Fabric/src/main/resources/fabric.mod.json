@@ -33,6 +33,7 @@
   "depends": {
     "fabricloader": ">=${minFabricVersion}",
     "fabric": ">=${minFabricApiVersion}",
+    "forgeconfigapiport": ">=4.0.0",
     "minecraft": ">=${minMinecraftVersion} <${nextMinecraftVersion}",
     "java": ">=17"
   }
