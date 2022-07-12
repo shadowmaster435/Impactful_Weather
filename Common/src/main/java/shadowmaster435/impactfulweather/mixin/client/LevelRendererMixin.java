@@ -34,7 +34,7 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import shadowmaster435.impactfulweather.ImpactfulWeather;
+import shadowmaster435.impactfulweather.BiomeParticleWeather;
 import shadowmaster435.impactfulweather.client.util.ParticleUtil;
 import shadowmaster435.impactfulweather.config.ClientConfig;
 
@@ -43,7 +43,7 @@ import java.util.Random;
 @Mixin(LevelRenderer.class)
 public abstract class LevelRendererMixin {
     @Unique
-    private static final ResourceLocation BLANK_WEATHER_LOCATION = new ResourceLocation(ImpactfulWeather.MOD_ID, "textures/misc/blank.png");
+    private static final ResourceLocation BLANK_WEATHER_LOCATION = new ResourceLocation(BiomeParticleWeather.MOD_ID, "textures/misc/blank.png");
 
     @Shadow
     private int ticks;

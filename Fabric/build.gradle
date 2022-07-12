@@ -212,7 +212,6 @@ curseforge {
             relations {
                 requiredDependency 'fabric-api'
                 requiredDependency 'forge-config-api-port-fabric'
-                requiredDependency 'puzzles-lib'
             }
         }
         addArtifact sourcesJar

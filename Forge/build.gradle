@@ -111,10 +111,10 @@ dependencies {
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 
     // Quality of Life Mods
-    runtimeOnly fg.deobf("curse.maven:catalogue-459701:3871526")
+//    runtimeOnly fg.deobf("curse.maven:catalogue-459701:3871526")
     runtimeOnly fg.deobf("fuzs.bettermodsbutton:bettermodsbutton-forge:4.0.1")
 //    runtimeOnly fg.deobf("curse.maven:configmenusforge-544048:3822820")
-    runtimeOnly fg.deobf("curse.maven:configured-457570:3871521")
+//    runtimeOnly fg.deobf("curse.maven:configured-457570:3871521")
 }
 
 if (project.file("src/main/resources/${modId}.forge.mixins.json").exists() || project(":Common").file("src/main/resources/${modId}.common.mixins.json").exists()) {
@@ -278,9 +278,6 @@ curseforge {
         }
         mainArtifact(jar) {
             displayName = "[FORGE] [${minecraftVersion}] ${rootProject.name}-v${modVersion}"
-            relations {
-                requiredDependency 'puzzles-lib'
-            }
         }
         addArtifact sourcesJar
     }
@@ -305,9 +302,6 @@ modrinth {
     }
     loaders.add 'forge'
     additionalFiles.add file("${project.buildDir}/libs/${project.archivesBaseName}-${project.version}-sources.jar")
-    dependencies {
-        required.project 'puzzles-lib'
-    }
 //	debugMode = true
 }
 

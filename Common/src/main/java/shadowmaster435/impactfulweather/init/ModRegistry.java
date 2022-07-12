@@ -1,15 +1,14 @@
 package shadowmaster435.impactfulweather.init;
 
 import net.minecraft.core.Registry;
-import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.particles.SimpleParticleType;
-import shadowmaster435.impactfulweather.ImpactfulWeather;
+import shadowmaster435.impactfulweather.BiomeParticleWeather;
 import shadowmaster435.impactfulweather.core.CoreServices;
 import shadowmaster435.impactfulweather.core.init.RegistryManager;
 import shadowmaster435.impactfulweather.core.init.RegistryReference;
 
 public class ModRegistry {
-    private static final RegistryManager REGISTRY = CoreServices.ABSTRACTIONS.createRegistryManager(ImpactfulWeather.MOD_ID);
+    private static final RegistryManager REGISTRY = CoreServices.ABSTRACTIONS.createRegistryManager(BiomeParticleWeather.MOD_ID);
     public static final RegistryReference<SimpleParticleType> SANDMOTE = registerParticleType("sandmote", true);
     public static final RegistryReference<SimpleParticleType> REDSANDMOTE = registerParticleType("redsandmote", true);
     public static final RegistryReference<SimpleParticleType> RAIN = registerParticleType("rain", true);
@@ -28,7 +27,7 @@ public class ModRegistry {
     public static final RegistryReference<SimpleParticleType> STORMSOUL = registerParticleType("stormsoul", true);
     public static final RegistryReference<SimpleParticleType> STORMSOULIMPACT = registerParticleType("stormsoulimpact", true);
     public static final RegistryReference<SimpleParticleType> FIREFLY = registerParticleType("firefly", true);
-    public static final RegistryReference<SimpleParticleType> FOG = registerParticleType("fog", true);
+//    public static final RegistryReference<SimpleParticleType> FOG = registerParticleType("fog", true);
 
     public static void touch() {
         // we need this dummy method to ensure this class is loaded at the correct time (which is during mod construction), otherwise it might be called to late when registries are already frozen

@@ -7,7 +7,7 @@ import shadowmaster435.impactfulweather.config.ClientConfig;
 import shadowmaster435.impactfulweather.core.CoreServices;
 import shadowmaster435.impactfulweather.init.ModRegistry;
 
-public class ImpactfulWeather {
+public class BiomeParticleWeather {
     public static final String MOD_ID = "impactfulweather";
     public static final String MOD_NAME = "Biome Particle Weather";
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_NAME);

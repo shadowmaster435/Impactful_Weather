@@ -12,7 +12,6 @@ issueTrackerURL="${modIssueUrl}"
     logoFile="mod_banner.png"
     logoBlur=false
     displayURL="${modPageUrl}"
-    updateJSONURL="${modUpdateUrl}"
     displayTest="${modForgeDisplayTest}"
 
 [[dependencies.${modId}]]

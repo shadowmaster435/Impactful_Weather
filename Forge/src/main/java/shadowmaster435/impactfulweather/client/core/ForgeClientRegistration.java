@@ -11,8 +11,9 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import shadowmaster435.impactfulweather.ImpactfulWeather;
+import shadowmaster435.impactfulweather.BiomeParticleWeather;
 import shadowmaster435.impactfulweather.client.core.init.builder.ModSpriteParticleRegistration;
+import shadowmaster435.impactfulweather.core.init.RegistryReference;
 
 import java.util.List;
 import java.util.Set;
@@ -31,29 +32,29 @@ public class ForgeClientRegistration implements ClientRegistration {
     /**
      * particle types registered via particle providers
      */
-    private final List<Pair<ParticleType<?>, ParticleProvider<?>>> particleProviders = Lists.newArrayList();
+    private final List<Pair<RegistryReference<? extends ParticleType<? extends ParticleOptions>>, ParticleProvider<?>>> particleProviders = Lists.newArrayList();
     /**
      * particle types registered via sprite factories
      */
-    private final List<Pair<ParticleType<?>, ModSpriteParticleRegistration<?>>> spriteParticleFactories = Lists.newArrayList();
+    private final List<Pair<RegistryReference<? extends ParticleType<? extends ParticleOptions>>, ModSpriteParticleRegistration<?>>> spriteParticleFactories = Lists.newArrayList();
 
     @Override
-    public <T extends ParticleOptions> void registerParticleProvider(ParticleType<T> type, ParticleProvider<T> provider) {
+    public <T extends ParticleOptions> void registerParticleProvider(RegistryReference<? extends ParticleType<T>> type, ParticleProvider<T> provider) {
         this.registerModEventBus();
         this.particleProviders.add(Pair.of(type, provider));
     }
 
     @Override
-    public <T extends ParticleOptions> void registerParticleProvider(ParticleType<T> type, ModSpriteParticleRegistration<T> factory) {
+    public <T extends ParticleOptions> void registerParticleProvider(RegistryReference<? extends ParticleType<T>> type, ModSpriteParticleRegistration<T> factory) {
         this.registerModEventBus();
         this.spriteParticleFactories.add(Pair.of(type, factory));
     }
 
     @SuppressWarnings("unchecked")
     @SubscribeEvent
-    public <T extends ParticleOptions> void onRegisterParticleProviders(final RegisterParticleProvidersEvent evt) {
-        this.particleProviders.forEach(pair -> evt.register((ParticleType<T>) pair.left(), (ParticleProvider<T>) pair.right()));
-        this.spriteParticleFactories.forEach(pair -> evt.register((ParticleType<T>) pair.left(), spriteSet -> (ParticleProvider<T>) pair.right().create(spriteSet)));
+    public void onRegisterParticleProviders(final RegisterParticleProvidersEvent evt) {
+        this.particleProviders.forEach(pair -> evt.register((ParticleType<ParticleOptions>) pair.left().get(), (ParticleProvider<ParticleOptions>) pair.right()));
+        this.spriteParticleFactories.forEach(pair -> evt.register((ParticleType<ParticleOptions>) pair.left().get(), spriteSet -> (ParticleProvider<ParticleOptions>) pair.right().create(spriteSet)));
     }
 
     /**
@@ -63,7 +64,7 @@ public class ForgeClientRegistration implements ClientRegistration {
     private void registerModEventBus() {
         if (this.modEventBuses.add(FMLJavaModLoadingContext.get().getModEventBus())) {
             FMLJavaModLoadingContext.get().getModEventBus().register(this);
-            ImpactfulWeather.LOGGER.info("Added listener to client registration of mod {}", ModLoadingContext.get().getActiveNamespace());
+            BiomeParticleWeather.LOGGER.info("Added listener to client registration of mod {}", ModLoadingContext.get().getActiveNamespace());
         }
     }
 }
