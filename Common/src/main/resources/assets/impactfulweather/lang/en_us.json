@@ -1,0 +1,69 @@
+{
+  "category.impactfulweather.general": "General",
+  "text.autoconfig.impactfulweather.option.toggles": "Weather Toggles",
+  "text.autoconfig.impactfulweather.option.particletoggles": "Single Particle Toggles",
+  "text.autoconfig.impactfulweather.option.particleamountconfig": "Particle Multiplier Options",
+  "text.autoconfig.impactfulweather.option.misc.searchDist": "Particle Spawner Block Search Distance (Performance Impact)",
+  "text.autoconfig.impactfulweather.option.misc": "Misc. Options",
+  "text.autoconfig.impactfulweather.option.misc.renderedweather": "Render Vanilla Weather",
+
+
+  "text.autoconfig.impactfulweather.option.toggles.dodenserain": "Double Rain Particles",
+  "text.autoconfig.impactfulweather.option.toggles.wind": "Enable Wind",
+  "text.autoconfig.impactfulweather.option.toggles.heavyrain": "Enable Heavy Rain",
+  "text.autoconfig.impactfulweather.option.toggles.blizzards": "Enable Blizzards",
+  "text.autoconfig.impactfulweather.option.toggles.sandstorms": "Enable Sandstorms",
+  "text.autoconfig.impactfulweather.option.toggles.redsandstorms": "Enable Red (Mesa) Sandstorms",
+  "text.autoconfig.impactfulweather.option.toggles.weepingrain": "Enable Weeping Rain",
+  "text.autoconfig.impactfulweather.option.toggles.soulstorms": "Enable Soul Storms",
+  "text.autoconfig.impactfulweather.option.toggles.sporestorm": "Enable Spore Storms",
+  "text.autoconfig.impactfulweather.option.toggles.updrafts": "Enable Updrafts",
+  "text.autoconfig.impactfulweather.option.toggles.endlessnweather": "Enable Permanant Nether Weather",
+  "text.autoconfig.impactfulweather.option.misc.nweatherbasedelay": "Nether Weather Base Time Interval",
+  "text.autoconfig.impactfulweather.option.misc.nweatherrandomdelay": "Nether Weather Random Time Interval",
+  "text.autoconfig.impactfulweather.option.misc.snowspeedmodifier": "Snow Speed Modifier",
+
+  "text.autoconfig.impactfulweather.option.particleamountconfig.particleamount": "Particle Spawns Per Tick",
+  "text.autoconfig.impactfulweather.option.particleamountconfig.particleDensity": "Spawns Per Tick Multiplier",
+  "text.autoconfig.impactfulweather.option.particleamountconfig.heavyrainmodifier": "Heavy Rain Particle Multiplier",
+  "text.autoconfig.impactfulweather.option.particleamountconfig.rainmodifier": "Rain Splash Particle Multiplier",
+  "text.autoconfig.impactfulweather.option.particleamountconfig.snowmodifier": "Snow Particle Multiplier",
+  "text.autoconfig.impactfulweather.option.particleamountconfig.blizzardsnowmodifier": "Blizzard Snow Particle Multiplier",
+  "text.autoconfig.impactfulweather.option.particleamountconfig.blizzardwindmodifier": "Blizzard Wind Particle Multiplier",
+  "text.autoconfig.impactfulweather.option.particleamountconfig.tumblebushmodifier": "Tumble Bush Particle Multiplier",
+  "text.autoconfig.impactfulweather.option.particleamountconfig.sandmotemodifier": "(Red)Sand Mote Particle Multiplier",
+  "text.autoconfig.impactfulweather.option.particleamountconfig.updraftmodifier": "Updraft Particle Multiplier",
+  "text.autoconfig.impactfulweather.option.particleamountconfig.soulmodifier": "Soul Particle Multiplier",
+  "text.autoconfig.impactfulweather.option.particleamountconfig.tearmodifier": "Weeping Tear Particle Multiplier",
+  "text.autoconfig.impactfulweather.option.particleamountconfig.sporemodifier": "Spore Particle Multiplier",
+  "text.autoconfig.impactfulweather.option.particleamountconfig.windmodifier": "Wind Particle Multiplier",
+  "text.autoconfig.impactfulweather.option.particleamountconfig.fireflymodifier": "Firefly Particle Multiplier",
+
+
+  "text.autoconfig.impactfulweather.option.particletoggles.rain": "Enable Rain Particles",
+  "text.autoconfig.impactfulweather.option.particletoggles.heavyrain": "Enable Heavy Rain Particles",
+  "text.autoconfig.impactfulweather.option.particletoggles.rainsplash": "Enable Rain Splash Particles",
+  "text.autoconfig.impactfulweather.option.particletoggles.snow": "Enable Snow Particles",
+  "text.autoconfig.impactfulweather.option.particletoggles.blizzardsnow": "Enable Blizzard Snow Particles",
+  "text.autoconfig.impactfulweather.option.particletoggles.blizzardwind": "Enable Blizzard Wind Particles",
+  "text.autoconfig.impactfulweather.option.particletoggles.tumblebush": "Enable Tumble Bush Particles",
+  "text.autoconfig.impactfulweather.option.particletoggles.sandmote": "Enable Sand Mote Particles",
+  "text.autoconfig.impactfulweather.option.particletoggles.redsandmote": "Enable Red Sand Mote Particles",
+  "text.autoconfig.impactfulweather.option.particletoggles.fireflies": "Enable Fireflies",
+
+
+  "text.autoconfig.impactfulweather.option.misc.searchDist.x": "X",
+  "text.autoconfig.impactfulweather.option.misc.searchDist.y": "Y",
+  "text.autoconfig.impactfulweather.option.misc.searchDist.z": "Z",
+
+
+  "optiontooltip.impactfulweather.nweatherbasedelay": "Time (In Seconds) Of The Base Delay Between Nether Weather Intervals",
+  "optiontooltip.impactfulweather.nweatherrandomdelay": "Time (In Seconds) Of The Random Delay Added To The Base Delay",
+
+  "optiontooltip.impactfulweather.particleamount": "Determines How Many Particles Can Spawn Per Tick",
+  "optiontooltip.impactfulweather.density": "Particle Amount Multiplier Useful For Radius Adjustments",
+  "optiontooltip.impactfulweather.dodenserain": "Double Rain Particles For Better Visuals",
+  "optiontooltip.impactfulweather.radius": "Radius In Which Particles Can Spawn At Capped At 64",
+
+  "text.autoconfig.impactfulweather.title": "Biome Particle Weather Config"
+}
