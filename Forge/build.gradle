@@ -240,12 +240,6 @@ publishing {
             }
         }
     }
-    repositories {
-        maven {
-            name = 'FuzsModResources'
-            url "file://${project.modResources}/maven"
-        }
-    }
 }
 
 signing {

@@ -1,10 +1,20 @@
 {
   "textures": [
-    "impactfulweather:fireflynight_0",
-    "impactfulweather:fireflynight_1",
-    "impactfulweather:fireflynight_2",
-    "impactfulweather:fireflynight_3",
-    "impactfulweather:fireflynight_4",
-    "impactfulweather:fireflynight_5"
+    "impactfulweather:firefly_00",
+    "impactfulweather:firefly_01",
+    "impactfulweather:firefly_02",
+    "impactfulweather:firefly_03",
+    "impactfulweather:firefly_04",
+    "impactfulweather:firefly_05",
+    "impactfulweather:firefly_06",
+    "impactfulweather:firefly_07",
+    "impactfulweather:firefly_08",
+    "impactfulweather:firefly_09",
+    "impactfulweather:firefly_10",
+    "impactfulweather:firefly_11",
+    "impactfulweather:firefly_12",
+    "impactfulweather:firefly_13",
+    "impactfulweather:firefly_14",
+    "impactfulweather:firefly_15"
   ]
 }

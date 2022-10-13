@@ -60,8 +60,8 @@ public class FireFly extends SimpleAnimatedParticle {
         if (this.age > this.lifetime) {
             this.remove();
         } else {
-            if (!(((this.age) % 6) < 0 && !(((this.age) % 6)  > 5))) {
-                this.setSprite(this.sprites.get(((this.age) % 6), 6));
+            if (!(this.age % 16 < 0)) {
+                this.setSprite(this.sprites.get(((this.age) % 16), 16));
             }
             ++this.age;
         }

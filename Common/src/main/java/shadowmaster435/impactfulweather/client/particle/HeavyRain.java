@@ -21,36 +21,35 @@ public class HeavyRain extends SimpleAnimatedParticle {
         this.yd = -3;
         this.zd = 0.0D;
         this.gravity = 0f;
-        this.quadSize = 0.125f;
+        this.quadSize = 0.2f;
         cworld = world;
-        this.roll = -45;
+      //  this.roll = -45;
+        this.setSize(0.02F, 0.02F);
 
         this.setSprite(sprites.get(world.random));
-        this.setSize(0.05F, 0.5F);
-        this.light = world.getLightLevelDependentMagicValue(new BlockPos(this.x, this.y, this.z)) + 0.01f;
-        this.setColor((15f / this.light),(15f / this.light), (15f / this.light));
+
         rainamount = 2;
     }
     public void tick() {
-        this.light = level.getLightLevelDependentMagicValue(new BlockPos(this.x, this.y, this.z)) + 0.01f;
-        this.setColor((15f / this.light),(15f / this.light), (15f / this.light));
-        this.quadSize = 0.125f;
+        this.xo = this.x;
+        this.yo = this.y;
+        this.zo = this.z;
         heavyrainvel = 2;
+        ++this.age;
 
-        if (!this.level.getBlockState(new BlockPos(this.x, this.y, this.z)).getMaterial().isReplaceable() || this.onGround || this.level.getFluidState(new BlockPos(this.x, this.y, this.z)).is(FluidTags.WATER) || this.level.getFluidState(new BlockPos(this.x, this.y, this.z)).is(FluidTags.LAVA)) {
+
+        if (this.level.getBlockState(new BlockPos(this.x, this.y, this.z)).getMaterial().blocksMotion() || this.onGround ) {
             if (!this.level.getFluidState(new BlockPos(this.x, this.y, this.z)).is(FluidTags.WATER) && !this.level.getFluidState(new BlockPos(this.x, this.y, this.z)).is(FluidTags.LAVA)) {
-                level.addParticle(ModRegistry.RAINSPLASH.get(), this.x, this.y + 0.1, this.z, 0, 0, 0);
+                this.level.addParticle(ModRegistry.RAINSPLASH.get(), this.x, this.y + 0.1, this.z, 0, 0, 0);
 
             }
             this.remove();
         } else {
-            if (Math.random() > 0.9975) {
-                level.addParticle(ModRegistry.HEAVYRAINEXT.get(), Mth.lerp(Math.random(), this.x - 0.5, this.x + 0.5), Mth.lerp(Math.random(), this.y - 0.5, this.y + 0.5), Mth.lerp(Math.random(), this.z - 0.5, this.z + 0.5), 0, 0, 0);
-            }
-            this.xd = -2;
+            this.xd = -1;
             this.zd = 0;
             this.yd = -3;
         }
+
         this.move(this.xd, this.yd, this.zd);
     }
 

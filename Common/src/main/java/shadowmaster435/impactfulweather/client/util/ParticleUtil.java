@@ -135,6 +135,8 @@ public class ParticleUtil {
                                     if (ClientConfig.INSTANCE.particleToggles.heavyrain.get()) {
 
                                         world2.addParticle(ModRegistry.HEAVYRAIN.get(), Mth.lerp(world2.random.nextDouble(), x - 32, x + 96) - HeavyRain.heavyrainvel, player2.blockPosition().getY() + 100, Mth.lerp(world2.random.nextDouble(), z - 64, z + 64), 0f, 0f, 0f);
+                                        world2.addParticle(ModRegistry.HEAVYRAIN.get(), Mth.lerp(world2.random.nextDouble(), x - 32, x + 96) - HeavyRain.heavyrainvel, player2.blockPosition().getY() + 100, Mth.lerp(world2.random.nextDouble(), z - 64, z + 64), 0f, 0f, 0f);
+
                                     }
                                 }
                             }
@@ -186,8 +188,8 @@ public class ParticleUtil {
                 }
 
             } else {
-                    for (int l = 0; l < 8; ++l) {
-                        if (world2.getBiome(new BlockPos(Mth.lerp(world2.random.nextDouble(), x - 64, x + 64), Mth.lerp(world2.random.nextDouble(), 64, 256), Mth.lerp(world2.random.nextDouble(), z - 64, z + 64))).is(Biomes.MANGROVE_SWAMP) &&  !instance2.isPaused() && ClientConfig.INSTANCE.particleToggles.fireflies.get() && (world2.getDayTime() < 22000 && world2.getDayTime() > 14000)) {
+                    for (int l = 0; l < 2; ++l) {
+                        if (world2.getBiomeManager().getBiome(player2.blockPosition()).is(Biomes.MANGROVE_SWAMP) && !instance2.isPaused() && ClientConfig.INSTANCE.particleToggles.fireflies.get() && (world2.getDayTime() < 22000 && world2.getDayTime() > 14000)) {
                             for (int i1 = 1; i1 <= ClientConfig.INSTANCE.particleAmounts.fireflymodifier.get(); ++i1) {
                                 if (Math.random() > 0.95) {
 
@@ -202,7 +204,7 @@ public class ParticleUtil {
                     }
                 }
             //nether particles
-            if (player2.getCommandSenderWorld().dimensionTypeId().equals(BuiltinDimensionTypes.NETHER) && (weathertoggle || ClientConfig.INSTANCE.particleToggles.endlessnweather.get()) && !Minecraft.getInstance().isPaused()) {
+            if (player2.getCommandSenderWorld().dimensionTypeId().equals(BuiltinDimensionTypes.NETHER) && (weathertoggle || !ClientConfig.INSTANCE.particleToggles.endlessnweather.get()) && !Minecraft.getInstance().isPaused()) {
                 if (world2.getBiome(player2.blockPosition()).unwrapKey().isPresent()) {
                     if (ClientConfig.INSTANCE.particleToggles.updrafts.get() && world2.getBiome(player2.blockPosition()).unwrapKey().get().equals(Biomes.NETHER_WASTES) || world2.getBiome(player2.blockPosition()).unwrapKey().get().equals(Biomes.BASALT_DELTAS)) {
                         for (int l = 0; l < 8; ++l) {
@@ -274,11 +276,9 @@ public class ParticleUtil {
                             int yf = fungusposlist.get(index).getY();
                             int zf = fungusposlist.get(index).getZ();
                             for (int i1 = 1; i1 <= ClientConfig.INSTANCE.particleAmounts.tearmodifier.get(); ++i1) {
-                                while (timerval >= 1) {
 
                                     if (Math.random() > 0.97) {
                                     world2.addParticle(ModRegistry.WEEPINGTEAR.get(), Mth.lerp(world2.random.nextDouble(), xf, xf + 1), Mth.lerp(world2.random.nextDouble(), yf, yf + 1), Mth.lerp(world2.random.nextDouble(), zf, zf + 1), 0, 0, 0);
-                                    }
                                 }
                             }
                         }
