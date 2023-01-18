@@ -1,7 +1,13 @@
 package shadowmaster435.impactfulweather.init;
 
+import net.minecraft.client.resources.sounds.Sound;
+import net.minecraft.client.resources.sounds.SoundEventRegistration;
 import net.minecraft.core.Registry;
 import net.minecraft.core.particles.SimpleParticleType;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
 import shadowmaster435.impactfulweather.BiomeParticleWeather;
 import shadowmaster435.impactfulweather.core.CoreServices;
 import shadowmaster435.impactfulweather.core.init.RegistryManager;
@@ -9,6 +15,8 @@ import shadowmaster435.impactfulweather.core.init.RegistryReference;
 
 public class ModRegistry {
     private static final RegistryManager REGISTRY = CoreServices.ABSTRACTIONS.createRegistryManager(BiomeParticleWeather.MOD_ID);
+
+    public static final SoundEvent RAINDROP = SoundEvent.createVariableRangeEvent(new ResourceLocation("impactfulweather:sounds/raindrop"));
     public static final RegistryReference<SimpleParticleType> SANDMOTE = registerParticleType("sandmote", true);
     public static final RegistryReference<SimpleParticleType> REDSANDMOTE = registerParticleType("redsandmote", true);
     public static final RegistryReference<SimpleParticleType> RAIN = registerParticleType("rain", true);
@@ -27,6 +35,7 @@ public class ModRegistry {
     public static final RegistryReference<SimpleParticleType> STORMSOUL = registerParticleType("stormsoul", true);
     public static final RegistryReference<SimpleParticleType> STORMSOULIMPACT = registerParticleType("stormsoulimpact", true);
     public static final RegistryReference<SimpleParticleType> FIREFLY = registerParticleType("firefly", true);
+
 //    public static final RegistryReference<SimpleParticleType> FOG = registerParticleType("fog", true);
 
     public static void touch() {
@@ -35,6 +44,6 @@ public class ModRegistry {
     }
 
     private static RegistryReference<SimpleParticleType> registerParticleType(String particleId, boolean alwaysActive) {
-        return REGISTRY.register(Registry.PARTICLE_TYPE_REGISTRY, particleId, () -> CoreServices.ABSTRACTIONS.createSimpleParticleType(alwaysActive));
+        return REGISTRY.register(Registries.PARTICLE_TYPE, particleId, () -> CoreServices.ABSTRACTIONS.createSimpleParticleType(alwaysActive));
     }
 }

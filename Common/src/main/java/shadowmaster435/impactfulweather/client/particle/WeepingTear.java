@@ -2,6 +2,7 @@ package shadowmaster435.impactfulweather.client.particle;
 
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.*;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.SimpleParticleType;
 import shadowmaster435.impactfulweather.init.ModRegistry;
 
@@ -27,7 +28,8 @@ public class WeepingTear extends SimpleAnimatedParticle {
     }
     public void tick() {
         this.quadSize = 0.125f;
-
+        this.light = level.getLightLevelDependentMagicValue(new BlockPos(this.x, this.y, this.z)) + 0.01f;
+        this.setColor((15f / this.light),(15f / this.light), (15f / this.light));
         this.xo = this.x;
         this.yo = this.y;
         this.zo = this.z;

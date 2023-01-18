@@ -30,7 +30,8 @@ public class WarpedSpore extends SimpleAnimatedParticle {
     }
     public void tick() {
         this.quadSize = 0.2f;
-
+        this.light = level.getLightLevelDependentMagicValue(new BlockPos(this.x, this.y, this.z)) + 0.01f;
+        this.setColor((15f / this.light),(15f / this.light), (15f / this.light));
         ++this.age;
 
         if (this.age < 10) {

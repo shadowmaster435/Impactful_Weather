@@ -30,25 +30,8 @@ public class RedSandMote extends SimpleAnimatedParticle {
     }
 
     public void tick() {
-        /*this.light = MiscUtil.makeUnInt(15, MiscUtil.getRealLightLevel(world, new BlockPos(this.prevPosX, this.prevPosY, this.prevPosZ)));
-        if (this.light < 0.275f) {
-            this.setColor(0.275f, 0.275f, 0.275f);
-        } else {
-            if (this.world.isThundering() && this.world.isSkyVisible(new BlockPos(this.prevPosX, this.prevPosY, this.prevPosZ))) {
-                this.setColor(0.275f, 0.275f, 0.275f);
-
-            }
-            if (this.world.isRaining() && this.world.isSkyVisible(new BlockPos(this.prevPosX, this.prevPosY, this.prevPosZ))) {
-                this.setColor(this.light + 0.75f, this.light + 0.75f, this.light + 0.75f);
-
-            }
-                if (this.world.isSkyVisible(new BlockPos(this.prevPosX, this.prevPosY, this.prevPosZ)) && this.world.getTime() > 1000 && this.world.getTime() < 11000) {
-                    this.setColor(255, 255, 255);
-                } else {
-                    this.setColor(this.light, this.light, this.light);
-
-                }
-        }*/
+        this.light = level.getLightLevelDependentMagicValue(new BlockPos(this.x, this.y, this.z)) + 0.01f;
+        this.setColor((15f / this.light),(15f / this.light), (15f / this.light));
         this.xo = this.x;
         this.yo = this.y;
         this.zo = this.z;

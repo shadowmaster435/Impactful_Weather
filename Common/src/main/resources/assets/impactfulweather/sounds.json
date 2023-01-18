@@ -1,0 +1,9 @@
+{
+  "my_sound": {
+    "subtitle": "subtitles.impactfulweather.raindrop",
+
+    "sounds": [
+      "impactfulweather:raindrop"
+    ]
+  }
+}

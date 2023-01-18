@@ -1,9 +1,10 @@
 package shadowmaster435.impactfulweather.client.util;
 
-import com.mojang.math.Vector4f;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.phys.Vec3;
+import org.joml.Vector4f;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,7 +1,9 @@
 package shadowmaster435.impactfulweather.core.init;
 
-import net.minecraft.core.Holder;
-import net.minecraft.core.Registry;
+import net.minecraft.core.*;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.RegistryOps;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 
@@ -72,7 +74,7 @@ public interface RegistryReference<T> {
      */
     @SuppressWarnings("unchecked")
     static <T> RegistryReference<T> placeholder(ResourceKey<? extends Registry<? super T>> registryKey, ResourceLocation resourceLocation) {
-        Registry<T> registry = (Registry<T>) Registry.REGISTRY.get(registryKey.location());
+        Registry<T> registry = (Registry<T>) BuiltInRegistries.REGISTRY.get(registryKey.location());
         if (registry == null) {
             throw new IllegalStateException(String.format("Unable to retrieve registry from key %s", registryKey));
         }
@@ -111,7 +113,7 @@ public interface RegistryReference<T> {
 
             @Override
             public Holder<T> holder() {
-                return registry.getOrCreateHolderOrThrow(this.getResourceKey());
+                return registry.getHolderOrThrow(this.getResourceKey());
             }
         };
     }

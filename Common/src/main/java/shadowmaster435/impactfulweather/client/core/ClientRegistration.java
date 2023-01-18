@@ -19,6 +19,9 @@ public interface ClientRegistration {
      */
     <T extends ParticleOptions> void registerParticleProvider(RegistryReference<? extends ParticleType<T>> type, ParticleProvider<T> provider);
 
+
+
+
     /**
      * registers a factory for a particle type client side
      * @param type     particle type (registered separately)

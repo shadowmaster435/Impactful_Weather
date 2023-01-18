@@ -33,6 +33,8 @@ public class Snow extends SimpleAnimatedParticle {
         this.xo = this.x;
         this.yo = this.y;
         this.zo = this.z;
+        this.light = level.getLightLevelDependentMagicValue(new BlockPos(this.x, this.y, this.z)) + 0.01f;
+        this.setColor((15f / this.light),(15f / this.light), (15f / this.light));
         ++this.age;
         if (this.age < 10) {
             this.alpha = this.age / 10f;

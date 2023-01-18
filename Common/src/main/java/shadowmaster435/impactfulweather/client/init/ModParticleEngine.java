@@ -1,11 +1,16 @@
 package shadowmaster435.impactfulweather.client.init;
 
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvent;
 import shadowmaster435.impactfulweather.client.core.ClientCoreServices;
 import shadowmaster435.impactfulweather.client.particle.*;
 import shadowmaster435.impactfulweather.init.ModRegistry;
 
 public class ModParticleEngine {
-    
+
+    public static SoundEvent raindrop = SoundEvent.createFixedRangeEvent(new ResourceLocation("impactfulweather:sounds/raindrop"), 1);
+    public static SoundEvent raindropceil = SoundEvent.createFixedRangeEvent(new ResourceLocation("impactfulweather:sounds/raindrop"), 1);
+
     public static void registerProviders() {
         ClientCoreServices.CLIENT_REGISTRATION.registerParticleProvider(ModRegistry.SANDMOTE, SandMote.SandMoteFactory::new);
         ClientCoreServices.CLIENT_REGISTRATION.registerParticleProvider(ModRegistry.REDSANDMOTE, RedSandMote.RedSandMoteFactory::new);

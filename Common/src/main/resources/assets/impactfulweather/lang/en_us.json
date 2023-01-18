@@ -7,6 +7,8 @@
   "text.autoconfig.impactfulweather.option.misc": "Misc. Options",
   "text.autoconfig.impactfulweather.option.misc.renderedweather": "Render Vanilla Weather",
 
+  "subtitles.impactfulweather.raindrop": "Rain",
+
 
   "text.autoconfig.impactfulweather.option.toggles.dodenserain": "Double Rain Particles",
   "text.autoconfig.impactfulweather.option.toggles.wind": "Enable Wind",
