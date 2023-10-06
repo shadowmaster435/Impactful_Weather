@@ -27,7 +27,7 @@ public class HeavyRain extends SimpleAnimatedParticle {
         this.setSize(0.02F, 0.02F);
 
         this.setSprite(sprites.get(world.random));
-        this.light = level.getLightLevelDependentMagicValue(new BlockPos(this.x, this.y, this.z)) + 0.01f;
+        this.light = level.getLightLevelDependentMagicValue(new BlockPos((int)this.x, (int)this.y, (int)this.z)) + 0.01f;
         this.setColor((15f / this.light),(15f / this.light), (15f / this.light));
         rainamount = 2;
     }
@@ -37,11 +37,11 @@ public class HeavyRain extends SimpleAnimatedParticle {
         this.zo = this.z;
         heavyrainvel = 2;
         ++this.age;
-        this.light = level.getLightLevelDependentMagicValue(new BlockPos(this.x, this.y, this.z)) + 0.01f;
+        this.light = level.getLightLevelDependentMagicValue(new BlockPos((int)this.x, (int)this.y, (int)this.z)) + 0.01f;
         this.setColor((15f / this.light),(15f / this.light), (15f / this.light));
 
-        if (this.level.getBlockState(new BlockPos(this.x, this.y, this.z)).getMaterial().blocksMotion() || this.onGround ) {
-            if (!this.level.getFluidState(new BlockPos(this.x, this.y, this.z)).is(FluidTags.WATER) && !this.level.getFluidState(new BlockPos(this.x, this.y, this.z)).is(FluidTags.LAVA)) {
+        if (this.level.getBlockState(new BlockPos((int)this.x, (int)this.y, (int)this.z)).blocksMotion() || this.onGround ) {
+            if (!this.level.getFluidState(new BlockPos((int)this.x, (int)this.y, (int)this.z)).is(FluidTags.WATER) && !this.level.getFluidState(new BlockPos((int)this.x, (int)this.y, (int)this.z)).is(FluidTags.LAVA)) {
                 this.level.addParticle(ModRegistry.RAINSPLASH.get(), this.x, this.y + 0.1, this.z, 0, 0, 0);
 
             }

@@ -72,7 +72,7 @@ subprojects {
                 'Implementation-Timestamp-Milli'    : System.currentTimeMillis(),
                 'Implementation-URL'                : modSourceUrl,
                 'Built-On-Java'                     : "${System.getProperty('java.vm.version')} (${System.getProperty('java.vm.vendor')})",
-                'Built-On-Minecraft'                : minecraftVersion
+                'Built-On-Minecraft'                : minecraft_version
             ])
         }
         group 'jar'

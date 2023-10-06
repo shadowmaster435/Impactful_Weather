@@ -5,6 +5,7 @@ import net.minecraft.client.particle.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.tags.FluidTags;
+import net.minecraft.world.level.material.WaterFluid;
 
 
 public class BlizzardWind extends SimpleAnimatedParticle {
@@ -24,24 +25,18 @@ public class BlizzardWind extends SimpleAnimatedParticle {
         this.quadSize = 0.0f;
         this.age = 0;
         this.quadSize = (float) (Math.random() / 2) + 0.2f;
-
         this.setSpriteFromAge(this.sprites);
-
         this.setSize(0.02F, 0.02f);
-
-        this.light = world.getLightLevelDependentMagicValue(new BlockPos(this.x, this.y, this.z)) + 0.01f;
-        this.setColor((15 / this.light),(15 / this.light), (15 / this.light));
     }
 
 
     public void tick() {
-        this.light = level.getLightLevelDependentMagicValue(new BlockPos(this.x, this.y, this.z)) + 0.01f;
-        this.setColor((15 / this.light),(15 / this.light), (15 / this.light));
+
         this.xo = this.x;
         this.yo = this.y;
         this.zo = this.z;
 
-        if (this.age > this.lifetime || this.level.getBlockState(new BlockPos(this.x, this.y, this.z)).getMaterial().blocksMotion() || this.level.getFluidState(new BlockPos(this.x, this.y, this.z)).is(FluidTags.WATER) || this.level.getFluidState(new BlockPos(this.x, this.y, this.z)).is(FluidTags.LAVA)) {
+        if (this.age > this.lifetime || this.level.getBlockState(new BlockPos((int)this.x, (int)this.y, (int)this.z)).blocksMotion() || this.level.getFluidState(new BlockPos((int)this.x, (int)this.y, (int)this.z)).is(FluidTags.WATER) || this.level.getFluidState(new BlockPos((int)this.x, (int)this.y, (int)this.z)).is(FluidTags.LAVA)) {
 
             this.remove();
             this.age = 0;

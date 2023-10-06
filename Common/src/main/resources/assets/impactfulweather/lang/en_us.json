@@ -21,8 +21,8 @@
   "text.autoconfig.impactfulweather.option.toggles.sporestorm": "Enable Spore Storms",
   "text.autoconfig.impactfulweather.option.toggles.updrafts": "Enable Updrafts",
   "text.autoconfig.impactfulweather.option.toggles.endlessnweather": "Enable Permanant Nether Weather",
-  "text.autoconfig.impactfulweather.option.misc.nweatherbasedelay": "Nether Weather Base Time Interval",
-  "text.autoconfig.impactfulweather.option.misc.nweatherrandomdelay": "Nether Weather Random Time Interval",
+  "Nweatherbasedelay": "Nether Weather Base Time Interval",
+  "Nweatherrandomdelay": "Nether Weather Random Time Interval",
   "text.autoconfig.impactfulweather.option.misc.snowspeedmodifier": "Snow Speed Modifier",
 
   "text.autoconfig.impactfulweather.option.particleamountconfig.particleamount": "Particle Spawns Per Tick",
@@ -33,7 +33,7 @@
   "text.autoconfig.impactfulweather.option.particleamountconfig.blizzardsnowmodifier": "Blizzard Snow Particle Multiplier",
   "text.autoconfig.impactfulweather.option.particleamountconfig.blizzardwindmodifier": "Blizzard Wind Particle Multiplier",
   "text.autoconfig.impactfulweather.option.particleamountconfig.tumblebushmodifier": "Tumble Bush Particle Multiplier",
-  "text.autoconfig.impactfulweather.option.particleamountconfig.sandmotemodifier": "(Red)Sand Mote Particle Multiplier",
+  "text.autoconfig.impactfulweather.option.particleamountconfig.sandmotemodifier": "(Red) Sand Mote Particle Multiplier",
   "text.autoconfig.impactfulweather.option.particleamountconfig.updraftmodifier": "Updraft Particle Multiplier",
   "text.autoconfig.impactfulweather.option.particleamountconfig.soulmodifier": "Soul Particle Multiplier",
   "text.autoconfig.impactfulweather.option.particleamountconfig.tearmodifier": "Weeping Tear Particle Multiplier",
@@ -59,8 +59,8 @@
   "text.autoconfig.impactfulweather.option.misc.searchDist.z": "Z",
 
 
-  "optiontooltip.impactfulweather.nweatherbasedelay": "Time (In Seconds) Of The Base Delay Between Nether Weather Intervals",
-  "optiontooltip.impactfulweather.nweatherrandomdelay": "Time (In Seconds) Of The Random Delay Added To The Base Delay",
+  "nweatherbasedelay": "Time (In Seconds) Of The Base Delay Between Nether Weather Intervals",
+  "nweatherrandomdelay": "Time (In Seconds) Of The Random Delay Added To The Base Delay",
 
   "optiontooltip.impactfulweather.particleamount": "Determines How Many Particles Can Spawn Per Tick",
   "optiontooltip.impactfulweather.density": "Particle Amount Multiplier Useful For Radius Adjustments",

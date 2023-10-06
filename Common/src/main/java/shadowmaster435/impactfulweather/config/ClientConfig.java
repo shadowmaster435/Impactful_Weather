@@ -41,21 +41,21 @@ public class ClientConfig {
 
         private ParticleAmountsConfig(ForgeConfigSpec.Builder builder) {
             builder.push("particle_amounts");
-            this.particleamount = builder.defineInRange("particleamount", 32.0, Double.MIN_VALUE, Double.MAX_VALUE);
-            this.particleDensity = builder.defineInRange("particleDensity", 1.0, Double.MIN_VALUE, Double.MAX_VALUE);
-            this.sandmotemodifier = builder.defineInRange("sandmotemodifier", 1.0, Double.MIN_VALUE, Double.MAX_VALUE);
-            this.snowmodifier = builder.defineInRange("snowmodifier", 1.0, Double.MIN_VALUE, Double.MAX_VALUE);
-            this.blizzardsnowmodifier = builder.defineInRange("blizzardsnowmodifier", 1.0, Double.MIN_VALUE, Double.MAX_VALUE);
-            this.blizzardwindmodifier = builder.defineInRange("blizzardwindmodifier", 1.0, Double.MIN_VALUE, Double.MAX_VALUE);
-            this.updraftmodifier = builder.defineInRange("updraftmodifier", 1.0, Double.MIN_VALUE, Double.MAX_VALUE);
-            this.windmodifier = builder.defineInRange("windmodifier", 1.0, Double.MIN_VALUE, Double.MAX_VALUE);
-            this.sporemodifier = builder.defineInRange("sporemodifier", 1.0, Double.MIN_VALUE, Double.MAX_VALUE);
-            this.soulmodifier = builder.defineInRange("soulmodifier", 1.0, Double.MIN_VALUE, Double.MAX_VALUE);
-            this.tearmodifier = builder.defineInRange("tearmodifier", 1.0, Double.MIN_VALUE, Double.MAX_VALUE);
-            this.rainmodifier = builder.defineInRange("rainmodifier", 1.0, Double.MIN_VALUE, Double.MAX_VALUE);
-            this.heavyrainmodifier = builder.defineInRange("heavyrainmodifier", 1.0, Double.MIN_VALUE, Double.MAX_VALUE);
-            this.tumblebushmodifier = builder.defineInRange("tumblebushmodifier", 1.0, Double.MIN_VALUE, Double.MAX_VALUE);
-            this.fireflymodifier = builder.defineInRange("fireflymodifier", 1.0, Double.MIN_VALUE, Double.MAX_VALUE);
+            this.particleamount = builder.defineInRange("particleamount", 1.0, 0, Double.MAX_VALUE);
+            this.particleDensity = builder.defineInRange("particleDensity", 1.0, 0, Double.MAX_VALUE);
+            this.sandmotemodifier = builder.defineInRange("sandmotemodifier", 1.0, 0, Double.MAX_VALUE);
+            this.snowmodifier = builder.defineInRange("snowmodifier", 1.0, 0, Double.MAX_VALUE);
+            this.blizzardsnowmodifier = builder.defineInRange("blizzardsnowmodifier", 1.0, 0, Double.MAX_VALUE);
+            this.blizzardwindmodifier = builder.defineInRange("blizzardwindmodifier", 1.0, 0, Double.MAX_VALUE);
+            this.updraftmodifier = builder.defineInRange("updraftmodifier", 1.0, 0, Double.MAX_VALUE);
+            this.windmodifier = builder.defineInRange("windmodifier", 1.0, 0, Double.MAX_VALUE);
+            this.sporemodifier = builder.defineInRange("sporemodifier", 1.0, 0, Double.MAX_VALUE);
+            this.soulmodifier = builder.defineInRange("soulmodifier", 1.0, 0, Double.MAX_VALUE);
+            this.tearmodifier = builder.defineInRange("tearmodifier", 1.0, 0, Double.MAX_VALUE);
+            this.rainmodifier = builder.defineInRange("rainmodifier", 1.0, 0, Double.MAX_VALUE);
+            this.heavyrainmodifier = builder.defineInRange("heavyrainmodifier", 1.0, 0, Double.MAX_VALUE);
+            this.tumblebushmodifier = builder.defineInRange("tumblebushmodifier", 1.0, 0, Double.MAX_VALUE);
+            this.fireflymodifier = builder.defineInRange("fireflymodifier", 1.0, 0, Double.MAX_VALUE);
             builder.pop();
         }
     }
@@ -70,11 +70,11 @@ public class ClientConfig {
 
         private MiscConfig(ForgeConfigSpec.Builder builder) {
             builder.push("misc");
-//            this.lightningburnmarklifespan = builder.defineInRange("lightningburnmarklifespan", 500.0, Double.MIN_VALUE, Double.MAX_VALUE);
-            this.nweatherbasedelay = builder.defineInRange("nweatherbasedelay", 120, Integer.MIN_VALUE, Integer.MAX_VALUE);
-            this.nweatherrandomdelay = builder.defineInRange("nweatherrandomdelay", 240, Integer.MIN_VALUE, Integer.MAX_VALUE);
+//            this.lightningburnmarklifespan = builder.defineInRange("lightningburnmarklifespan", 500.0, 0, Double.MAX_VALUE);
+            this.nweatherbasedelay = builder.defineInRange("nweatherbasedelay", 120, 0, Integer.MAX_VALUE);
+            this.nweatherrandomdelay = builder.defineInRange("nweatherrandomdelay", 240, 0, Integer.MAX_VALUE);
             this.renderedweather = builder.define("renderedweather", false);
-            this.snowspeedmodifier = builder.defineInRange("snowspeedmodifier", 1.0, Double.MIN_VALUE, Double.MAX_VALUE);
+            this.snowspeedmodifier = builder.defineInRange("snowspeedmodifier", 1.0, 0, Double.MAX_VALUE);
             this.searchDistanceConfig = new SearchDistanceConfig(builder);
             builder.pop();
         }
@@ -86,9 +86,9 @@ public class ClientConfig {
 
             private SearchDistanceConfig(ForgeConfigSpec.Builder builder) {
                 builder.push("block_search_distance");
-                this.x = builder.defineInRange("x", 32, Integer.MIN_VALUE, Integer.MAX_VALUE);
-                this.y = builder.defineInRange("y", 32, Integer.MIN_VALUE, Integer.MAX_VALUE);
-                this.z = builder.defineInRange("z", 32, Integer.MIN_VALUE, Integer.MAX_VALUE);
+                this.x = builder.defineInRange("x", 32, 0, Integer.MAX_VALUE);
+                this.y = builder.defineInRange("y", 32, 0, Integer.MAX_VALUE);
+                this.z = builder.defineInRange("z", 32, 0, Integer.MAX_VALUE);
                 builder.pop();
             }
         }

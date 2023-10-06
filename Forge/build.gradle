@@ -23,12 +23,12 @@ apply plugin: 'org.spongepowered.mixin'
 apply plugin: 'org.parchmentmc.librarian.forgegradle'
 
 archivesBaseName = rootProject.name
-version = "v${modVersion}-${minecraftVersion}-Forge"
+version = "v${modVersion}-${minecraft_version}-Forge"
 group = modMavenGroup
 
 minecraft {
-//    mappings channel: 'parchment', version: "${parchmentMappingsVersion}-${minecraftVersion}"
-    mappings channel: 'official', version: "${minecraftVersion}"
+//    mappings channel: 'parchment', version: "${parchmentMappingsVersion}-${minecraft_version}"
+    mappings channel: 'official', version: "${minecraft_version}"
 
     runs {
         client {
@@ -271,7 +271,7 @@ curseforge {
             addGameVersion it.trim()
         }
         mainArtifact(jar) {
-            displayName = "[FORGE] [${minecraftVersion}] ${rootProject.name}-v${modVersion}"
+            displayName = "[FORGE] [${minecraft_version}] ${rootProject.name}-v${modVersion}"
         }
         addArtifact sourcesJar
     }
@@ -287,7 +287,7 @@ modrinth {
     token = project.findProperty('modrinthApiToken')
     projectId = projectModrinthId
     versionNumber = project.version
-    versionName = "[FORGE] [${minecraftVersion}] ${rootProject.name}-v${modVersion}"
+    versionName = "[FORGE] [${minecraft_version}] ${rootProject.name}-v${modVersion}"
     changelog = file('../CHANGELOG.md').text
     versionType = projectReleaseType
     uploadFile = jar // This is the java jar task

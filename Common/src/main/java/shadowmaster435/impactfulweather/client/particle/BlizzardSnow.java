@@ -26,20 +26,20 @@ public class BlizzardSnow extends SimpleAnimatedParticle {
         cworld = world;
         this.setSize(0.01F, 0.01F);
         this.setSprite(sprites.get(world.random));
-        this.light = world.getLightLevelDependentMagicValue(new BlockPos(this.x, this.y, this.z)) + 0.01f;
+        this.light = world.getLightLevelDependentMagicValue(new BlockPos((int)this.x,(int) this.y, (int)this.z)) + 0.01f;
         this.setColor((15f / this.light),(15f / this.light), (15f / this.light));
     }
 
     public float groundtimer = 5;
 
     public void tick() {
-        this.light = level.getLightLevelDependentMagicValue(new BlockPos(this.x, this.y, this.z)) + 0.01f;
+        this.light = level.getLightLevelDependentMagicValue(new BlockPos((int)this.x, (int)this.y,(int) this.z)) + 0.01f;
         this.setColor((15f / this.light),(15f / this.light), (15f / this.light));
         this.xo = this.x;
         this.yo = this.y;
         this.zo = this.z;
 
-        if (this.onGround || this.level.getBlockState(new BlockPos(this.x, this.y, this.z)).getMaterial().blocksMotion() || this.level.getFluidState(new BlockPos(this.x, this.y, this.z)).is(FluidTags.WATER) || this.level.getFluidState(new BlockPos(this.x, this.y, this.z)).is(FluidTags.LAVA)) {
+        if (this.onGround || this.level.getBlockState(new BlockPos((int)this.x, (int)this.y, (int)this.z)).blocksMotion() || this.level.getFluidState(new BlockPos((int)this.x, (int)this.y,(int) this.z)).is(FluidTags.WATER) || this.level.getFluidState(new BlockPos((int)this.x, (int)this.y,(int) this.z)).is(FluidTags.LAVA)) {
             this.groundtimer = this.groundtimer - 1;
             this.yd = 0;
             this.quadSize = this.quadSize - 0.035f;

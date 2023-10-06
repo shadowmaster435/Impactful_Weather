@@ -26,7 +26,7 @@ public class StormSoul extends SimpleAnimatedParticle {
         this.gravity = 0f;
         this.quadSize = 0.3f;
         this.alpha = 0.0f;
-        this.lifetime = 20;
+        this.lifetime = 40;
         this.setSpriteFromAge(this.sprites);
         this.setSize(0.02F, 0.02F);
 
@@ -41,8 +41,8 @@ public class StormSoul extends SimpleAnimatedParticle {
         } else {
             this.alpha = 1f;
         }
-        if (this.level.getBlockState(new BlockPos(this.x, this.y, this.z)).getBlock() == Blocks.SOUL_SAND || this.age > this.lifetime || this.onGround || this.level.getBlockState(new BlockPos(this.x, this.y, this.z)).getMaterial().blocksMotion() || this.level.getFluidState(new BlockPos(this.x, this.y, this.z)).is(FluidTags.WATER) || this.level.getFluidState(new BlockPos(this.x, this.y, this.z)).is(FluidTags.LAVA)) {
-            if (this.level.getBlockState(new BlockPos(this.x, this.y, this.z)).getBlock() == Blocks.SOUL_SAND) {
+        if (this.level.getBlockState(new BlockPos((int)this.x, (int)this.y, (int)this.z)).getBlock() == Blocks.SOUL_SAND || this.age > this.lifetime || this.onGround || this.level.getBlockState(new BlockPos((int)this.x, (int)this.y, (int)this.z)).blocksMotion() || this.level.getFluidState(new BlockPos((int)this.x, (int)this.y, (int)this.z)).is(FluidTags.WATER) || this.level.getFluidState(new BlockPos((int)this.x, (int)this.y, (int)this.z)).is(FluidTags.LAVA)) {
+            if (this.level.getBlockState(new BlockPos((int)this.x, (int)this.y, (int)this.z)).getBlock() == Blocks.SOUL_SAND) {
                 this.level.addParticle(ModRegistry.STORMSOULIMPACT.get(), this.x, this.y + 0.2 + 0.075, this.z, 0, 0, 0);
 
             }

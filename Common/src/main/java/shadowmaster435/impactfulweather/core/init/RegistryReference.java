@@ -1,11 +1,14 @@
 package shadowmaster435.impactfulweather.core.init;
 
 import net.minecraft.core.*;
+
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.RegistryOps;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+
+import java.util.List;
 
 /**
  * Represents a lazy wrapper for registry object.
@@ -74,7 +77,8 @@ public interface RegistryReference<T> {
      */
     @SuppressWarnings("unchecked")
     static <T> RegistryReference<T> placeholder(ResourceKey<? extends Registry<? super T>> registryKey, ResourceLocation resourceLocation) {
-        Registry<T> registry = (Registry<T>) BuiltInRegistries.REGISTRY.get(registryKey.location());
+        RegistryAccess.ImmutableRegistryAccess acc = (RegistryAccess.ImmutableRegistryAccess) BuiltInRegistries.REGISTRY.get(registryKey.location());
+        Registry<T> registry = (Registry<T>) acc;
         if (registry == null) {
             throw new IllegalStateException(String.format("Unable to retrieve registry from key %s", registryKey));
         }

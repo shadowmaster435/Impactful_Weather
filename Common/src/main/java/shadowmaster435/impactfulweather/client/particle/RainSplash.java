@@ -26,11 +26,11 @@ public class RainSplash extends SimpleAnimatedParticle {
         this.setSpriteFromAge(this.sprites);
 
         this.setSize(0.02F, 0.1f);
-        this.light = world.getLightLevelDependentMagicValue(new BlockPos(this.x, this.y, this.z)) + 0.01f;
+        this.light = world.getLightLevelDependentMagicValue(new BlockPos((int)this.x, (int)this.y, (int)this.z)) + 0.01f;
         this.setColor((15f / this.light),(15f / this.light), (15f / this.light));
     }
     public void tick() {
-        this.light = level.getLightLevelDependentMagicValue(new BlockPos(this.x, this.y, this.z)) + 0.01f;
+        this.light = level.getLightLevelDependentMagicValue(new BlockPos((int)this.x, (int)this.y, (int)this.z)) + 0.01f;
         this.setColor((15f / this.light),(15f / this.light), (15f / this.light));
         this.xo = this.x;
         this.yo = this.y;

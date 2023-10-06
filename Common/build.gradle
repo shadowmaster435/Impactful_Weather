@@ -3,12 +3,12 @@ plugins {
 }
 
 archivesBaseName = rootProject.name
-version = "v${modVersion}-${minecraftVersion}-Common"
+version = "v${modVersion}-${minecraft_version}-Common"
 group = modMavenGroup
 
 dependencies {
     // Minecraft
-    minecraft "com.mojang:minecraft:${minecraftVersion}"
+    minecraft "com.mojang:minecraft:${minecraft_version}"
     mappings loom.layered() {
         officialMojangMappings()
 //        parchment("org.parchmentmc.data:parchment-${minecraftVersion}:${parchmentMappingsVersion}@zip")
@@ -18,7 +18,7 @@ dependencies {
     compileOnly group: 'org.spongepowered', name: 'mixin', version: '0.8.5'
 
     // Forge Configs
-    modImplementation "fuzs.forgeconfigapiport:forgeconfigapiport-fabric:5.0.4"
+    modImplementation "fuzs.forgeconfigapiport:forgeconfigapiport-common:8.0.0"
 }
 
 loom {

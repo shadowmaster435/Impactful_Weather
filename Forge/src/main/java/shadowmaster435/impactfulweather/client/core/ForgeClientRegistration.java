@@ -53,8 +53,8 @@ public class ForgeClientRegistration implements ClientRegistration {
     @SuppressWarnings("unchecked")
     @SubscribeEvent
     public void onRegisterParticleProviders(final RegisterParticleProvidersEvent evt) {
-        this.particleProviders.forEach(pair -> evt.register((ParticleType<ParticleOptions>) pair.left().get(), (ParticleProvider<ParticleOptions>) pair.right()));
-        this.spriteParticleFactories.forEach(pair -> evt.register((ParticleType<ParticleOptions>) pair.left().get(), spriteSet -> (ParticleProvider<ParticleOptions>) pair.right().create(spriteSet)));
+        this.particleProviders.forEach(pair -> evt.registerSpecial((ParticleType<ParticleOptions>) pair.left().get(), (ParticleProvider<ParticleOptions>) pair.right()));
+        this.spriteParticleFactories.forEach(pair -> evt.registerSpriteSet((ParticleType<ParticleOptions>) pair.left().get(), spriteSet -> (ParticleProvider<ParticleOptions>) pair.right().create(spriteSet)));
     }
 
     /**

@@ -47,10 +47,10 @@ public class FireFly extends SimpleAnimatedParticle {
         this.zo = this.z;
         this.quadSize = 0.2f;
         if (this.speedUpWhenYMotionIsBlocked || this.onGround || !(this.level.getDayTime() < 22000 && this.level.getDayTime() > 14000) ||
-                this.level.getFluidState(new BlockPos(this.x, this.y, this.z)).is(FluidTags.WATER) ||
-                this.level.getFluidState(new BlockPos(this.x, this.y, this.z)).is(FluidTags.LAVA)) {
-            if (this.level.getFluidState(new BlockPos(this.x, this.y, this.z)).is(FluidTags.LAVA)) {
-                this.level.addParticle(ParticleTypes.LARGE_SMOKE, this.x, this.y, this.z, 0,0.5,0);
+                this.level.getFluidState(new BlockPos((int)this.x, (int)this.y, (int)this.z)).is(FluidTags.WATER) ||
+                this.level.getFluidState(new BlockPos((int)this.x, (int)this.y, (int)this.z)).is(FluidTags.LAVA)) {
+            if (this.level.getFluidState(new BlockPos((int)this.x, (int)this.y, (int)this.z)).is(FluidTags.LAVA)) {
+                this.level.addParticle(ParticleTypes.LARGE_SMOKE, (int)this.x, (int)this.y, (int)this.z, 0,0.5,0);
                 this.remove();
             } else {
 
@@ -77,7 +77,7 @@ public class FireFly extends SimpleAnimatedParticle {
             this.yd = this.yd + random.nextGaussian() * 0.05;
             this.zd = this.zd + random.nextGaussian() * 0.05;
         }
-        if (this.level.getBlockState(new BlockPos(this.x, this.y, this.z)).isRedstoneConductor(this.level, new BlockPos(this.x, this.y, this.z))) {
+        if (this.level.getBlockState(new BlockPos((int)this.x, (int)this.y, (int)this.z)).isRedstoneConductor(this.level, new BlockPos((int)this.x, (int)this.y, (int)this.z))) {
             this.remove();
         }
 
@@ -98,7 +98,7 @@ public class FireFly extends SimpleAnimatedParticle {
 
 
         for (Direction dir : Direction.values()) {
-            if (!level.getBlockState(new BlockPos(this.x, this.y, this.z).relative(dir)).isAir()) {
+            if (!level.getBlockState(new BlockPos((int)this.x, (int)this.y, (int)this.z).relative(dir)).isAir()) {
                 if (dir.getAxis().equals(Direction.Axis.X)) {
                     this.expVelX = this.expVelX * -1;
 

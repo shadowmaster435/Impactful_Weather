@@ -1,0 +1,71 @@
+{
+  "category.impactfulweather.general": "Общее",
+  "text.autoconfig.impactfulweather.option.toggles": "Переключатели погоды",
+  "text.autoconfig.impactfulweather.option.particletoggles": "Переключатели отдельных частиц",
+  "text.autoconfig.impactfulweather.option.particleamountconfig": "Параметры множителей частиц",
+  "text.autoconfig.impactfulweather.option.misc.searchDist": "Дистанция поиска блока для генерации частицы (требовательно)",
+  "text.autoconfig.impactfulweather.option.misc": "Разные параметры",
+  "text.autoconfig.impactfulweather.option.misc.renderedweather": "Отображать оригинальную погоду",
+
+  "subtitles.impactfulweather.raindrop": "Дождь",
+
+
+  "text.autoconfig.impactfulweather.option.toggles.dodenserain": "Удвоить частицы дождя",
+  "text.autoconfig.impactfulweather.option.toggles.wind": "Включить ветер",
+  "text.autoconfig.impactfulweather.option.toggles.heavyrain": "Включить ливень",
+  "text.autoconfig.impactfulweather.option.toggles.blizzards": "Включить метель",
+  "text.autoconfig.impactfulweather.option.toggles.sandstorms": "Включить обычные песчаные бури",
+  "text.autoconfig.impactfulweather.option.toggles.redsandstorms": "Включить красные песчаные бури",
+  "text.autoconfig.impactfulweather.option.toggles.weepingrain": "Включить слёзы душ",
+  "text.autoconfig.impactfulweather.option.toggles.soulstorms": "Включить шторма душ",
+  "text.autoconfig.impactfulweather.option.toggles.sporestorm": "Включить шторма спор",
+  "text.autoconfig.impactfulweather.option.toggles.updrafts": "Включить порывы ветра",
+  "text.autoconfig.impactfulweather.option.toggles.endlessnweather": "Включить постоянную адскую погоду",
+  "text.autoconfig.impactfulweather.option.misc.nweatherbasedelay": "Длительность затишья в аду",
+  "text.autoconfig.impactfulweather.option.misc.nweatherrandomdelay": "Продление затишья в аду",
+  "text.autoconfig.impactfulweather.option.misc.snowspeedmodifier": "Множитель скорости снега",
+
+  "text.autoconfig.impactfulweather.option.particleamountconfig.particleamount": "Появление частиц за тик",
+  "text.autoconfig.impactfulweather.option.particleamountconfig.particleDensity": "Множитель появления за тик",
+  "text.autoconfig.impactfulweather.option.particleamountconfig.heavyrainmodifier": "Множитель частиц ливня",
+  "text.autoconfig.impactfulweather.option.particleamountconfig.rainmodifier": "Множитель частиц брызг дождя",
+  "text.autoconfig.impactfulweather.option.particleamountconfig.snowmodifier": "Множитель частиц снега",
+  "text.autoconfig.impactfulweather.option.particleamountconfig.blizzardsnowmodifier": "Множитель частиц снега метели",
+  "text.autoconfig.impactfulweather.option.particleamountconfig.blizzardwindmodifier": "Множитель частиц ветра метели",
+  "text.autoconfig.impactfulweather.option.particleamountconfig.tumblebushmodifier": "Множитель частиц кустарника",
+  "text.autoconfig.impactfulweather.option.particleamountconfig.sandmotemodifier": "Множитель частиц песчинок",
+  "text.autoconfig.impactfulweather.option.particleamountconfig.updraftmodifier": "Множитель частиц порывов ветра",
+  "text.autoconfig.impactfulweather.option.particleamountconfig.soulmodifier": "Множитель частиц душ",
+  "text.autoconfig.impactfulweather.option.particleamountconfig.tearmodifier": "Множитель частиц слёз душ",
+  "text.autoconfig.impactfulweather.option.particleamountconfig.sporemodifier": "Множитель частиц спор",
+  "text.autoconfig.impactfulweather.option.particleamountconfig.windmodifier": "Множитель частиц ветра",
+  "text.autoconfig.impactfulweather.option.particleamountconfig.fireflymodifier": "Множитель частиц светлячков",
+
+
+  "text.autoconfig.impactfulweather.option.particletoggles.rain": "Включить частицы дождя",
+  "text.autoconfig.impactfulweather.option.particletoggles.heavyrain": "Включить частицы ливня",
+  "text.autoconfig.impactfulweather.option.particletoggles.rainsplash": "Включить брызги дождя",
+  "text.autoconfig.impactfulweather.option.particletoggles.snow": "Включить частицы снега",
+  "text.autoconfig.impactfulweather.option.particletoggles.blizzardsnow": "Включить частицы снега метели",
+  "text.autoconfig.impactfulweather.option.particletoggles.blizzardwind": "Включить частицы ветра метели",
+  "text.autoconfig.impactfulweather.option.particletoggles.tumblebush": "Включить частицы кустарника",
+  "text.autoconfig.impactfulweather.option.particletoggles.sandmote": "Включить обычные песчинки",
+  "text.autoconfig.impactfulweather.option.particletoggles.redsandmote": "Включить красные песчинки",
+  "text.autoconfig.impactfulweather.option.particletoggles.fireflies": "Включить светлячков",
+
+
+  "text.autoconfig.impactfulweather.option.misc.searchDist.x": "X",
+  "text.autoconfig.impactfulweather.option.misc.searchDist.y": "Y",
+  "text.autoconfig.impactfulweather.option.misc.searchDist.z": "Z",
+
+
+  "optiontooltip.impactfulweather.nweatherbasedelay": "Время (в секундах) затишья между проявлениями адской погоды",
+  "optiontooltip.impactfulweather.nweatherrandomdelay": "Время (в секундах) случайного продления периода затишья",
+
+  "optiontooltip.impactfulweather.particleamount": "Определяет появляющееся за тик количество частиц",
+  "optiontooltip.impactfulweather.density": "Множитель числа частиц (полезно при изменении радиуса)",
+  "optiontooltip.impactfulweather.dodenserain": "Удвоить частицы дождя для лучшей графики",
+  "optiontooltip.impactfulweather.radius": "Радиус появления частиц (макс. 64)",
+
+  "text.autoconfig.impactfulweather.title": "Biome Particle Weather"
+}

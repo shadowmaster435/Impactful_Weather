@@ -8,8 +8,6 @@ import shadowmaster435.impactfulweather.init.ModRegistry;
 
 public class ModParticleEngine {
 
-    public static SoundEvent raindrop = SoundEvent.createFixedRangeEvent(new ResourceLocation("impactfulweather:sounds/raindrop"), 1);
-    public static SoundEvent raindropceil = SoundEvent.createFixedRangeEvent(new ResourceLocation("impactfulweather:sounds/raindrop"), 1);
 
     public static void registerProviders() {
         ClientCoreServices.CLIENT_REGISTRATION.registerParticleProvider(ModRegistry.SANDMOTE, SandMote.SandMoteFactory::new);

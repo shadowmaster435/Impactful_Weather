@@ -24,18 +24,18 @@ public class Gust extends SimpleAnimatedParticle {
         this.age = 0;
         this.quadSize = (float) (Math.random() / 2) + 0.2f;
         this.setSpriteFromAge(this.sprites);
-        this.light = world.getLightLevelDependentMagicValue(new BlockPos(this.x, this.y, this.z)) + 0.01f;
+        this.light = world.getLightLevelDependentMagicValue(new BlockPos((int)this.x, (int)this.y, (int)this.z)) + 0.01f;
         this.setColor((15f / this.light),(15f / this.light), (15f / this.light));
 
     }
     public void tick() {
-        this.light = level.getLightLevelDependentMagicValue(new BlockPos(this.x, this.y, this.z)) + 0.01f;
+        this.light = level.getLightLevelDependentMagicValue(new BlockPos((int)this.x, (int)this.y, (int)this.z)) + 0.01f;
         this.setColor((15f / this.light),(15f / this.light), (15f / this.light));
         this.xo = this.x;
         this.yo = this.y;
         this.zo = this.z;
         this.alpha = 1;
-        if (this.age > this.lifetime || !this.level.isEmptyBlock(new BlockPos(this.x, this.y, this.z)) || this.level.getFluidState(new BlockPos(this.x, this.y, this.z)).is(FluidTags.WATER) || this.level.getFluidState(new BlockPos(this.x, this.y, this.z)).is(FluidTags.LAVA)) {
+        if (this.age > this.lifetime || !this.level.isEmptyBlock(new BlockPos((int)this.x, (int)this.y, (int)this.z)) || this.level.getFluidState(new BlockPos((int)this.x, (int)this.y, (int)this.z)).is(FluidTags.WATER) || this.level.getFluidState(new BlockPos((int)this.x, (int)this.y, (int)this.z)).is(FluidTags.LAVA)) {
 
             this.remove();
             this.age = 0;

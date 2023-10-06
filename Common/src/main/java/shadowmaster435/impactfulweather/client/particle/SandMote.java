@@ -29,13 +29,13 @@ public class SandMote extends SimpleAnimatedParticle {
         this.setSize(0.01F, 0.01F);
         this.lifetime = 40;
         this.setSprite(sprites.get(world.random));
-     /*   this.light = this.world.getBrightness(new BlockPos(this.x, this.y, this.z)) + 0.01f;
+     /*   this.light = this.world.getBrightness(new BlockPos((int)this.x, (int)this.y, (int)this.z)) + 0.01f;
         this.setColor((15f / this.light)*255,(15f / this.light)*255, (15f / this.light) *255);
    */ }
 
     public void tick() {
         ClientLevel clientWorld = Minecraft.getInstance().level;
-        this.light = level.getLightLevelDependentMagicValue(new BlockPos(this.x, this.y, this.z)) + 0.01f;
+        this.light = level.getLightLevelDependentMagicValue(new BlockPos((int)this.x, (int)this.y, (int)this.z)) + 0.01f;
         this.setColor((15f / this.light),(15f / this.light), (15f / this.light));
         assert clientWorld != null;
         this.xo = this.x;
@@ -54,14 +54,14 @@ public class SandMote extends SimpleAnimatedParticle {
         if (this.age >= this.lifetime) {
             this.remove();
         } else {
-            if (this.level.getFluidState(new BlockPos(this.x, this.y, this.z)).is(FluidTags.WATER) || this.level.getFluidState(new BlockPos(this.x, this.y, this.z)).is(FluidTags.LAVA)) {
+            if (this.level.getFluidState(new BlockPos((int)this.x, (int)this.y, (int)this.z)).is(FluidTags.WATER) || this.level.getFluidState(new BlockPos((int)this.x, (int)this.y, (int)this.z)).is(FluidTags.LAVA)) {
                 this.yd = Sinefunc();
                 this.xd = 0.2;
                 this.zd = 0.2;
                 this.yd = (this.yd - 0.0025) + Sinefunc();
                 this.roll += 3.1415927F * this.field_3809 * 0.5F;
                 ++groundtimer;
-            } else if (this.onGround || this.y < 63 || this.level.getBlockState(new BlockPos(this.x, this.y, this.z)).getMaterial().blocksMotion()) {
+            } else if (this.onGround || this.y < 63 || this.level.getBlockState(new BlockPos((int)this.x, (int)this.y, (int)this.z)).blocksMotion()) {
                 this.remove();
             } else {
                 this.xd = 0.6;

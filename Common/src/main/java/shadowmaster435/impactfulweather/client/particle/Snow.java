@@ -33,7 +33,7 @@ public class Snow extends SimpleAnimatedParticle {
         this.xo = this.x;
         this.yo = this.y;
         this.zo = this.z;
-        this.light = level.getLightLevelDependentMagicValue(new BlockPos(this.x, this.y, this.z)) + 0.01f;
+        this.light = level.getLightLevelDependentMagicValue(new BlockPos((int)this.x, (int)this.y, (int)this.z)) + 0.01f;
         this.setColor((15f / this.light),(15f / this.light), (15f / this.light));
         ++this.age;
         if (this.age < 10) {
@@ -41,11 +41,11 @@ public class Snow extends SimpleAnimatedParticle {
         } else {
             this.alpha = 1f;
         }
-        if (this.onGround || this.level.getFluidState(new BlockPos(this.x, this.y, this.z)).is(FluidTags.WATER) || this.level.getFluidState(new BlockPos(this.x, this.y, this.z)).is(FluidTags.LAVA)) {
+        if (this.onGround || this.level.getFluidState(new BlockPos((int)this.x, (int)this.y, (int)this.z)).is(FluidTags.WATER) || this.level.getFluidState(new BlockPos((int)this.x, (int)this.y, (int)this.z)).is(FluidTags.LAVA)) {
             this.groundtimer = this.groundtimer - 1;
             this.yd = 0;
             this.quadSize = this.quadSize - 0.035f;
-            if (this.groundtimer <= 0 || this.level.getBlockState(new BlockPos(this.x, this.y, this.z)).getMaterial().blocksMotion()) {
+            if (this.groundtimer <= 0 || this.level.getBlockState(new BlockPos((int)this.x, (int)this.y, (int)this.z)).blocksMotion()) {
                 this.remove();
             }
         } else {

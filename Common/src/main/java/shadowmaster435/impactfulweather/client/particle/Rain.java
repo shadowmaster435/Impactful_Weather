@@ -35,37 +35,25 @@ public class Rain extends SimpleAnimatedParticle {
         rainamount = 2;
 
 
-        this.light = world.getLightLevelDependentMagicValue(new BlockPos(this.x, this.y, this.z)) + 0.01f;
+        this.light = world.getLightLevelDependentMagicValue(new BlockPos((int)this.x, (int)this.y, (int)this.z)) + 0.01f;
         this.setColor((15f / this.light), (15f / this.light), (15f / this.light));
 
     }
 
     public void tick() {
-        this.light = level.getLightLevelDependentMagicValue(new BlockPos(this.x, this.y, this.z)) + 0.01f;
+        this.light = level.getLightLevelDependentMagicValue(new BlockPos((int)this.x, (int)this.y, (int)this.z)) + 0.01f;
         this.setColor((15f / this.light),(15f / this.light), (15f / this.light));
         this.quadSize = 0.125f;
 
         this.xo = this.x;
         this.yo = this.y;
         this.zo = this.z;
-        Minecraft client = Minecraft.getInstance();
 
-        if (this.onGround || this.level.getBlockState(new BlockPos(this.x, this.y, this.z)).getMaterial().blocksMotion() || this.level.getFluidState(new BlockPos(this.x, this.y, this.z)).is(FluidTags.WATER) || this.level.getFluidState(new BlockPos(this.x, this.y, this.z)).is(FluidTags.LAVA)) {
+        if (this.onGround || this.level.getBlockState(new BlockPos((int)this.x, (int)this.y, (int)this.z)).blocksMotion() || this.level.getFluidState(new BlockPos((int)this.x, (int)this.y, (int)this.z)).is(FluidTags.WATER) || this.level.getFluidState(new BlockPos((int)this.x, (int)this.y, (int)this.z)).is(FluidTags.LAVA)) {
 
-            if (client.cameraEntity != null && client.level != null) {
 
-                Camera camera = client.gameRenderer.getMainCamera();
-                BlockPos blockPos2 = camera.getBlockPosition();
-                BlockPos blockPos = new BlockPos(camera.getPosition());
-                if (blockPos2.getY() > blockPos.getY() + 1 && client.level.getHeightmapPos(Heightmap.Types.MOTION_BLOCKING, blockPos).getY() > Mth.floor((float) blockPos.getY())) {
-                    client.level.playLocalSound(blockPos2, ModRegistry.RAINDROP, SoundSource.WEATHER, 2F, 0.5F, false);
-                } else {
-
-                }
-
-            }
             if (ClientConfig.INSTANCE.particleToggles.rainsplash.get()) {
-                if (!this.level.getFluidState(new BlockPos(this.x, this.y, this.z)).is(FluidTags.WATER)) {
+                if (!this.level.getFluidState(new BlockPos((int)this.x, (int)this.y, (int)this.z)).is(FluidTags.WATER)) {
                     level.addParticle(ModRegistry.RAINSPLASH.get(), xo, yo + 0.1, zo, 0, 0, 0);
 
                 }

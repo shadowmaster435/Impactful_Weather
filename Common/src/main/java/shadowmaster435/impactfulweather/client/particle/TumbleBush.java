@@ -23,7 +23,7 @@ public class TumbleBush extends TextureSheetParticle {
         this.setSize(1F, 1F);
         this.lifetime = 100;
         this.setSprite(sprites.get(world.random));
-        this.light = world.getLightLevelDependentMagicValue(new BlockPos(this.x, this.y, this.z)) + 0.01f;
+        this.light = world.getLightLevelDependentMagicValue(new BlockPos((int)this.x, (int)this.y, (int)this.z)) + 0.01f;
         this.setColor((15f / this.light),(15f / this.light), (15f / this.light));
     }
     public int age1;
@@ -31,7 +31,7 @@ public class TumbleBush extends TextureSheetParticle {
 
     public static float rotvel = 0;
     public void tick() {
-        this.light = level.getLightLevelDependentMagicValue(new BlockPos(this.x, this.y, this.z)) + 0.01f;
+        this.light = level.getLightLevelDependentMagicValue(new BlockPos((int)this.x, (int)this.y, (int)this.z)) + 0.01f;
         this.setColor((15f / this.light),(15f / this.light), (15f / this.light));
         this.xo = this.x;
         this.yo = this.y;
@@ -48,7 +48,7 @@ public class TumbleBush extends TextureSheetParticle {
         } else {
             this.alpha = 1f;
         }
-        if (this.level.getBlockState(new BlockPos(this.x, this.y, this.z)).getMaterial().blocksMotion()) {
+        if (this.level.getBlockState(new BlockPos((int)this.x, (int)this.y, (int)this.z)).blocksMotion()) {
             this.remove();
         }
         if (this.onGround ) {
@@ -59,18 +59,18 @@ public class TumbleBush extends TextureSheetParticle {
             } else {
                 this.yd = this.yd * -1;
             }
-        } else if (this.level.getFluidState(new BlockPos(this.x, this.y, this.z)).is(FluidTags.WATER)) {
+        } else if (this.level.getFluidState(new BlockPos((int)this.x, (int)this.y, (int)this.z)).is(FluidTags.WATER)) {
             for (int b = 0; b < 8; ++b) {
-                this.level.addParticle(ParticleTypes.SPLASH,this.x, this.y, this.z,1,1.2,1);
+                this.level.addParticle(ParticleTypes.SPLASH,(int)this.x, (int)this.y, (int)this.z,1,1.2,1);
             }
             this.remove();
             ++groundtimer;
         }
-        else if (this.level.getFluidState(new BlockPos(this.x, this.y, this.z)).is(FluidTags.LAVA)) {
+        else if (this.level.getFluidState(new BlockPos((int)this.x, (int)this.y, (int)this.z)).is(FluidTags.LAVA)) {
             for (int i = 0; i < 4; ++i) {
-                this.level.addParticle(ParticleTypes.LARGE_SMOKE,this.x, this.y, this.z,0.4,0.2,0.4);
-                this.level.addParticle(ParticleTypes.FLAME,this.x, this.y, this.z,0.4,0.2,0.4);
-                this.level.addParticle(ParticleTypes.LAVA,this.x, this.y, this.z,0.4,0.2,0.4);
+                this.level.addParticle(ParticleTypes.LARGE_SMOKE,(int)this.x, (int)this.y, (int)this.z,0.4,0.2,0.4);
+                this.level.addParticle(ParticleTypes.FLAME,(int)this.x, (int)this.y, (int)this.z,0.4,0.2,0.4);
+                this.level.addParticle(ParticleTypes.LAVA,(int)this.x, (int)this.y, (int)this.z,0.4,0.2,0.4);
 
             }
             this.remove();

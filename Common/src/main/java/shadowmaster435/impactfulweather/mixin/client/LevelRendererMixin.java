@@ -11,6 +11,7 @@ import net.minecraft.client.renderer.LevelRenderer;
 import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.Vec3i;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.resources.ResourceLocation;
@@ -25,6 +26,7 @@ import net.minecraft.world.level.block.CampfireBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.joml.Matrix4f;
 import org.spongepowered.asm.mixin.Mixin;
@@ -35,6 +37,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import shadowmaster435.impactfulweather.BiomeParticleWeather;
+import shadowmaster435.impactfulweather.client.util.ParticleEngine;
 import shadowmaster435.impactfulweather.client.util.ParticleUtil;
 import shadowmaster435.impactfulweather.config.ClientConfig;
 
@@ -57,12 +60,13 @@ public abstract class LevelRendererMixin {
 
     @Inject(at = @At("HEAD"), method = "renderSnowAndRain")
     private void impactfulweather$renderSnowAndRain(LightTexture manager, float f, double d, double e, double g, CallbackInfo ci) {
-        ParticleUtil.spawnweatherparticles();
+
     }
 
     @Inject(at = @At("HEAD"), method = "tick")
     private void impactfulweather$tick(CallbackInfo ci) {
-        ParticleUtil.netherweatherlogic();
+        ParticleEngine.tick();
+        ParticleEngine.netherweatherlogic();
     }
 
     @Inject(method = "renderSnowAndRain", at = @At(value = "INVOKE", target = "Lcom/mojang/blaze3d/systems/RenderSystem;setShaderTexture(ILnet/minecraft/resources/ResourceLocation;)V", shift = At.Shift.AFTER))
@@ -87,7 +91,8 @@ public abstract class LevelRendererMixin {
         if (!(f <= 0.0F)) {
             Random random = new Random((long)this.ticks * 312987231L);
             LevelReader worldView = client.level;
-            BlockPos blockPos = new BlockPos(camera.getPosition());
+            Vec3 cpos = camera.getPosition();
+            BlockPos blockPos = new BlockPos((int)cpos.x, (int) cpos.y,(int) cpos.z);
             BlockPos blockPos2 = null;
             int i = (int)(100.0F * f * f) / (client.options.particles().get() == ParticleStatus.DECREASED ? 2 : 1);
 
@@ -96,7 +101,7 @@ public abstract class LevelRendererMixin {
                 int l = random.nextInt(21) - 10;
                 BlockPos blockPos3 = worldView.getHeightmapPos(Heightmap.Types.MOTION_BLOCKING, blockPos.offset(k, 0, l));
                 Biome biome = (Biome)worldView.getBiome(blockPos3).value();
-                if (blockPos3.getY() > worldView.getMinBuildHeight() && blockPos3.getY() <= blockPos.getY() + 10 && blockPos3.getY() >= blockPos.getY() - 10 && biome.getPrecipitation() == Biome.Precipitation.RAIN && biome.warmEnoughToRain(blockPos3)) {
+                if (blockPos3.getY() > worldView.getMinBuildHeight() && blockPos3.getY() <= blockPos.getY() + 10 && blockPos3.getY() >= blockPos.getY() - 10 && biome.getPrecipitationAt(blockPos3) == Biome.Precipitation.RAIN && biome.warmEnoughToRain(blockPos3)) {
                     blockPos2 = blockPos3.below();
                     if (client.options.particles().get() == ParticleStatus.MINIMAL) {
                         break;

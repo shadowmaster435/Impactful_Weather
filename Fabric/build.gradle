@@ -9,7 +9,7 @@ plugins {
 }
 
 archivesBaseName = rootProject.name
-version = "v${modVersion}-${minecraftVersion}-Fabric"
+version = "v${modVersion}-${minecraft_version}-Fabric"
 group = modMavenGroup
 
 repositories {
@@ -36,21 +36,19 @@ dependencies {
     compileOnly project(":Common")
 
     // Minecraft
-    minecraft "com.mojang:minecraft:${minecraftVersion}"
+    minecraft "com.mojang:minecraft:${minecraft_version}"
     mappings loom.layered() {
         officialMojangMappings()
-//        parchment("org.parchmentmc.data:parchment-${minecraftVersion}:${parchmentMappingsVersion}@zip")
+//        parchment("org.parchmentmc.data:parchment-${minecraft_version}:${parchmentMappingsVersion}@zip")
     }
 
     // Fabric
     modImplementation "net.fabricmc:fabric-loader:${fabricVersion}"
-    modImplementation "net.fabricmc.fabric-api:fabric-api:${fabricApiVersion}"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_api_version}"
 
     // Forge Configs
-    modImplementation "fuzs.forgeconfigapiport:forgeconfigapiport-fabric:5.0.4"
+    modImplementation "fuzs.forgeconfigapiport:forgeconfigapiport-fabric:8.0.0"
 
-    // Mod Menu
-    modImplementation "com.terraformersmc:modmenu:5.0.2"
 }
 
 loom {
@@ -202,7 +200,7 @@ curseforge {
             addGameVersion it.trim()
         }
         mainArtifact(remapJar) {
-            displayName = "[FABRIC] [${minecraftVersion}] ${rootProject.name}-v${modVersion}"
+            displayName = "[FABRIC] [${minecraft_version}] ${rootProject.name}-v${modVersion}"
             relations {
                 requiredDependency 'fabric-api'
                 requiredDependency 'forge-config-api-port-fabric'
@@ -222,7 +220,7 @@ modrinth {
     token = project.findProperty('modrinthApiToken')
     projectId = projectModrinthId
     versionNumber = project.version
-    versionName = "[FABRIC] [${minecraftVersion}] ${rootProject.name}-v${modVersion}"
+    versionName = "[FABRIC] [${minecraft_version}] ${rootProject.name}-v${modVersion}"
     changelog = file('../CHANGELOG.md').text
     versionType = projectReleaseType
     uploadFile = remapJar // This is the java jar task

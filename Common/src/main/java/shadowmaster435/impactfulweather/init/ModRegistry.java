@@ -16,7 +16,6 @@ import shadowmaster435.impactfulweather.core.init.RegistryReference;
 public class ModRegistry {
     private static final RegistryManager REGISTRY = CoreServices.ABSTRACTIONS.createRegistryManager(BiomeParticleWeather.MOD_ID);
 
-    public static final SoundEvent RAINDROP = SoundEvent.createVariableRangeEvent(new ResourceLocation("impactfulweather:sounds/raindrop"));
     public static final RegistryReference<SimpleParticleType> SANDMOTE = registerParticleType("sandmote", true);
     public static final RegistryReference<SimpleParticleType> REDSANDMOTE = registerParticleType("redsandmote", true);
     public static final RegistryReference<SimpleParticleType> RAIN = registerParticleType("rain", true);

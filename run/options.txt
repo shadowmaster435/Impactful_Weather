@@ -1,4 +1,4 @@
-version:3218
+version:3465
 autoJump:false
 operatorItemsTab:false
 autoSuggestions:true
@@ -26,6 +26,10 @@ fov:0.0
 screenEffectScale:1.0
 fovEffectScale:1.0
 darknessEffectScale:1.0
+glintSpeed:0.5
+glintStrength:0.75
+damageTiltStrength:1.0
+highContrast:false
 gamma:0.5
 renderDistance:8
 simulationDistance:9
@@ -53,12 +57,12 @@ advancedItemTooltips:false
 pauseOnLostFocus:true
 overrideWidth:0
 overrideHeight:0
-heldItemTooltips:true
 chatHeightFocused:1.0
 chatDelay:0.0
 chatHeightUnfocused:0.4375
 chatScale:1.0
 chatWidth:1.0
+notificationDisplayTime:1.0
 mipmapLevels:4
 useNativeTransport:true
 mainHand:"right"
@@ -79,6 +83,7 @@ allowServerListing:true
 onlyShowSecureChat:false
 panoramaScrollSpeed:1.0
 telemetryOptInExtra:false
+onboardAccessibility:false
 key_key.attack:key.mouse.left
 key_key.use:key.mouse.right
 key_key.forward:key.keyboard.w
@@ -113,7 +118,6 @@ key_key.hotbar.6:key.keyboard.6
 key_key.hotbar.7:key.keyboard.7
 key_key.hotbar.8:key.keyboard.8
 key_key.hotbar.9:key.keyboard.9
-key_key.modmenu.open_menu:key.keyboard.unknown
 soundCategory_master:1.0
 soundCategory_music:0.0
 soundCategory_record:1.0
