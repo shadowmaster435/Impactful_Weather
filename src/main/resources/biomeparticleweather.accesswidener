@@ -1,0 +1,26 @@
+accessWidener v2 named
+accessible field net/minecraft/entity/LightningEntity ambientTick I
+accessible field net/minecraft/entity/Entity firstUpdate Z
+accessible field net/minecraft/client/particle/BillboardParticle rotation Lorg/joml/Quaternionf;
+accessible field net/minecraft/client/particle/Particle prevPosX D
+accessible field net/minecraft/client/particle/Particle prevPosY D
+accessible field net/minecraft/client/particle/Particle prevPosZ D
+accessible field net/minecraft/client/particle/Particle red F
+accessible field net/minecraft/client/particle/Particle green F
+accessible field net/minecraft/client/particle/Particle blue F
+accessible field net/minecraft/client/particle/Particle alpha F
+accessible field net/minecraft/client/particle/Particle x D
+accessible field net/minecraft/client/particle/Particle y D
+accessible field net/minecraft/client/particle/Particle z D
+accessible field net/minecraft/client/particle/Particle prevAngle F
+accessible field net/minecraft/client/particle/Particle angle F
+accessible method net/minecraft/client/particle/SpriteBillboardParticle getMinU ()F
+accessible method net/minecraft/client/particle/SpriteBillboardParticle getMinV ()F
+accessible method net/minecraft/client/particle/SpriteBillboardParticle getMaxU ()F
+accessible method net/minecraft/client/particle/SpriteBillboardParticle getMaxV ()F
+accessible method net/minecraft/client/gui/screen/GameMenuScreen createButton (Lnet/minecraft/text/Text;Ljava/util/function/Supplier;)Lnet/minecraft/client/gui/widget/ButtonWidget;
+accessible method net/minecraft/client/gui/screen/Screen addDrawableChild (Lnet/minecraft/client/gui/Element;)Lnet/minecraft/client/gui/Element;
+accessible method net/minecraft/client/gui/widget/TextFieldWidget onChanged (Ljava/lang/String;)V
+accessible field net/minecraft/client/particle/SpriteBillboardParticle sprite Lnet/minecraft/client/texture/Sprite;
+accessible field net/minecraft/client/texture/SpriteAtlasTexture height I
+accessible field net/minecraft/client/texture/SpriteAtlasTexture width I

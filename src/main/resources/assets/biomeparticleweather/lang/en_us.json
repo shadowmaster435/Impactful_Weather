@@ -1,0 +1,22 @@
+{
+  "biomeparticleweather.rain_amount": "Rain Amount",
+  "biomeparticleweather.heavy_rain_amount": "Rain Amount When Thundering",
+  "biomeparticleweather.snow_amount": "Snow Amount",
+  "biomeparticleweather.fog_amount": "Fog Amount",
+  "biomeparticleweather.sand_mote_amount": "Sand Mote Amount",
+  "biomeparticleweather.tumblebush_amount": "Tumblebush Amount",
+  "biomeparticleweather.lightning_particle_density": "Lightning Particle Density",
+  "biomeparticleweather.updraft_amount": "Updraft Amount",
+  "biomeparticleweather.soul_amount": "Soul Amount",
+  "biomeparticleweather.weeping_tear_amount": "Weeping Tear Amount",
+  "biomeparticleweather.spore_amount": "Spore Amount",
+  "biomeparticleweather.wind_amount": "Wind Amount",
+  "biomeparticleweather.rain_trails": "Rain Trail Particles",
+  "biomeparticleweather.rain_splash_particles": "Rain Splash Particles",
+  "biomeparticleweather.rain_surface_ripples": "Rain Water Ripples",
+  "biomeparticleweather.vanilla_lightning": "Vanilla Lightning",
+  "biomeparticleweather.vanilla_rain_rendering": "Vanilla Rain",
+  "biomeparticleweather.vanilla_rain_splash": "Vanilla Rain Splash Particles"
+
+
+}
