@@ -17,6 +17,7 @@ import net.minecraft.util.math.random.Random;
 import org.jetbrains.annotations.Nullable;
 import org.shadowmaster435.biomeparticleweather.BiomeParticleWeather;
 import org.shadowmaster435.biomeparticleweather.util.ParticleEngine;
+import org.shadowmaster435.biomeparticleweather.util.ParticleSettings;
 import org.shadowmaster435.biomeparticleweather.util.Vector3;
 
 public class Rain extends ParticleBase {
@@ -36,20 +37,32 @@ public class Rain extends ParticleBase {
         scale = 0.125f;
 
         velocityY = -1;
+        var trails = ParticleSettings.get_bool("rain_trails");
+        var splash = ParticleSettings.get_bool("rain_splash");
+        var ripples = ParticleSettings.get_bool("rain_surface_ripples");
+
         setSprite(provider.getSprite(Random.create(random_seed)));
-        if (alpha >= 0.8f && (get_pos().y > MinecraftClient.getInstance().player.getPos().y - 8)) {
+        if (alpha >= 0.8f && (get_pos().y > MinecraftClient.getInstance().player.getPos().y - 8) && trails) {
             ParticleEngine.spawn_particle(BiomeParticleWeather.RAIN_TRAIL, new Vector3(get_pos().add(new Vector3(0, 0.01, 0))));
         }
         BlockPos blockPos = BlockPos.ofFloored(this.x, this.y, this.z);
         FluidState fluidState = this.world.getFluidState(blockPos);
+
         if (!fluidState.isEmpty()) {
             var height = fluidState.getHeight();
-            ParticleEngine.spawn_particle(BiomeParticleWeather.RAIN_SPLASH, new Vector3(x, blockPos.getY() + height, z));
-            ParticleEngine.spawn_particle(BiomeParticleWeather.RAIN_RIPPLE, new Vector3(x, blockPos.getY() + height, z));
+            if (splash) {
+                ParticleEngine.spawn_particle(BiomeParticleWeather.RAIN_SPLASH, new Vector3(x, blockPos.getY() + height, z));
+
+            }
+            if (ripples) {
+                ParticleEngine.spawn_particle(BiomeParticleWeather.RAIN_RIPPLE, new Vector3(x, blockPos.getY() + height, z));
+            }
             markDead();
         } else {
             if (onGround && get_collision_direction().name().equals("UP")) {
-                ParticleEngine.spawn_particle(BiomeParticleWeather.RAIN_SPLASH, new Vector3(get_hit_pos().add(new Vec3d(0, 1.0625, 0))));
+                if (splash) {
+                    ParticleEngine.spawn_particle(BiomeParticleWeather.RAIN_SPLASH, new Vector3(get_hit_pos().add(new Vec3d(0, 1.0625, 0))));
+                }
                 markDead();
             }
         }

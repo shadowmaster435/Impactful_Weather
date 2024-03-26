@@ -20,7 +20,7 @@ public class TypedTextFieldWidget extends TextFieldWidget {
         this.id = parameters.name();
         this.type = parameters.type();
     }
-    public static record TrackedListener(String text, String id, String type) {
+    public record TrackedListener(String text, String id, String type) {
 
     }
 

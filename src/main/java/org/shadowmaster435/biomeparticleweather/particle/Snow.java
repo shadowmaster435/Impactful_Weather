@@ -15,14 +15,16 @@ public class Snow extends ParticleBase {
         super(world, pos, spriteProvider);
         maxAge = 100;
         alpha = 0;
+        angular_velocity = 4;
         fade_alpha(1, 10);
         setSprite(spriteProvider);
+        collidesWithWorld = true;
     }
 
     @Override
     public void tick() {
         super.tick();
-        velocityY = -0.05;
+        velocityY = -0.25;
         if (onGround && age < 90) {
             age = 90;
         }

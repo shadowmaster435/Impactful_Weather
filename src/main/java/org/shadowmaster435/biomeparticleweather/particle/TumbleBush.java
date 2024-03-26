@@ -32,11 +32,13 @@ public class TumbleBush extends ModelParticleBase {
     public float current_rot = 0;
     public TumbleBush(ClientWorld world, Vector3 pos, FabricSpriteProvider spriteProvider) {
         super(world, pos, spriteProvider);
-        maxAge = 600;
+        maxAge = 100;
         scale = 0.5f;
         current_sprite = (int) Math.round(Math.random() * 3);
         collidesWithWorld = true;
-        setBoundingBoxSpacing(0.005f, 0.005f);
+        setBoundingBoxSpacing(1f, 1f);
+        alpha = 0;
+        fade_alpha(1, 10);
         make_model();
     }
 
@@ -60,7 +62,7 @@ public class TumbleBush extends ModelParticleBase {
             if (!hit_wall) {
                 current_rot += 0.25F * tickDelta;
             } else {
-                current_rot -= ((0.125F * tickDelta) * (1 - (float) ((age - 540) / 60)));
+                current_rot -= ((0.125F * tickDelta) * (1 - (float) ((age - 40) / 60)));
             }
             transform = new VoxelTransform(transform.position(), Vector3.ONE, new Vector3(0, 0, -current_rot), Vector3.ZERO);
 
@@ -70,22 +72,19 @@ public class TumbleBush extends ModelParticleBase {
     public void tick() {
         super.tick();
         velocityY -= 0.05;
-
-        if (!hit_wall) {
-            velocityX = 0.25;
+        if (age == 10) {
+            fade_alpha(1, 60);
 
         }
-        if (is_colliding()) {
-             var dir = get_collision_direction();
-             bounce();
-             if (hit_wall) {
-                 velocityY *= 0.55f;
-             }
-             if (dir.getAxis().isHorizontal()) {
-                 hit_wall = true;
-                 age = 540;
-                 fade_alpha(0, 40);
-             }
+        if (age == 60) {
+            fade_alpha(0, 35);
+
+        }
+        velocityX = 0.35;
+
+        if (onGround) {
+            velocityY *= -0.8f;
+
         }
 
     }

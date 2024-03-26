@@ -14,6 +14,7 @@ public class StormSoulImpact extends ParticleBase {
     public StormSoulImpact(ClientWorld world, Vector3 pos, FabricSpriteProvider spriteProvider) {
         super(world, pos, spriteProvider);
         maxAge = 10;
+        scale = 0.5f;
     }
 
     public void tick() {

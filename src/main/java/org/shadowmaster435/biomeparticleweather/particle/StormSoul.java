@@ -8,6 +8,8 @@ import net.minecraft.client.particle.ParticleFactory;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.particle.DefaultParticleType;
 import org.jetbrains.annotations.Nullable;
+import org.shadowmaster435.biomeparticleweather.BiomeParticleWeather;
+import org.shadowmaster435.biomeparticleweather.util.ParticleEngine;
 import org.shadowmaster435.biomeparticleweather.util.Vector3;
 
 public class StormSoul extends ParticleBase {
@@ -15,18 +17,22 @@ public class StormSoul extends ParticleBase {
         super(world, pos, spriteProvider);
         maxAge = 100;
         alpha = 0;
+        collidesWithWorld = true;
+        scale = 0.35f;
         fade_alpha(1, 10);
-        setSprite(spriteProvider);
+        setBoundingBoxSpacing(0.05f, 0.25f);
+        setSpriteForAge(spriteProvider);
     }
 
     @Override
     public void tick() {
         super.tick();
-        velocityY = -0.05;
+        velocityY = -0.1;
         if (onGround && age < 90) {
-            //spawnimpact
+            ParticleEngine.spawn_particle(BiomeParticleWeather.STORM_SOUL_IMPACT, get_pos().with_y(get_pos().y + .35f));
             markDead();
         }
+        setSprite(provider.getSprite(((age * 3) + ((int) world.getTime() % 2000)) % maxAge, maxAge));
 
 
     }

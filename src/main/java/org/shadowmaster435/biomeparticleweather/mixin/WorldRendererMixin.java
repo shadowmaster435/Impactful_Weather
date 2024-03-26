@@ -37,7 +37,7 @@ public class WorldRendererMixin {
     
     @Inject(at = @At("HEAD"), method = "renderWeather", cancellable = true) 
     public void renderWeather(LightmapTextureManager manager, float tickDelta, double cameraX, double cameraY, double cameraZ, CallbackInfo ci){
-        if (ParticleSettings.get_bool("vanilla_rain_rendering")) {
+        if (!ParticleSettings.get_bool("vanilla_rain_rendering")) {
             ci.cancel();
         }
     }
@@ -52,7 +52,7 @@ public class WorldRendererMixin {
 
     @Inject(at = @At("HEAD"), method = "tickRainSplashing", cancellable = true)
     public void tickRainSplashing(Camera camera, CallbackInfo ci){
-        if (ParticleSettings.get_bool("vanilla_rain_rendering")) {
+        if (!ParticleSettings.get_bool("vanilla_rain_rendering")) {
             float f = this.client.world.getRainGradient(1.0F) / (MinecraftClient.isFancyGraphicsOrBetter() ? 1.0F : 2.0F);
             if (!(f <= 0.0F)) {
                 Random random = Random.createLocal();
@@ -82,7 +82,10 @@ public class WorldRendererMixin {
                             double h = fluidState.getHeight(worldView, blockPos2);
                             double m = Math.max(g, h);
                             ParticleEffect particleEffect = !fluidState.isIn(FluidTags.LAVA) && !blockState.isOf(Blocks.MAGMA_BLOCK) && !CampfireBlock.isLitCampfire(blockState) ? ParticleTypes.RAIN : ParticleTypes.SMOKE;
-                            this.client.world.addParticle(particleEffect, (double)blockPos2.getX() + d, (double)blockPos2.getY() + m, (double)blockPos2.getZ() + e, 0.0, 0.0, 0.0);
+                            if (ParticleSettings.get_bool("vanilla_rain_splash")) {
+                                this.client.world.addParticle(particleEffect, (double)blockPos2.getX() + d, (double)blockPos2.getY() + m, (double)blockPos2.getZ() + e, 0.0, 0.0, 0.0);
+
+                            }
                         }
                     }
                 }

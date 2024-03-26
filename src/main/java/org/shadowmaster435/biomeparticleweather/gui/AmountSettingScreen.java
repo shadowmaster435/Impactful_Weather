@@ -4,6 +4,7 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.gui.tooltip.Tooltip;
 import net.minecraft.client.gui.widget.*;
 import net.minecraft.text.Text;
 import org.shadowmaster435.biomeparticleweather.util.ConfigFile;
@@ -15,7 +16,7 @@ import java.util.HashMap;
 import java.util.Objects;
 
 @Environment(EnvType.CLIENT)
-public class AmountSettingScreen extends Screen {
+public class AmountSettingScreen extends PagedScreen {
 
 
     private final Screen parent;
@@ -27,17 +28,18 @@ public class AmountSettingScreen extends Screen {
         ConfigFile.save_config();
     }
 
+
+
+
     public AmountSettingScreen(Screen parent) {
         // The parameter is the title of the screen,
         // which will be narrated when you enter the screen.
-        super(Text.literal("My tutorial screen"));
+        super(parent);
         this.parent = parent;
     }
 
     public HashMap<ConfigParameters, TextFieldWidget> options = new HashMap<>();
-    public TextFieldWidget text;
 
-    public String tst = "";
 
     @Override
     protected void init() {
@@ -46,6 +48,17 @@ public class AmountSettingScreen extends Screen {
             add_setting(new ConfigParameters("heavy_rain_amount", "int"));
             add_setting(new ConfigParameters("fog_amount", "int"));
             add_setting(new ConfigParameters("wind_amount", "int"));
+            add_setting(new ConfigParameters("sand_mote_amount", "int"));
+            add_setting(new ConfigParameters("red_sand_mote_amount", "int"));
+            add_setting(new ConfigParameters("snow_amount", "int"));
+            add_setting(new ConfigParameters("blizzard_snow_amount", "int"));
+            add_setting(new ConfigParameters("blizzard_wind_amount", "int"));
+            add_setting(new ConfigParameters("tumblebush_amount", "int"));
+            add_setting(new ConfigParameters("updraft_amount", "int"));
+            add_setting(new ConfigParameters("spore_amount", "int"));
+            add_setting(new ConfigParameters("weeping_tear_amount", "int"));
+            add_setting(new ConfigParameters("soul_amount", "int"));
+            add_setting(new ConfigParameters("lightning_particle_density", "int"));
 
             for (ConfigParameters parameters : options.keySet()) {
                 if (Objects.equals(parameters.type(), "float")) {
@@ -63,13 +76,16 @@ public class AmountSettingScreen extends Screen {
 
 
     public void add_setting(ConfigParameters parameters) {
-        var text_display = new TextWidget(4,4 + (20 * options.size()),512,16,Text.translatable("biomeparticleweather." + parameters.name()),MinecraftClient.getInstance().textRenderer);
-        var text_input = new TypedTextFieldWidget(MinecraftClient.getInstance().textRenderer, width - 68,4 + (20 * options.size()),64,16,Text.of(""), parameters);
+        var text_display = new TextWidget(4,4 + (20 * (options.size() % 10)),512,16,Text.translatable("biomeparticleweather." + parameters.name()),MinecraftClient.getInstance().textRenderer);
+        var text_input = new TypedTextFieldWidget(MinecraftClient.getInstance().textRenderer, width - 68,4 + (20 * (options.size() % 10)),64,16,Text.of(""), parameters);
         text_display.alignLeft();
         options.put(parameters, text_input);
+        text_display.setTooltip(Tooltip.of(Text.translatable("biomeparticleweather." + parameters.name() + ".tooltip") ));
+
         text_input.setTrackedChangedListener((a) -> this.changed(new TypedTextFieldWidget.TrackedListener(a.text(), a.id(), a.type())));
         addDrawableChild(text_display);
         addDrawableChild(text_input);
+        add_entry(text_display, text_input);
     }
 
     public void set_float_setting(String key, float value) {
@@ -113,8 +129,6 @@ public class AmountSettingScreen extends Screen {
             }
         }
     }
-    public void test(String string) {
-        System.out.println(string);
-    }
+
 
 }

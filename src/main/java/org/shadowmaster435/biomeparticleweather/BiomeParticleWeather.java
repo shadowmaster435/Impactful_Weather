@@ -1,9 +1,17 @@
 package org.shadowmaster435.biomeparticleweather;
 
+import com.mojang.blaze3d.systems.RenderSystem;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.particle.v1.FabricParticleTypes;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.client.particle.ParticleTextureSheet;
+import net.minecraft.client.render.BufferBuilder;
+import net.minecraft.client.render.Tessellator;
+import net.minecraft.client.render.VertexFormat;
+import net.minecraft.client.render.VertexFormats;
+import net.minecraft.client.texture.SpriteAtlasTexture;
+import net.minecraft.client.texture.TextureManager;
 import net.minecraft.particle.DefaultParticleType;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
@@ -42,6 +50,34 @@ public class BiomeParticleWeather implements ModInitializer {
     public static final DefaultParticleType SNOW = FabricParticleTypes.simple();
     public static final DefaultParticleType BLIZZARD_WIND = FabricParticleTypes.simple();
     public static final DefaultParticleType BLIZZARD_SNOW = FabricParticleTypes.simple();
+    public static final DefaultParticleType WEEPING_TEAR = FabricParticleTypes.simple();
+    public static final DefaultParticleType WEEPING_TEAR_SPLASH = FabricParticleTypes.simple();
+    public static final DefaultParticleType UPDRAFT = FabricParticleTypes.simple();
+    public static final DefaultParticleType STORM_SOUL = FabricParticleTypes.simple();
+    public static final DefaultParticleType STORM_SOUL_IMPACT = FabricParticleTypes.simple();
+    public static final DefaultParticleType WARPED_SPORE = FabricParticleTypes.simple();
+
+    public static final ParticleTextureSheet NO_CULL_PARTICLE_SHEET = new ParticleTextureSheet() {
+        @Override
+        public void begin(BufferBuilder builder, TextureManager textureManager) {
+            RenderSystem.depthMask(true);
+            RenderSystem.setShaderTexture(0, SpriteAtlasTexture.PARTICLE_ATLAS_TEXTURE);
+            RenderSystem.enableBlend();
+            RenderSystem.disableCull();
+            RenderSystem.defaultBlendFunc();
+            builder.begin(VertexFormat.DrawMode.QUADS, VertexFormats.POSITION_TEXTURE_COLOR_LIGHT);
+
+        }
+
+        @Override
+        public void draw(Tessellator tessellator) {
+            tessellator.draw();
+        }
+
+        public String toString() {
+            return "NO_CULL_PARTICLE_SHEET";
+        }
+    };
 
 
     @Override
@@ -62,9 +98,17 @@ public class BiomeParticleWeather implements ModInitializer {
         Registry.register(Registries.PARTICLE_TYPE, new Identifier("biomeparticleweather", "wind_trail"), WIND_TRAIL);
         Registry.register(Registries.PARTICLE_TYPE, new Identifier("biomeparticleweather", "sand_mote"), SAND_MOTE);
         Registry.register(Registries.PARTICLE_TYPE, new Identifier("biomeparticleweather", "red_sand_mote"), RED_SAND_MOTE);
+        Registry.register(Registries.PARTICLE_TYPE, new Identifier("biomeparticleweather", "snow"), SNOW);
+
         Registry.register(Registries.PARTICLE_TYPE, new Identifier("biomeparticleweather", "blizzard_wind"), BLIZZARD_WIND);
         Registry.register(Registries.PARTICLE_TYPE, new Identifier("biomeparticleweather", "blizzard_snow"), BLIZZARD_SNOW);
-        Registry.register(Registries.PARTICLE_TYPE, new Identifier("biomeparticleweather", "snow"), SNOW);
+        Registry.register(Registries.PARTICLE_TYPE, new Identifier("biomeparticleweather", "warped_spore"), WARPED_SPORE);
+        Registry.register(Registries.PARTICLE_TYPE, new Identifier("biomeparticleweather", "storm_soul"), STORM_SOUL);
+        Registry.register(Registries.PARTICLE_TYPE, new Identifier("biomeparticleweather", "storm_soul_impact"), STORM_SOUL_IMPACT);
+        Registry.register(Registries.PARTICLE_TYPE, new Identifier("biomeparticleweather", "weeping_tear"), WEEPING_TEAR);
+        Registry.register(Registries.PARTICLE_TYPE, new Identifier("biomeparticleweather", "weeping_tear_splash"), WEEPING_TEAR_SPLASH);
+        Registry.register(Registries.PARTICLE_TYPE, new Identifier("biomeparticleweather", "updraft"), UPDRAFT);
+
         ModResourceLoader.register();
     }
 

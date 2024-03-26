@@ -68,7 +68,7 @@ public class StaticMethods {
         GridWidget gridWidget2 = new GridWidget();
         GridWidget.Adder adder2 = gridWidget2.createAdder(2);
         gridWidget2.setPosition(0, 0);
-        Supplier<Screen> supplier = () -> {return new ConfigScreen(screen);};
+        Supplier<Screen> supplier = () -> new ConfigScreen(screen);
         var button = new ConfigButton(0, 0, 16, 16, Text.empty(), (a) -> {MinecraftClient.getInstance().setScreen(supplier.get());}, null);
         adder2.add(button);
         gridWidget2.refreshPositions();

@@ -27,6 +27,10 @@ public class ParticleUtil {
         var player = MinecraftClient.getInstance().player;
         return MinecraftClient.getInstance().world.getBiome(player.getBlockPos()).value().getPrecipitation(player.getBlockPos()) == Biome.Precipitation.RAIN;
     }
+
+    public static boolean can_rain(Vector3 pos) {
+        return MinecraftClient.getInstance().world.getBiome(pos.to_blockpos()).value().getPrecipitation(pos.to_blockpos()) == Biome.Precipitation.RAIN;
+    }
     public static RegistryEntry<Biome> get_biome_at(BlockPos pos) {
         return get_world().getBiome(pos);
     }

@@ -18,6 +18,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.random.Random;
 import org.jetbrains.annotations.Nullable;
 import org.joml.Vector3f;
+import org.shadowmaster435.biomeparticleweather.BiomeParticleWeather;
 import org.shadowmaster435.biomeparticleweather.util.ParticleUtil;
 import org.shadowmaster435.biomeparticleweather.util.RenderHelper;
 import org.shadowmaster435.biomeparticleweather.util.RenderParams;
@@ -29,27 +30,35 @@ public class Fog extends ParticleBase{
         maxAge = 40;
         alpha = 0.0f;
         scale = MathHelper.nextBetween(Random.createLocal(), 0.6f, 1.0f);
-
+        fade_alpha(0.45f, 10);
         angular_velocity = (float) Math.random();
     }
 
     public void tick() {
         var distance = MinecraftClient.getInstance().player.getPos().distanceTo(get_pos());
         var fade_delta = 1.0f - (distance / 16.0);
+        if (age == 10) {
+            fade_alpha(0.45f, 20);
+        }
+        if (age == 30) {
+            fade_alpha(.0f, 10);
+        }
         if (distance > 16 || ParticleUtil.get_world().getBlockState(BlockPos.ofFloored(get_pos())).isSolid()) {
             alpha = 0;
             markDead();
         } else {
 
-            alpha = (float) fade_delta / 4.0f;
+            /*alpha = (float) fade_delta / 4.0f;
             var max_distance = 3;
             if (distance < max_distance) {
                 alpha -= (float) ((max_distance - distance) / (4 * max_distance));
-            }
+            }*/
 
         }
         super.tick();
     }
+
+
 
     @Override
     public void buildGeometry(VertexConsumer vertexConsumer, Camera camera, float tickDelta) {
@@ -58,7 +67,7 @@ public class Fog extends ParticleBase{
             var life_delta = (((((float) age) + 0.001) / maxAge)) * Math.PI;
             var y_offset = (float) Math.sin(((delta + life_delta) % (Math.PI * 2)) - Math.PI) / 8;
             var params = new RenderParams(new Vector3f(0, 0, 0), 25 * i, scale / i);
-            RenderSystem.disableDepthTest();
+
             RenderHelper.render_particle_quad(vertexConsumer, camera, tickDelta, this, params);
 
         }

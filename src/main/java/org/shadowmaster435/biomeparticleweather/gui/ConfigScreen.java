@@ -42,27 +42,15 @@ public class ConfigScreen extends Screen {
 
     @Override
     protected void init() {
-        button1 = ButtonWidget.builder(Text.literal("Amount Config"), button -> {
-                    MinecraftClient.getInstance().setScreen(new AmountSettingScreen(this));
-                })
+        button1 = ButtonWidget.builder(Text.literal("Amount Config"), button -> MinecraftClient.getInstance().setScreen(new AmountSettingScreen(this)))
                 .dimensions(width / 2 - 205, 20, 200, 20)
-                .tooltip(Tooltip.of(Text.literal("Amount Config")))
                 .build();
-        button2 = ButtonWidget.builder(Text.literal("Toggles"), button -> {
-                    System.out.println("You clicked button2!");
-                })
+        button2 = ButtonWidget.builder(Text.literal("Toggles"), button -> MinecraftClient.getInstance().setScreen(new TogglesSettingScreen(this)))
                 .dimensions(width / 2 + 5, 20, 200, 20)
-                .tooltip(Tooltip.of(Text.literal("Tooltip of button2")))
                 .build();
-        text = new TextFieldWidget(MinecraftClient.getInstance().textRenderer, 1, 1, 64, 16, Text.empty());
 
         addDrawableChild(button1);
         addDrawableChild(button2);
-        addDrawableChild(text);
-    }
-
-    public void test(String string) {
-        System.out.println(string);
     }
 
 }

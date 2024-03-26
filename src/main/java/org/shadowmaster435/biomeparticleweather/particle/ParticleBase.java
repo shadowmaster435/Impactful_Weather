@@ -1,10 +1,17 @@
 package org.shadowmaster435.biomeparticleweather.particle;
 
+import com.mojang.blaze3d.systems.RenderSystem;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.particle.v1.FabricSpriteProvider;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.client.particle.*;
+import net.minecraft.client.render.BufferBuilder;
+import net.minecraft.client.render.Tessellator;
+import net.minecraft.client.render.VertexFormat;
+import net.minecraft.client.render.VertexFormats;
+import net.minecraft.client.texture.SpriteAtlasTexture;
+import net.minecraft.client.texture.TextureManager;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.particle.DefaultParticleType;
 import net.minecraft.util.hit.BlockHitResult;
@@ -119,6 +126,7 @@ public class ParticleBase extends SpriteBillboardParticle {
 
     @Override
     public ParticleTextureSheet getType() {
+
         return ParticleTextureSheet.PARTICLE_SHEET_TRANSLUCENT;
     }
 

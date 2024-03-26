@@ -1,22 +1,64 @@
 {
   "biomeparticleweather.rain_amount": "Rain Amount",
+  "biomeparticleweather.rain_amount.tooltip": "Amount of rain particles spawned per tick. 0 disables this particle in a non thunderstorm",
+
   "biomeparticleweather.heavy_rain_amount": "Rain Amount When Thundering",
+  "biomeparticleweather.heavy_rain_amount.tooltip": "Amount of rain particles spawned per tick while thundering. 0 disables this particle during a thunderstorm.",
+
   "biomeparticleweather.snow_amount": "Snow Amount",
+  "biomeparticleweather.snow_amount.tooltip": "Amount of snow particles spawned per tick. 0 disables this particle",
+
   "biomeparticleweather.fog_amount": "Fog Amount",
+  "biomeparticleweather.fog_amount.tooltip": "Amount of fog particles spawned per tick. 0 disables this particle",
+
+  "biomeparticleweather.blizzard_wind_amount": "Blizzard Wind Amount",
+  "biomeparticleweather.blizzard_wind_amount.tooltip": "Amount of blizzard wind particles spawned per tick. 0 disables this particle",
+
+  "biomeparticleweather.blizzard_snow_amount": "Blizzard Snow Amount",
+  "biomeparticleweather.blizzard_snow_amount.tooltip": "Amount of blizzard snow particles spawned per tick. 0 disables this particle",
+
   "biomeparticleweather.sand_mote_amount": "Sand Mote Amount",
+  "biomeparticleweather.sand_mote_amount.tooltip": "Amount of sand mote particles spawned per tick. 0 disables this particle",
+
+  "biomeparticleweather.red_sand_mote_amount": "Red Sand Mote Amount",
+  "biomeparticleweather.red_sand_mote_amount.tooltip": "Amount of red sand mote particles spawned per tick. 0 disables this particle",
+
   "biomeparticleweather.tumblebush_amount": "Tumblebush Amount",
+  "biomeparticleweather.tumblebush_amount.tooltip": "Amount of tumblebush particles spawned per tick. 0 disables this particle",
+
   "biomeparticleweather.lightning_particle_density": "Lightning Particle Density",
+  "biomeparticleweather.lightning_particle_density.tooltip": "Amount of lightning particles per line segment of lightning",
+
   "biomeparticleweather.updraft_amount": "Updraft Amount",
+  "biomeparticleweather.updraft_amount.tooltip": "Amount of updraft particles spawned per tick. 0 disables this particle",
+
   "biomeparticleweather.soul_amount": "Soul Amount",
+  "biomeparticleweather.soul_amount.tooltip": "Amount of storm soul particle spawn attempts per tick. 0 disables this particle",
+
   "biomeparticleweather.weeping_tear_amount": "Weeping Tear Amount",
+  "biomeparticleweather.weeping_tear_amount.tooltip": "Amount of weeping tear particle spawn attempts per tick. 0 disables this particle",
+
   "biomeparticleweather.spore_amount": "Spore Amount",
+  "biomeparticleweather.spore_amount.tooltip": "Amount of spore particles spawned per tick. 0 disables this particle",
+
   "biomeparticleweather.wind_amount": "Wind Amount",
+  "biomeparticleweather.wind_amount.tooltip": "Amount of wind particles spawned per tick. 0 disables this particle",
+
   "biomeparticleweather.rain_trails": "Rain Trail Particles",
-  "biomeparticleweather.rain_splash_particles": "Rain Splash Particles",
+  "biomeparticleweather.rain_trails.tooltip": "Turning this off may improve performance.",
+
+  "biomeparticleweather.rain_splash": "Rain Splash Particles",
+  "biomeparticleweather.rain_splash.tooltip": "Whether or not to spawn a splash particle when a rain drop lands.",
+
   "biomeparticleweather.rain_surface_ripples": "Rain Water Ripples",
-  "biomeparticleweather.vanilla_lightning": "Vanilla Lightning",
-  "biomeparticleweather.vanilla_rain_rendering": "Vanilla Rain",
-  "biomeparticleweather.vanilla_rain_splash": "Vanilla Rain Splash Particles"
+  "biomeparticleweather.rain_surface_ripples.tooltip": "Whether or not to spawn ripples whenever a rain drop lands on water.",
 
+  "biomeparticleweather.vanilla_lightning": "Vanilla Lightning Rendering",
+  "biomeparticleweather.vanilla_lightning.tooltip": "Whether or not to use vanilla lighting rendering instead of particles",
 
+  "biomeparticleweather.vanilla_rain_rendering": "Vanilla Rain Rendering",
+  "biomeparticleweather.vanilla_rain_rendering.tooltip": "Whether vanilla rain renders or not.",
+
+  "biomeparticleweather.vanilla_rain_splash": "Vanilla Rain Splash Particles",
+  "biomeparticleweather.vanilla_rain_splash.tooltip": "Whether vanilla rain particles spawn, always on if vanilla rain rendering is on."
 }

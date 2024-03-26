@@ -23,9 +23,16 @@ public class BiomeParticleWeatherClient implements ClientModInitializer {
         ParticleFactoryRegistry.getInstance().register(BiomeParticleWeather.WIND_TRAIL, WindTrail.Factory::new);
         ParticleFactoryRegistry.getInstance().register(BiomeParticleWeather.RED_SAND_MOTE, RedSandMote.Factory::new);
         ParticleFactoryRegistry.getInstance().register(BiomeParticleWeather.SAND_MOTE, SandMote.Factory::new);
+
         ParticleFactoryRegistry.getInstance().register(BiomeParticleWeather.BLIZZARD_WIND, BlizzardWind.Factory::new);
         ParticleFactoryRegistry.getInstance().register(BiomeParticleWeather.BLIZZARD_SNOW, BlizzardSnow.Factory::new);
         ParticleFactoryRegistry.getInstance().register(BiomeParticleWeather.SNOW, Snow.Factory::new);
+        ParticleFactoryRegistry.getInstance().register(BiomeParticleWeather.WARPED_SPORE, WarpedSpore.Factory::new);
+        ParticleFactoryRegistry.getInstance().register(BiomeParticleWeather.UPDRAFT, Updraft.Factory::new);
+        ParticleFactoryRegistry.getInstance().register(BiomeParticleWeather.STORM_SOUL, StormSoul.Factory::new);
+        ParticleFactoryRegistry.getInstance().register(BiomeParticleWeather.STORM_SOUL_IMPACT, StormSoulImpact.Factory::new);
+        ParticleFactoryRegistry.getInstance().register(BiomeParticleWeather.WEEPING_TEAR, WeepingTear.Factory::new);
+        ParticleFactoryRegistry.getInstance().register(BiomeParticleWeather.WEEPING_TEAR_SPLASH, WeepingTearSplash.Factory::new);
 
 
     }

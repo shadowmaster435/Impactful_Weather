@@ -45,6 +45,10 @@ public class Vector3 extends Vec3d {
         super(new Vector3f(x, y ,z));
     }
 
+    public Vector3(float h, float v) {
+        super(new Vector3f(h, v, h));
+    }
+
     public Vector3 mul(Vector3 other) {
         return new Vector3(multiply(other));
     }
@@ -155,9 +159,31 @@ public class Vector3 extends Vec3d {
 
     }
 
+    public Vector3 with_random_offset(float max_ofs) {
+        var min = new Vector3(-max_ofs);
+        var max = new Vector3(max_ofs);
+        var rand = MathHelper.nextBetween(Random.createLocal(), 0f, 1f);
+
+        return new Vector3(this.add(min.lerp(max, rand)));
+    }
+    public Vector3 with_random_offset(Vector3 max_ofs) {
+
+        var x = MathHelper.nextBetween(Random.createLocal(), 0f, 1f);
+        var y = MathHelper.nextBetween(Random.createLocal(), 0f, 1f);
+        var z = MathHelper.nextBetween(Random.createLocal(), 0f, 1f);
+
+        return new Vector3(this.add(max_ofs.negate())).lerp(new Vector3(this.add(max_ofs)), new Vector3(x, y, z));
+    }
 
     public Vector3 lerp(Vector3 to, double delta) {
         return new Vector3(super.lerp(to, delta));
+    }
+    public Vector3 lerp(Vector3 to, Vector3 delta) {
+        var x = MathHelper.lerp(delta.x, this.x, to.x);
+        var y = MathHelper.lerp(delta.y, this.y, to.y);
+        var z = MathHelper.lerp(delta.z, this.z, to.z);
+
+        return new Vector3(x, y, z);
     }
 
     public Vector3 bounce(Direction direction) {

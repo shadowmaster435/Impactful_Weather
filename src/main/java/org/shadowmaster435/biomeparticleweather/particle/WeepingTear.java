@@ -8,22 +8,29 @@ import net.minecraft.client.particle.ParticleFactory;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.particle.DefaultParticleType;
 import org.jetbrains.annotations.Nullable;
+import org.shadowmaster435.biomeparticleweather.BiomeParticleWeather;
+import org.shadowmaster435.biomeparticleweather.util.ParticleEngine;
 import org.shadowmaster435.biomeparticleweather.util.Vector3;
 
 public class WeepingTear extends ParticleBase {
     public WeepingTear(ClientWorld world, Vector3 pos, FabricSpriteProvider spriteProvider) {
         super(world, pos, spriteProvider);
         maxAge = 100;
-        alpha = 0;
         setSprite(spriteProvider);
+        collidesWithWorld = false;
     }
 
     @Override
     public void tick() {
         super.tick();
-        velocityY = -1;
+        if (age < 10) {
+            velocityY = -0.01;
+        } else {
+            velocityY = -1;
+            collidesWithWorld = true;
+        }
         if (onGround) {
-            //spawnimpact
+            ParticleEngine.spawn_particle(BiomeParticleWeather.WEEPING_TEAR_SPLASH, get_pos());
             markDead();
         }
 

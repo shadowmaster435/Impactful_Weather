@@ -17,10 +17,12 @@ public class ParticleSettings {
         ints.put("rain_amount", 16);
         ints.put("heavy_rain_amount", 24);
         ints.put("snow_amount", 16);
+        ints.put("blizzard_snow_amount", 16);
+        ints.put("blizzard_wind_amount", 16);
         ints.put("sand_mote_amount", 16);
         ints.put("wind_amount", 16);
-        ints.put("red_sans_mote_amount", 16);
-        ints.put("tumblebush_amount", 16);
+        ints.put("red_sand_mote_amount", 16);
+        ints.put("tumblebush_amount", 2);
         ints.put("lightning_particle_density", 32);
         ints.put("updraft_amount", 16);
         ints.put("soul_amount", 16);
@@ -39,7 +41,11 @@ public class ParticleSettings {
 
     }
     public static boolean get_bool(String key) {
-        return bools.get(key);
+        try { // fixes nullptr exception in world rendering mixin
+            return bools.get(key);
+        } catch (Exception ignored) {
+        }
+        return false;
     }
 
     public static int get_int(String key) {

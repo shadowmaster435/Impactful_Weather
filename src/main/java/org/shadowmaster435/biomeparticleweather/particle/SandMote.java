@@ -22,8 +22,8 @@ public class SandMote extends ParticleBase {
     @Override
     public void tick() {
         super.tick();
-        velocityZ = 0.05;
-        velocityY = Math.sin(age);
+        velocityX = 0.5;
+        velocityY = Math.sin((age + world.getTime()) / 16f) / 16.0f;
         if (age == 50) {
             fade_alpha(0, 10);
         }

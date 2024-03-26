@@ -66,6 +66,5 @@ public class ModResourceLoader {
         }
         ParticleVoxel[] voxels = result.toArray(new ParticleVoxel[]{});
         models.put(id.toString().replace("biomeparticleweather:textures/particle_model/", "").replace(".png", ""), new ParticleModelPart(voxels, new ParticleVoxelParams(Vector3.ONE, Vector3.ZERO, VoxelTransform.def())));
-        System.out.println(models);
     }
 }
